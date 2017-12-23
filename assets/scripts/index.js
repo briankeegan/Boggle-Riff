@@ -13,13 +13,13 @@ const dictionary22 = require('./dictionary22')
 // use require without a reference to ensure a file is bundled
 // require('./example')
 
-const bookEvents = require('./books/events')
+// const bookEvents = require('./books/events')
 
 // const originalDictionaryFile = require('dictionary-test.js')
 // const origDict = require('../js/dictionary-test.js')
 
-const dictionaryArray = config
-const dictionaryString = dictionaryArray.toString()
+const dictionaryObject = dictionary22
+let dictionaryString
 
 const diceList16 = {
   0: ['R', 'I', 'F', 'O', 'B', 'X'],
@@ -86,9 +86,10 @@ function makeNewBoardArray (chooseYourDice) {
   return newBoard
 }
 
-function createBoard (boardArray) {
-  document.getElementById('game-board').innerHTML = ""
-  const sideLength = Math.sqrt(boardArray.length)
+function createBoard () {
+  makeNewBoardArray(diceList16)
+  document.getElementById('game-board').innerHTML = ''
+  const sideLength = Math.sqrt(newBoard.length)
   for (let y = 0; y < sideLength; y++) {
     const rowElement = document.createElement('div')
     console.log('Created row element ' + (y + 1))
@@ -99,7 +100,7 @@ function createBoard (boardArray) {
       // console.log('Created blank square element ' + (x))
       cardElement.setAttribute('class', 'blank-square')
       cardElement.setAttribute('id', blockIndex)
-      cardElement.innerText = boardArray[blockIndex]
+      cardElement.innerText = newBoard[blockIndex]
       // cardElement.addEventListener('click', takeTurn)
       // cardElement.addEventListener('mouseover', startHovering)
       // cardElement.addEventListener('mouseleave', stopHovering)
@@ -107,11 +108,6 @@ function createBoard (boardArray) {
     }
     document.getElementById('game-board').appendChild(rowElement)
   }
-}
-
-const boardMaker = function () {
-	const newBoardArray = makeNewBoardArray(diceList16)
-	createBoard(newBoardArray)
 }
 
 function getNewCoordinate (mapDirection, coordinate) {
@@ -154,13 +150,16 @@ function checkForWord (coordinateList, wordList, boardArray) {
       word += boardArray[boardIndex]
     }
     word = word.toUpperCase()
-    if (dictionaryArray.indexOf(word) !== -1) {
-      wordList.push(word)
+    const twoLetters = word.charAt(0) + word.charAt(1)
+    if (dictionaryObject[twoLetters]) {
+      if (dictionaryObject[twoLetters].indexOf(word) !== -1) {
+        wordList.push(word)
+      }
     }
   }
 }
 
-let logTrue = true
+let logTrue = false
 let counter = 0
 
 function pathIsDeadEnd (coordinateList, boardArray) {
@@ -178,7 +177,14 @@ function pathIsDeadEnd (coordinateList, boardArray) {
       if (counter > 5) { logTrue = false }
       // if (counter === 6) { console.log(dictionaryString) }
     }
-    return (dictionaryString.indexOf(word) === -1)
+    const twoLetters = word.charAt(1) + word.charAt(2)
+    if (dictionaryObject[twoLetters]) {
+      dictionaryString = dictionaryObject[twoLetters].toString()
+      // returns true if it's a dead end
+      return (dictionaryString.indexOf(word) === -1)
+    } else {
+      return true
+    }
   }
 }
 
@@ -187,8 +193,8 @@ function wordFinder () {
   const sideLength = Math.sqrt(newBoard.length)
   // blank array for words
   const wordList = []
-  // array for looping through every square to make words
-  const guessMap = [1, 1]
+
+  let wordBefore
 
   let searchingForNewCoordinate
   let newCoordinate
@@ -196,6 +202,8 @@ function wordFinder () {
     const coordinateList = []
     const x = i % sideLength
     const y = Math.floor(i / sideLength)
+    // array for looping through every square to make words
+    const guessMap = [1, 1]
     coordinateList.push([x, y])
     let currentCharacter = 1
     while (guessMap[1] <= 8) {
@@ -209,6 +217,7 @@ function wordFinder () {
           coordinateList.push(newCoordinate)
           searchingForNewCoordinate = false
           currentCharacter++
+          guessMap[currentCharacter] = 1
         } else {
           guessMap[currentCharacter]++
           if (guessMap[currentCharacter] > 8) {
@@ -221,7 +230,7 @@ function wordFinder () {
         }
       }
       if ((guessMap[currentCharacter] > 8) && (currentCharacter === 1)) { break }
-      if (coordinateList.length >= 3) {
+      if (coordinateList.length > 1) {
         checkForWord(coordinateList, wordList, newBoard)
         if (pathIsDeadEnd(coordinateList, newBoard)) {
           guessMap[currentCharacter] = 1
@@ -231,41 +240,15 @@ function wordFinder () {
         }
       }
     }
-    // console.log('completed square' + i)
-    console.log(wordList)
+    console.log('completed square ' + i + ' found this many words: ' + wordList.length)
   }
+  console.log(wordList)
   return wordList
 }
 
 // On document ready
 $(() => {
-  boardMaker()
-  $('#newBoardButton').on('click', boardMaker)
+  createBoard()
+  $('#newBoardButton').on('click', createBoard)
   $('#getWordsButton').on('click', wordFinder)
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
