@@ -93,7 +93,7 @@ function createBoard () {
   for (let y = 0; y < sideLength; y++) {
     const rowElement = document.createElement('div')
     // console.log('Created row element ' + (y + 1))
-    rowElement.setAttribute('class', 'rowBlock')
+    rowElement.setAttribute('class', 'row')
     for (let x = 0; x < sideLength; x++) {
       const newBlock = document.createElement('div')
       const blockIndex = ((sideLength * y) + x)
@@ -245,6 +245,14 @@ function wordFinder () {
     wordBefore = wordList.length
   }
   console.log(wordList)
+  const listElement = document.createElement('ul')
+  for (let i = 0; i < wordList.length; i++) {
+    const newItem = document.createElement('li')
+    newItem.innerText = wordList[i]
+    listElement.appendChild(newItem)
+  }
+  document.getElementById('wordList').innerHTML = ''
+  document.getElementById('wordList').appendChild(listElement)
   return wordList
 }
 
