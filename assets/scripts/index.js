@@ -248,15 +248,30 @@ function wordFinder () {
 }
 
 const testThing = function () {
+  const xTable = {}
   let xCounter = 0
   console.log(`Details regarding this page's dictionary`)
   for (const key in dictionaryObject) {
-    console.log(key)
-    console.log('   Number of words:', dictionary22[key].length)
-    console.log('   Length of String:', dictionary22[key].toString().length)
+    const curDict = dictionaryObject[key]
+    const numberWords = curDict.length
+    const numberLetters = curDict.toString().length
+    const lastWord = curDict[curDict.length - 1]
+    const indexOfLastWord = curDict.toString().indexOf(lastWord)
+    xTable[key] = new DictionaryDetail(numberWords, numberLetters, lastWord, indexOfLastWord)
+    // console.log(key)
+    // console.log('   Number of words:', dictionary22[key].length)
+    // console.log('   Length of String:', dictionary22[key].toString().length)
     xCounter++
   }
   console.log('Number of subdivisions in dictionary:', xCounter)
+  console.table(xTable)
+}
+
+function DictionaryDetail (numberWords, numberLetters, lastWord, indexOfLastWord) {
+  this.numberWords = numberWords
+  this.numberLetters = numberLetters
+  this.lastWord = lastWord
+  this.indexOfLastWord = indexOfLastWord
 }
 
 // On document ready
