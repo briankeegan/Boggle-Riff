@@ -194,7 +194,7 @@ function wordFinder () {
   // blank array for words
   const wordList = []
 
-  let wordBefore
+  let wordBefore = 0
 
   let searchingForNewCoordinate
   let newCoordinate
@@ -240,10 +240,23 @@ function wordFinder () {
         }
       }
     }
-    console.log('completed square ' + i + ' found this many words: ' + wordList.length)
+    console.log('completed square ' + i + ' found this many words: ' + (wordList.length - wordBefore))
+    wordBefore = wordList.length
   }
   console.log(wordList)
   return wordList
+}
+
+const testThing = function () {
+  let xCounter = 0
+  console.log(`Details regarding this page's dictionary`)
+  for (const key in dictionaryObject) {
+    console.log(key)
+    console.log('   Number of words:', dictionary22[key].length)
+    console.log('   Length of String:', dictionary22[key].toString().length)
+    xCounter++
+  }
+  console.log('Number of subdivisions in dictionary:', xCounter)
 }
 
 // On document ready
@@ -251,4 +264,5 @@ $(() => {
   createBoard()
   $('#newBoardButton').on('click', createBoard)
   $('#getWordsButton').on('click', wordFinder)
+  $('#testSomething').on('click', testThing)
 })
