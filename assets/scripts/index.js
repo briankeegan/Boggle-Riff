@@ -1,7 +1,7 @@
 'use strict'
 
 // const setAPIOrigin = require('../../lib/set-api-origin')
-const dictionary22 = require('./dictionary22')
+const dictionaryFile = require('./sensibleDictionary')
 
 // $(() => {
 //   setAPIOrigin(location, config)
@@ -18,7 +18,7 @@ const dictionary22 = require('./dictionary22')
 // const originalDictionaryFile = require('dictionary-test.js')
 // const origDict = require('../js/dictionary-test.js')
 
-const dictionaryObject = dictionary22
+const dictionaryObject = dictionaryFile
 let dictionaryString
 
 const diceList16 = {
@@ -153,8 +153,8 @@ function checkForWord (coordinateList, wordList, boardArray) {
     const twoLetters = word.charAt(0) + word.charAt(1)
     if (dictionaryObject[twoLetters]) {
       if ((dictionaryObject[twoLetters].indexOf(word) !== -1) &&
-          (wordList.indexOf(word) !== -1)) {
-            wordList.push(word)
+          (wordList.indexOf(word) === -1)) {
+        wordList.push(word)
       }
     }
   }
@@ -259,9 +259,6 @@ const testThing = function () {
     const lastWord = curDict[curDict.length - 1]
     const indexOfLastWord = curDict.toString().indexOf(lastWord)
     xTable[key] = new DictionaryDetail(numberWords, numberLetters, lastWord, indexOfLastWord)
-    // console.log(key)
-    // console.log('   Number of words:', dictionary22[key].length)
-    // console.log('   Length of String:', dictionary22[key].toString().length)
     xCounter++
   }
   console.log('Number of subdivisions in dictionary:', xCounter)
