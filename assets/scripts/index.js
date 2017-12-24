@@ -92,19 +92,19 @@ function createBoard () {
   const sideLength = Math.sqrt(newBoard.length)
   for (let y = 0; y < sideLength; y++) {
     const rowElement = document.createElement('div')
-    console.log('Created row element ' + (y + 1))
+    // console.log('Created row element ' + (y + 1))
     rowElement.setAttribute('class', 'rowBlock')
     for (let x = 0; x < sideLength; x++) {
-      const cardElement = document.createElement('div')
+      const newBlock = document.createElement('div')
       const blockIndex = ((sideLength * y) + x)
       // console.log('Created blank square element ' + (x))
-      cardElement.setAttribute('class', 'blank-square')
-      cardElement.setAttribute('id', blockIndex)
-      cardElement.innerText = newBoard[blockIndex]
-      // cardElement.addEventListener('click', takeTurn)
-      // cardElement.addEventListener('mouseover', startHovering)
-      // cardElement.addEventListener('mouseleave', stopHovering)
-      rowElement.appendChild(cardElement)
+      newBlock.setAttribute('class', 'blank-square')
+      newBlock.setAttribute('id', blockIndex)
+      newBlock.innerText = newBoard[blockIndex]
+      // newBlock.addEventListener('click', takeTurn)
+      // newBlock.addEventListener('mouseover', startHovering)
+      // newBlock.addEventListener('mouseleave', stopHovering)
+      rowElement.appendChild(newBlock)
     }
     document.getElementById('game-board').appendChild(rowElement)
   }
@@ -152,8 +152,9 @@ function checkForWord (coordinateList, wordList, boardArray) {
     word = word.toUpperCase()
     const twoLetters = word.charAt(0) + word.charAt(1)
     if (dictionaryObject[twoLetters]) {
-      if (dictionaryObject[twoLetters].indexOf(word) !== -1) {
-        wordList.push(word)
+      if ((dictionaryObject[twoLetters].indexOf(word) !== -1) &&
+          (wordList.indexOf(word) !== -1)) {
+            wordList.push(word)
       }
     }
   }
@@ -250,7 +251,7 @@ function wordFinder () {
 const testThing = function () {
   const xTable = {}
   let xCounter = 0
-  console.log(`Details regarding this page's dictionary`)
+  console.log(`Details regarding this page's dictionary:`)
   for (const key in dictionaryObject) {
     const curDict = dictionaryObject[key]
     const numberWords = curDict.length
