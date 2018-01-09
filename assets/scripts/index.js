@@ -107,6 +107,8 @@ const diceList36 = {
   35: ['O', 'O', 'O', 'T', 'T', 'U']
 }
 
+const alphabet = [`A`,`B`,`C`,`D`,`E`,`F`,`G`,`H`,`I`,`J`,`K`,`L`,`M`,`N`,`O`,`P`,`Q`,`R`,`S`,`T`,`U`,`V`,`W`,`X`,`Y`,`Z`]
+
 let newBoard
 
 function makeNewBoardArray (chooseYourDice) {
@@ -201,11 +203,24 @@ function checkForWord (coordinateList, wordList, boardArray) {
       word += boardArray[boardIndex]
     }
     word = word.toUpperCase()
-    const twoLetters = word.charAt(0) + word.charAt(1)
-    if (dictionaryObject[twoLetters]) {
-      if ((dictionaryObject[twoLetters].indexOf(word) !== -1) &&
-          (wordList.indexOf(word) === -1)) {
-        wordList.push(word)
+    if (word.indexOf('#') !== -1) {
+      for (let i = 0; i < alphabet.length; i++) {
+        const specialWord = word.replace('#', alphabet[i])
+        const twoLettersSpecial = specialWord.charAt(0) + specialWord.charAt(1)
+        if (dictionaryObject[twoLettersSpecial]) {
+          if ((dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
+              (wordList.indexOf(specialWord) === -1)) {
+            wordList.push(specialWord)
+          }
+        }
+      }
+    } else {
+      const twoLetters = word.charAt(0) + word.charAt(1)
+      if (dictionaryObject[twoLetters]) {
+        if ((dictionaryObject[twoLetters].indexOf(word) !== -1) &&
+            (wordList.indexOf(word) === -1)) {
+          wordList.push(word)
+        }
       }
     }
   }
@@ -229,13 +244,27 @@ function pathIsDeadEnd (coordinateList, boardArray) {
       if (counter > 5) { logTrue = false }
       // if (counter === 6) { console.log(dictionaryString) }
     }
-    const twoLetters = word.charAt(1) + word.charAt(2)
-    if (dictionaryObject[twoLetters]) {
-      dictionaryString = dictionaryObject[twoLetters].toString()
-      // returns true if it's a dead end
-      return (dictionaryString.indexOf(word) === -1)
-    } else {
+    if (word.indexOf('#') !== -1) {
+      for (let i = 0; i < alphabet.length; i++) {
+        const specialWord = word.replace('#', alphabet[i])
+        const twoLettersSpecial = specialWord.charAt(0) + specialWord.charAt(1)
+        if (dictionaryObject[twoLettersSpecial]) {
+          if (dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) {
+            // placehodler
+            return false
+          }
+        }
+      }
       return true
+    } else {
+      const twoLetters = word.charAt(1) + word.charAt(2)
+      if (dictionaryObject[twoLetters]) {
+        dictionaryString = dictionaryObject[twoLetters].toString()
+        // returns true if it's a dead end
+        return (dictionaryString.indexOf(word) === -1)
+      } else {
+        return true
+      }
     }
   }
 }
