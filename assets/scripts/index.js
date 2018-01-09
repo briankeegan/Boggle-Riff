@@ -68,6 +68,45 @@ const diceList25 = {
   24: ['E', 'T', 'I', 'L', 'I', 'C']
 }
 
+const diceList36 = {
+  0: ['A', 'A', 'A', 'F', 'R', 'S'],
+  1: ['A', 'A', 'E', 'E', 'E', 'E'],
+  2: ['A', 'A', 'E', 'E', 'O', 'O'],
+  3: ['A', 'A', 'F', 'I', 'R', 'S'],
+  4: ['A', 'B', 'D', 'E', 'I', 'O'],
+  5: ['A', 'D', 'E', 'N', 'N', 'N'],
+  6: ['A', 'E', 'E', 'E', 'E', 'M'],
+  7: ['A', 'E', 'E', 'G', 'M', 'U'],
+  8: ['A', 'E', 'G', 'M', 'N', 'N'],
+  9: ['A', 'E', 'I', 'L', 'M', 'N'],
+  10: ['A', 'E', 'I', 'N', 'O', 'U'],
+  11: ['A', 'F', 'I', 'R', 'S', 'Y'],
+  12: ['An', 'Er', 'He', 'In', 'Qu', 'Th'],
+  13: ['B', 'B', 'J', 'K', 'X', 'Z'],
+  14: ['C', 'C', 'E', 'N', 'S', 'T'],
+  15: ['C', 'D', 'D', 'L', 'N', 'N'],
+  16: ['C', 'E', 'I', 'I', 'T', 'T'],
+  17: ['C', 'E', 'I', 'P', 'S', 'T'],
+  18: ['C', 'F', 'G', 'N', 'U', 'Y'],
+  19: ['D', 'D', 'H', 'N', 'O', 'T'],
+  20: ['D', 'H', 'H', 'L', 'O', 'R'],
+  21: ['D', 'H', 'H', 'N', 'O', 'W'],
+  22: ['D', 'H', 'L', 'N', 'O', 'R'],
+  23: ['E', 'H', 'I', 'L', 'R', 'S'],
+  24: ['E', 'I', 'I', 'L', 'S', 'T'],
+  25: ['E', 'I', 'L', 'P', 'S', 'T'],
+  26: ['E', 'I', 'O', '#', '#', '#'],
+  27: ['E', 'M', 'T', 'T', 'T', 'O'],
+  28: ['E', 'N', 'S', 'S', 'S', 'U'],
+  29: ['G', 'O', 'R', 'R', 'V', 'W'],
+  30: ['H', 'I', 'R', 'S', 'T', 'V'],
+  31: ['H', 'O', 'P', 'R', 'S', 'T'],
+  32: ['I', 'P', 'R', 'S', 'Y', 'Y'],
+  33: ['J', 'K', 'Qu', 'W', 'X', 'Z'],
+  34: ['N', 'O', 'O', 'T', 'U', 'W'],
+  35: ['O', 'O', 'O', 'T', 'T', 'U']
+}
+
 let newBoard
 
 function makeNewBoardArray (chooseYourDice) {
@@ -116,6 +155,10 @@ function createBoard16 () {
 
 function createBoard25 () {
   createBoard(diceList25)
+}
+
+function createBoard36 () {
+  createBoard(diceList36)
 }
 
 function getNewCoordinate (mapDirection, coordinate) {
@@ -293,6 +336,7 @@ $(() => {
   createBoard16()
   $('#newBoardButton').on('click', createBoard16)
   $('#newBoardButton2').on('click', createBoard25)
+  $('#newBoardButton3').on('click', createBoard36)
   $('#getWordsButton').on('click', wordFinder)
   $('#testSomething').on('click', testThing)
 })
