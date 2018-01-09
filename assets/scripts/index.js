@@ -86,8 +86,8 @@ function makeNewBoardArray (chooseYourDice) {
   return newBoard
 }
 
-function createBoard () {
-  makeNewBoardArray(diceList16)
+function createBoard (diceList) {
+  makeNewBoardArray(diceList)
   document.getElementById('game-board').innerHTML = ''
   const sideLength = Math.sqrt(newBoard.length)
   for (let y = 0; y < sideLength; y++) {
@@ -108,6 +108,14 @@ function createBoard () {
     }
     document.getElementById('game-board').appendChild(rowElement)
   }
+}
+
+function createBoard16 () {
+  createBoard(diceList16)
+}
+
+function createBoard25 () {
+  createBoard(diceList25)
 }
 
 function getNewCoordinate (mapDirection, coordinate) {
@@ -282,8 +290,9 @@ function DictionaryDetail (numberWords, numberLetters, lastWord, indexOfLastWord
 
 // On document ready
 $(() => {
-  createBoard()
-  $('#newBoardButton').on('click', createBoard)
+  createBoard16()
+  $('#newBoardButton').on('click', createBoard16)
+  $('#newBoardButton2').on('click', createBoard25)
   $('#getWordsButton').on('click', wordFinder)
   $('#testSomething').on('click', testThing)
 })
