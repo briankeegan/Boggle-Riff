@@ -151,6 +151,7 @@ function createBoard (diceList) {
     }
     document.getElementById('game-board').appendChild(rowElement)
   }
+  document.getElementById('wordList').innerHTML = ''
 }
 
 function createBoard16 () {
