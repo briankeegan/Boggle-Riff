@@ -107,7 +107,9 @@ const diceList36 = {
   35: ['O', 'O', 'O', 'T', 'T', 'U']
 }
 
-const alphabet = [`A`,`B`,`C`,`D`,`E`,`F`,`G`,`H`,`I`,`J`,`K`,`L`,`M`,`N`,`O`,`P`,`Q`,`R`,`S`,`T`,`U`,`V`,`W`,`X`,`Y`,`Z`]
+const alphabet = [`A`, `B`, `C`, `D`, `E`, `F`, `G`, `H`, `I`, `J`, `K`, `L`, `M`, `N`, `O`, `P`, `Q`, `R`, `S`, `T`, `U`, `V`, `W`, `X`, `Y`, `Z`]
+
+const minWordLength = 3
 
 let newBoard
 
@@ -209,7 +211,8 @@ function checkForWord (coordinateList, wordList, boardArray) {
         const twoLettersSpecial = specialWord.charAt(0) + specialWord.charAt(1)
         if (dictionaryObject[twoLettersSpecial]) {
           if ((dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
-              (wordList.indexOf(specialWord) === -1)) {
+              (wordList.indexOf(specialWord) === -1) &&
+              (specialWord.length >= minWordLength)) {
             wordList.push(specialWord)
           }
         }
@@ -218,7 +221,8 @@ function checkForWord (coordinateList, wordList, boardArray) {
       const twoLetters = word.charAt(0) + word.charAt(1)
       if (dictionaryObject[twoLetters]) {
         if ((dictionaryObject[twoLetters].indexOf(word) !== -1) &&
-            (wordList.indexOf(word) === -1)) {
+            (wordList.indexOf(word) === -1) &&
+            (word.length >= minWordLength)) {
           wordList.push(word)
         }
       }
