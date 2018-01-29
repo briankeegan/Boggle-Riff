@@ -2,6 +2,7 @@
 
 const dictionaryFile = require('./sensibleDictionary')
 const letters = require('./letters.js')
+const getFormFields = require(`../../../lib/get-form-fields`)
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
@@ -252,6 +253,18 @@ function PrintWordsToPage () {
   document.getElementById('wordList').appendChild(listElement)
 }
 
+function enterWord (event) {
+  const data = getFormFields(this)
+  event.preventDefault()
+  const newWord = data.playerWord.toUpperCase()
+  if (availableWords.indexOf(newWord) !== -1) {
+    const newItem = document.createElement('li')
+    newItem.innerText = newWord
+    document.getElementById('player-word-list').appendChild(newItem)
+  }
+  $('#player-word-input').val('')
+}
+
 // On document ready
 function AddHandlers () {
   createBoard16()
@@ -259,6 +272,7 @@ function AddHandlers () {
   $('#newBoardButton2').on('click', createBoard25)
   $('#newBoardButton3').on('click', createBoard36)
   $('#getWordsButton').on('click', PrintWordsToPage)
+  $('#player-word-form').on('submit', enterWord)
 }
 
 module.exports = {
