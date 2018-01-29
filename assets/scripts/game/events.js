@@ -222,7 +222,7 @@ function wordFinder () {
   // blank array for words
   const wordList = []
 
-  let wordBefore = 0
+  // let wordBefore = 0
 
   let searchingForNewCoordinate
   let newCoordinate
@@ -268,8 +268,8 @@ function wordFinder () {
         }
       }
     }
-    console.log('completed square ' + i + ' found this many words: ' + (wordList.length - wordBefore))
-    wordBefore = wordList.length
+    // console.log('completed square ' + i + ' found this many words: ' + (wordList.length - wordBefore))
+    // wordBefore = wordList.length
   }
   return wordList
 }
