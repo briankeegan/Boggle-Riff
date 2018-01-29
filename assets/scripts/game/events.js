@@ -21,7 +21,7 @@ let newBoard
 
 let availableWords
 
-let wordCounter = 0
+let playerWords
 
 function makeNewBoardArray (chooseYourDice) {
   const diceList = chooseYourDice
@@ -38,7 +38,7 @@ function makeNewBoardArray (chooseYourDice) {
   }
   availableWords = wordFinder()
   document.getElementById('player-word-list').innerText = ''
-  wordCounter = 0
+  playerWords = []
   return newBoard
 }
 
@@ -263,11 +263,11 @@ function enterWord (event) {
   event.preventDefault()
   const newWord = data.playerWord.toUpperCase()
   if (availableWords.indexOf(newWord) !== -1) {
-    wordCounter += 1
+    playerWords.push(newWord)
     const newItem = document.createElement('li')
     newItem.innerText = newWord
     const listParent = document.getElementById('player-word-list')
-    if (wordCounter > 1) {
+    if (playerWords.length > 1) {
       const goBeforeMe = listParent.getElementsByTagName('li')[0]
       listParent.insertBefore(newItem, goBeforeMe)
     } else {
