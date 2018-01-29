@@ -4,8 +4,6 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config.js')
 const gameEvents = require('./game/events.js')
 
-const dictionaryFile = require('./game/sensibleDictionary')
-
 $(() => {
   setAPIOrigin(location, config)
 })
