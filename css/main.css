@@ -12,7 +12,6 @@ a:hover {
 	height: 150px;
 	box-sizing: border-box;
 	border: 1px solid black;
-	cursor: pointer;
 	float: left;
 	font-family: "Droid Serif", serif;
 	font-size: 48pt;
@@ -136,11 +135,6 @@ p{
 	padding: 0;
 	border: 0;
 	box-sizing: border-box;
-}
-
-ul {
-  font-size: 18pt;
-  column-count: 3
 }
 
 .x-left {

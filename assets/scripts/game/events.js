@@ -21,6 +21,8 @@ let newBoard
 
 let availableWords
 
+let wordCounter = 0
+
 function makeNewBoardArray (chooseYourDice) {
   const diceList = chooseYourDice
   const diceArray = Object.keys(diceList)
@@ -36,6 +38,7 @@ function makeNewBoardArray (chooseYourDice) {
   }
   availableWords = wordFinder()
   document.getElementById('player-word-list').innerText = ''
+  wordCounter = 0
   return newBoard
 }
 
@@ -245,6 +248,7 @@ function wordFinder () {
 function PrintWordsToPage () {
   console.log(availableWords)
   const listElement = document.createElement('ul')
+  listElement.classList.add('complete-word-list')
   for (let i = 0; i < availableWords.length; i++) {
     const newItem = document.createElement('li')
     newItem.innerText = availableWords[i]
@@ -254,7 +258,6 @@ function PrintWordsToPage () {
   document.getElementById('wordList').appendChild(listElement)
 }
 
-let wordCounter = 0
 function enterWord (event) {
   const data = getFormFields(this)
   event.preventDefault()

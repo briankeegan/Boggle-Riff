@@ -141,9 +141,14 @@ p{
 	box-sizing: border-box;
 }
 
+.complete-word-list {
+	column-count:	3;
+	font-size:	14pt;
+}
+
 ul {
-  font-size: 18pt;
-  column-count: 3
+  font-size: 16pt;
+  text-align: left;
 }
 
 .x-left {
