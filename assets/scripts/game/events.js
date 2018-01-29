@@ -3,6 +3,8 @@
 const dictionaryFile = require('./sensibleDictionary')
 const letters = require('./letters.js')
 const getFormFields = require(`../../../lib/get-form-fields`)
+const moment = require(`../../../node_modules/moment/moment`)
+const numeral = require(`../../../node_modules/numeral/numeral`)
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
@@ -17,11 +19,15 @@ let dictionaryString
 
 const minWordLength = 3
 
+// These variables often change and need to be accessed globally,
+// hence they are defined here.
 let newBoard
-
 let availableWords
-
 let playerWords
+let timeIsUp
+let timerRunning
+let countDownDate
+let oldDownDate
 
 function makeNewBoardArray (chooseYourDice) {
   const diceList = chooseYourDice
@@ -39,6 +45,7 @@ function makeNewBoardArray (chooseYourDice) {
   availableWords = wordFinder()
   document.getElementById('player-word-list').innerText = ''
   playerWords = []
+  timeIsUp = false
   return newBoard
 }
 
@@ -65,6 +72,7 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
   }
   document.getElementById('wordList').innerHTML = ''
+  Countdown()
 }
 
 function createBoard16 () {
@@ -259,22 +267,67 @@ function PrintWordsToPage () {
 }
 
 function enterWord (event) {
-  const data = getFormFields(this)
   event.preventDefault()
-  const newWord = data.playerWord.toUpperCase()
-  if (availableWords.indexOf(newWord) !== -1) {
-    playerWords.push(newWord)
-    const newItem = document.createElement('li')
-    newItem.innerText = newWord
-    const listParent = document.getElementById('player-word-list')
-    if (playerWords.length > 1) {
-      const goBeforeMe = listParent.getElementsByTagName('li')[0]
-      listParent.insertBefore(newItem, goBeforeMe)
-    } else {
-      listParent.appendChild(newItem)
+  if (!timeIsUp) {
+    const data = getFormFields(this)
+    const newWord = data.playerWord.toUpperCase()
+    if (availableWords.indexOf(newWord) !== -1) {
+      playerWords.push(newWord)
+      const newItem = document.createElement('li')
+      newItem.innerText = newWord
+      const listParent = document.getElementById('player-word-list')
+      if (playerWords.length > 1) {
+        const goBeforeMe = listParent.getElementsByTagName('li')[0]
+        listParent.insertBefore(newItem, goBeforeMe)
+      } else {
+        listParent.appendChild(newItem)
+      }
     }
+    $('#player-word-input').val('')
   }
-  $('#player-word-input').val('')
+}
+
+function Countdown () {
+  // Set the date we're counting down to
+  // const currentDate = Date.now()
+  const newDateObj = moment(Date.now()).add(182, 's').toDate()
+  countDownDate = new Date(newDateObj).getTime()
+  let i = 0
+
+  // Update the count down every 1 second
+  const x = setInterval(function () {
+    timerRunning = true
+    if (i > 0) {
+      if (countDownDate !== oldDownDate) {
+        clearInterval(x)
+      }
+    } else {
+      oldDownDate = countDownDate
+      i++
+    }
+    // Get todays date and time
+    const now = new Date().getTime()
+
+    // Find the distance between now an the count down date
+    const distance = countDownDate - now
+
+    // Time calculations for days, hours, minutes and seconds
+    // const days = Math.floor(distance / (1000 * 60 * 60 * 24))
+    // const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000)
+
+    // Display the result in the element with id="demo"
+    document.getElementsByClassName('timer')[0].innerHTML = minutes + ':' + numeral(seconds).format('00')
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x)
+      document.getElementsByClassName('timer')[0].innerHTML = 'EXPIRED'
+      timeIsUp = true
+      timerRunning = false
+    }
+  }, 1000)
 }
 
 // On document ready

@@ -11,34 +11,42 @@
   </head>
   <body>
   	<main>
-  	<header>
-  		<h1>Boggle Test Thing</h1>
-  	</header>
-  	<nav>
-  		<a class="placeholder" href="#" id="newBoardButton">Make New 4x4 Board</a>
-      <a class="placeholder" href="#" id="newBoardButton2">Make New 5x5 Board</a>
-      <a class="placeholder" href="#" id="newBoardButton3">Make New 6x6 Board</a>
-  		<a class="placeholder" href="#" id="getWordsButton">Get Word List</a>
-      <a class="placeholder" href="#" id="testSomething" title="This link is for testing random things">#</a>
-  	</nav>
-  	<!-- <h3>Instructions</h3>
-  	<p class="introSnippet">If you don't know TicTacToe, <br>
-  	Then kindly show yourself the door!<br></p> -->
-
-    <div class="container">
-      <div id="player-words" class="clearfix col-md-2">
-        <form id=player-word-form>
-          <input name="playerWord" type="text" placeholder="Type words here!" id="player-word-input">
-        </form>
-        <ul id=player-word-list>
-        </ul>
-    	</div>
-      <div id="game-board" class="board clearfix col-md-6">
-    	</div>
-      <div id="wordList" class="message col-md-4">
-
+    	<header>
+    		<h1>Boggle Test Thing</h1>
+    	</header>
+    	<nav>
+    		<a class="placeholder" href="#" id="newBoardButton">Make New 4x4 Board</a>
+        <a class="placeholder" href="#" id="newBoardButton2">Make New 5x5 Board</a>
+        <a class="placeholder" href="#" id="newBoardButton3">Make New 6x6 Board</a>
+    		<a class="placeholder" href="#" id="getWordsButton">Get Word List</a>
+        <a class="placeholder" href="#" id="testSomething" title="This link is for testing random things">#</a>
+    	</nav>
+    	<!-- <h3>Instructions</h3>
+    	<p class="introSnippet">If you don't know TicTacToe, <br>
+    	Then kindly show yourself the door!<br></p> -->
+      <div class="container" id="timer-container">
+        <div class="clearfix col-md-2" id="placeholder-to-move-timer-left">
+        </div>
+        <div class="timer clearfix col-md-4" id="timer-div">
+          1:23.58
+        </div>
+        <div class="clearfix col-md-6" id="placeholder-to-move-timer-right">
+        </div>
       </div>
-    </div>
+      <div class="container">
+        <div id="player-words" class="clearfix col-md-2">
+          <form id=player-word-form>
+            <input name="playerWord" type="text" placeholder="Type words here!" id="player-word-input">
+          </form>
+          <ul id=player-word-list>
+          </ul>
+      	</div>
+        <div id="game-board" class="board clearfix col-md-6">
+      	</div>
+        <div id="wordList" class="message col-md-4">
+
+        </div>
+      </div>
   	</main>
   	<!-- <script src="assets/scripts/index.js"></script> -->
   </body>
