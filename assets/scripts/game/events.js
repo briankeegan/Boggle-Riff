@@ -56,7 +56,7 @@ function makeNewBoardArray (chooseYourDice) {
   for (let i = 0; i < boardSize; i++) {
     const currentDie = Math.floor(Math.random() * diceArray.length)
     const dieRoll = Math.floor(Math.random() * 6)
-    const newLetter = diceList[currentDie][dieRoll]
+    const newLetter = diceList[diceArray[currentDie]][dieRoll]
     newBoard.push(newLetter)
     diceArray.splice(currentDie, 1)
   }
