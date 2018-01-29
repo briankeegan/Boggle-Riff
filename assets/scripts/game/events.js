@@ -327,7 +327,7 @@ function enterWord (event) {
 function Countdown () {
   // Set the date we're counting down to
   // const currentDate = Date.now()
-  const newDateObj = moment(Date.now()).add(182, 's').toDate()
+  const newDateObj = moment(Date.now()).add(183, 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
   let i = 0
 
@@ -359,7 +359,7 @@ function Countdown () {
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x)
-      document.getElementsByClassName('timer')[0].innerHTML = 'EXPIRED'
+      document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
       timeIsUp = true
       if (store.game) { pushWordsToAPI() }
     }
