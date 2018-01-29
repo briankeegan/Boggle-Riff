@@ -252,30 +252,6 @@ function PrintWordsToPage () {
   document.getElementById('wordList').appendChild(listElement)
 }
 
-const testThing = function () {
-  const xTable = {}
-  let xCounter = 0
-  console.log(`Details regarding this page's dictionary:`)
-  for (const key in dictionaryObject) {
-    const curDict = dictionaryObject[key]
-    const numberWords = curDict.length
-    const numberLetters = curDict.toString().length
-    const lastWord = curDict[curDict.length - 1]
-    const indexOfLastWord = curDict.toString().indexOf(lastWord)
-    xTable[key] = new DictionaryDetail(numberWords, numberLetters, lastWord, indexOfLastWord)
-    xCounter++
-  }
-  console.log('Number of subdivisions in dictionary:', xCounter)
-  console.table(xTable)
-}
-
-function DictionaryDetail (numberWords, numberLetters, lastWord, indexOfLastWord) {
-  this.numberWords = numberWords
-  this.numberLetters = numberLetters
-  this.lastWord = lastWord
-  this.indexOfLastWord = indexOfLastWord
-}
-
 // On document ready
 function AddHandlers () {
   createBoard16()
@@ -283,7 +259,6 @@ function AddHandlers () {
   $('#newBoardButton2').on('click', createBoard25)
   $('#newBoardButton3').on('click', createBoard36)
   $('#getWordsButton').on('click', PrintWordsToPage)
-  $('#testSomething').on('click', testThing)
 }
 
 module.exports = {
