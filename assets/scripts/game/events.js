@@ -18,6 +18,8 @@ const minWordLength = 3
 
 let newBoard
 
+let availableWords
+
 function makeNewBoardArray (chooseYourDice) {
   const diceList = chooseYourDice
   const diceArray = Object.keys(diceList)
@@ -31,6 +33,7 @@ function makeNewBoardArray (chooseYourDice) {
     newBoard.push(newLetter)
     diceArray.splice(currentDie, 1)
   }
+  availableWords = wordFinder()
   return newBoard
 }
 
@@ -234,16 +237,19 @@ function wordFinder () {
     console.log('completed square ' + i + ' found this many words: ' + (wordList.length - wordBefore))
     wordBefore = wordList.length
   }
-  console.log(wordList)
+  return wordList
+}
+
+function PrintWordsToPage () {
+  console.log(availableWords)
   const listElement = document.createElement('ul')
-  for (let i = 0; i < wordList.length; i++) {
+  for (let i = 0; i < availableWords.length; i++) {
     const newItem = document.createElement('li')
-    newItem.innerText = wordList[i]
+    newItem.innerText = availableWords[i]
     listElement.appendChild(newItem)
   }
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
-  return wordList
 }
 
 const testThing = function () {
@@ -276,7 +282,7 @@ function AddHandlers () {
   $('#newBoardButton').on('click', createBoard16)
   $('#newBoardButton2').on('click', createBoard25)
   $('#newBoardButton3').on('click', createBoard36)
-  $('#getWordsButton').on('click', wordFinder)
+  $('#getWordsButton').on('click', PrintWordsToPage)
   $('#testSomething').on('click', testThing)
 }
 
