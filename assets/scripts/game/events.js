@@ -35,6 +35,7 @@ function makeNewBoardArray (chooseYourDice) {
     diceArray.splice(currentDie, 1)
   }
   availableWords = wordFinder()
+  document.getElementById('player-word-list').innerText = ''
   return newBoard
 }
 
@@ -253,14 +254,22 @@ function PrintWordsToPage () {
   document.getElementById('wordList').appendChild(listElement)
 }
 
+let wordCounter = 0
 function enterWord (event) {
   const data = getFormFields(this)
   event.preventDefault()
   const newWord = data.playerWord.toUpperCase()
   if (availableWords.indexOf(newWord) !== -1) {
+    wordCounter += 1
     const newItem = document.createElement('li')
     newItem.innerText = newWord
-    document.getElementById('player-word-list').appendChild(newItem)
+    const listParent = document.getElementById('player-word-list')
+    if (wordCounter > 1) {
+      const goBeforeMe = listParent.getElementsByTagName('li')[0]
+      listParent.insertBefore(newItem, goBeforeMe)
+    } else {
+      listParent.appendChild(newItem)
+    }
   }
   $('#player-word-input').val('')
 }
