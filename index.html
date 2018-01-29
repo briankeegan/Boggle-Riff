@@ -10,46 +10,46 @@
     <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
   </head>
   <body>
-  	<main>
-      <div class="container">
-      	<header class="clearfix">
-      		<h1 style="float:left;">Ted's Boggle Project</h1>
-          <div class="navbar-nav" style="float:right;">
-            <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
-            <form id="sign-in-form">
-              <input name="credentials[email]" type="text" placeholder="Username" id="sign-in-email">
-              <input name="credentials[password]" type="password" placeholder="Password" id="sign-in-password">
-              <input type="submit" class="btn btn-primary" value="Sign In">
-            </form>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccount" id="createAccountButton">
-              Create New Account
+    <div class="container">
+    	<header class="clearfix">
+    		<h1 style="float:left;">Ted's Boggle Project</h1>
+        <div class="navbar-nav" style="float:right;">
+          <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
+          <form id="sign-in-form">
+            <input name="credentials[email]" type="text" placeholder="Username" id="sign-in-email">
+            <input name="credentials[password]" type="password" placeholder="Password" id="sign-in-password">
+            <input type="submit" class="btn btn-primary" value="Sign In">
+          </form>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccount" id="createAccountButton">
+            Create New Account
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword" id="changePasswordButton">
+            Change Password
+          </button>
+          <form id=sign-out>
+            <input type="text" name="fake[data]" value="spacetakerupper" style="display: none;">
+            <button type="submit" class="btn btn-primary">
+              Sign Out
             </button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword" id="changePasswordButton">
-              Change Password
-            </button>
-            <form id=sign-out>
-              <input type="text" name="fake[data]" value="spacetakerupper" style="display: none;">
-              <button type="submit" class="btn btn-primary">
-                Sign Out
-              </button>
-            </form>
-          </div>
-      	</header>
-        <nav class="clearfix navbar navbar-expand-lg navbar-light bg-light">
-          <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon">toggle-icon</span>
-          </button> -->
-          <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
-          <a class="placeholder" href="#" id="newBoardButton">New 4x4 Board</a>
-          <a class="placeholder" href="#" id="newBoardButton2">New 5x5 Board</a>
-          <a class="placeholder" href="#" id="newBoardButton3">New 6x6 Board</a>
-      		<a class="placeholder" href="#" id="getWordsButton">Get Solutions</a>
-          <a class="placeholder" href="#" id="testSomething" title="This link is for testing random things">#</a>
+          </form>
+        </div>
+    	</header>
+      <nav class="clearfix navbar navbar-expand-lg navbar-light bg-light" id="primary-game-nav">
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon">toggle-icon</span>
+        </button> -->
+        <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
+        <a class="placeholder" href="#" id="newBoardButton">New 4x4 Board</a>
+        <a class="placeholder" href="#" id="newBoardButton2">New 5x5 Board</a>
+        <a class="placeholder" href="#" id="newBoardButton3">New 6x6 Board</a>
+    		<a class="placeholder" href="#" id="getWordsButton">Get Solutions</a>
+        <a class="placeholder" href="#" id="testSomething" title="This link is for testing random things">#</a>
 
-          <!-- </div> -->
-        </nav>
-      </div>
+        <!-- </div> -->
+      </nav>
+    </div>
+    <main>
     	<!-- <h3>Instructions</h3>
     	<p class="introSnippet">If you don't know TicTacToe, <br>
     	Then kindly show yourself the door!<br></p> -->
@@ -57,12 +57,12 @@
         <div class="clearfix col-md-2" id="placeholder-to-move-timer-left">
         </div>
         <div class="timer clearfix col-md-4" id="timer-div">
-          3:00
+          Sign in to play!
         </div>
         <div class="clearfix col-md-6" id="placeholder-to-move-timer-right">
         </div>
       </div>
-      <div class="container">
+      <div class="container" id="main-game-container">
         <div id="player-words" class="clearfix col-md-2">
           <form id=player-word-form>
             <input name="playerWord" type="text" placeholder="Type words here!" id="player-word-input">

@@ -36,19 +36,27 @@ const toggleSignInButtons = function () {
     $('#createAccountButton').css('display', 'none')
     $('#changePasswordButton').css('display', 'inline-block')
     $('#sign-out').css('display', 'inline-block')
+    $('#main-game-container').css('display', 'block')
+    $('#primary-game-nav').css('display', 'block')
   } else {
     $('#sign-in-form').css('display', 'inline-block')
     $('#createAccountButton').css('display', 'inline-block')
     $('#changePasswordButton').css('display', 'none')
     $('#sign-out').css('display', 'none')
+    $('#main-game-container').css('display', 'none')
+    $('#primary-game-nav').css('display', 'none')
   }
 }
 
 const signUpSuccess = function (data) {
   // console.log(data)
-  $('#message-box').text('Successfully created account!')
+  document.getElementById('timer-div').innerHTML = 'Make a new board to play!'
+  $('#timer-div').html('Make a new board to play!')
+  // $('#message-box').text('Successfully created account!')
   clearFields()
   toggleSignInButtons()
+
+  // $('#timer-div').html('Make a new board to play!')
 }
 
 const signUpFailure = function (error) {
@@ -60,6 +68,7 @@ const signUpFailure = function (error) {
 const signInSuccess = function (data) {
   // console.log(data)
   $('#message-box').text('Successfully signed in!')
+  $('#timer-div').html('Make a new board to play!')
   store.user = data.user
   clearFields()
   toggleSignInButtons()
@@ -87,6 +96,7 @@ const changePasswordFailure = function (error) {
 const signOutSuccess = function (data) {
   // console.log(data)
   store.user = ''
+  store.game = ''
   $('#message-box').text(`You signed out!`)
   clearFields()
   toggleSignInButtons()

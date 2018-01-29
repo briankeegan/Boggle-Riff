@@ -78,7 +78,7 @@ const uploadWords = function (data) {
   if (store.user) {
     const json = JSON.stringify(data)
     return $.ajax({
-      url: config.apiOrigin + '/words/' + store.game.id,
+      url: config.apiOrigin + '/words',
       method: 'POST',
       contentType: 'application/json',
       headers: {
@@ -94,5 +94,6 @@ module.exports = {
   getGame,
   getAllGames,
   getAllCompletedGames,
-  patchOffsite
+  patchOffsite,
+  uploadWords
 }

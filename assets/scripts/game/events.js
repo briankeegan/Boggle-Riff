@@ -47,6 +47,19 @@ const onNewGame = function () {
   }
 }
 
+function pushWordsToAPI () {
+  const data = {
+    word: {
+      player_id: store.user.id,
+      game_id: store.game.id,
+      word: playerWords.toString()
+    }
+  }
+  api.uploadWords(data)
+    .then(ui.wordPushSuccess)
+    .then(ui.wordPushFailure)
+}
+
 function makeNewBoardArray (chooseYourDice) {
   const diceList = chooseYourDice
   const diceArray = Object.keys(diceList)
@@ -65,6 +78,7 @@ function makeNewBoardArray (chooseYourDice) {
   }
   availableWords = wordFinder()
   document.getElementById('player-word-list').innerText = ''
+  document.getElementById('timer-div').innerText = '3:00'
   playerWords = []
   timeIsUp = false
   return newBoard
@@ -346,6 +360,7 @@ function Countdown () {
       clearInterval(x)
       document.getElementsByClassName('timer')[0].innerHTML = 'EXPIRED'
       timeIsUp = true
+      if (store.game) { pushWordsToAPI() }
     }
   }, 1000)
 }

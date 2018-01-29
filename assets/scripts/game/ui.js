@@ -50,6 +50,14 @@ const getAllCompletedGamesFailure = function (error) {
   console.log(error)
 }
 
+const wordPushSuccess = function (data) {
+  console.log(data)
+}
+
+const wordPushFailure = function (error) {
+  console.log(error)
+}
+
 module.exports = {
   newGameSuccess,
   newGameFailure,
@@ -58,5 +66,7 @@ module.exports = {
   getAllGamesSuccess,
   getAllGamesFailure,
   getAllCompletedGamesSuccess,
-  getAllCompletedGamesFailure
+  getAllCompletedGamesFailure,
+  wordPushSuccess,
+  wordPushFailure
 }
