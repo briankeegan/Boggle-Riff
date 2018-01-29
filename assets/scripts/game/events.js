@@ -25,7 +25,6 @@ let newBoard
 let availableWords
 let playerWords
 let timeIsUp
-let timerRunning
 let countDownDate
 let oldDownDate
 
@@ -296,7 +295,6 @@ function Countdown () {
 
   // Update the count down every 1 second
   const x = setInterval(function () {
-    timerRunning = true
     if (i > 0) {
       if (countDownDate !== oldDownDate) {
         clearInterval(x)
@@ -325,7 +323,6 @@ function Countdown () {
       clearInterval(x)
       document.getElementsByClassName('timer')[0].innerHTML = 'EXPIRED'
       timeIsUp = true
-      timerRunning = false
     }
   }, 1000)
 }
