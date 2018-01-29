@@ -58,7 +58,7 @@ function pushWordsToAPI () {
   }
   api.uploadWords(data)
     .then(ui.wordPushSuccess)
-    .then(ui.wordPushFailure)
+    .catch(ui.wordPushFailure)
 }
 
 function makeNewBoardArray (chooseYourDice) {
@@ -300,6 +300,11 @@ function PrintWordsToPage () {
   }
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
+  if (store.user) {
+    api.getAllWords()
+      .then(ui.getAllWordsSuccess)
+      .catch(ui.getAllWordsFailure)
+  }
 }
 ;
 function enterWord (event) {

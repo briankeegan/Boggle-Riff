@@ -89,11 +89,25 @@ const uploadWords = function (data) {
   }
 }
 
+const getAllWords = () => {
+  // Verifies a user is logged in before getting all games
+  if (store.user) {
+    return $.ajax({
+      url: config.apiOrigin + '/words',
+      method: 'GET',
+      headers: {
+        Authorization: 'Token token=' + store.user.token
+      }
+    })
+  }
+}
+
 module.exports = {
   newGame,
   getGame,
   getAllGames,
   getAllCompletedGames,
   patchOffsite,
-  uploadWords
+  uploadWords,
+  getAllWords
 }
