@@ -1,10 +1,15 @@
 'use strict'
 
-const dictionaryFile = require('./sensibleDictionary')
-const letters = require('./letters.js')
+const api = require('./api')
+const ui = require('./ui')
+const store = require('../store')
+
 const getFormFields = require(`../../../lib/get-form-fields`)
 const moment = require(`../../../node_modules/moment/moment`)
 const numeral = require(`../../../node_modules/numeral/numeral`)
+
+const dictionaryFile = require('./sensibleDictionary')
+const letters = require('./letters.js')
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
@@ -28,6 +33,20 @@ let timeIsUp
 let countDownDate
 let oldDownDate
 
+const onNewGame = function () {
+  const NewGameData = {
+    game: {
+      board_string: newBoard.toString()
+    }
+  }
+  if (store.user) {
+    api.newGame(NewGameData)
+      .then(ui.newGameSuccess)
+      .catch(ui.newGameFailure)
+    $('#offline-message-box').html('')
+  }
+}
+
 function makeNewBoardArray (chooseYourDice) {
   const diceList = chooseYourDice
   const diceArray = Object.keys(diceList)
@@ -40,6 +59,9 @@ function makeNewBoardArray (chooseYourDice) {
     const newLetter = diceList[currentDie][dieRoll]
     newBoard.push(newLetter)
     diceArray.splice(currentDie, 1)
+  }
+  if (store.user) {
+    onNewGame()
   }
   availableWords = wordFinder()
   document.getElementById('player-word-list').innerText = ''
@@ -329,7 +351,7 @@ function Countdown () {
 
 // On document ready
 function AddHandlers () {
-  createBoard16()
+  // createBoard16()
   $('#newBoardButton').on('click', createBoard16)
   $('#newBoardButton2').on('click', createBoard25)
   $('#newBoardButton3').on('click', createBoard36)
