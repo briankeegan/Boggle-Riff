@@ -9,6 +9,7 @@ const moment = require(`../../../node_modules/moment/moment`)
 const numeral = require(`../../../node_modules/numeral/numeral`)
 
 const dictionaryFile = require('./sensibleDictionary')
+const dictionaryFile2 = require('./ludicrousDictionary')
 const letters = require('./letters.js')
 
 // use require with a reference to bundle the file and use it in this file
@@ -19,7 +20,7 @@ const letters = require('./letters.js')
 
 // const bookEvents = require('./books/events')
 
-const dictionaryObject = dictionaryFile
+const dictionaryObject = dictionaryFile2
 let dictionaryString
 
 const minWordLength = 3
