@@ -313,7 +313,7 @@ function enterWord (event) {
     const data = getFormFields(this)
     const newWord = data.playerWord.toUpperCase()
     if ((availableWords.indexOf(newWord) !== -1) &&
-    (playerWords.indexOf(newWord === -1))) {
+    (playerWords.indexOf(newWord) === -1)) {
       playerWords.push(newWord)
       const newItem = document.createElement('li')
       newItem.innerText = newWord
