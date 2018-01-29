@@ -18,6 +18,7 @@ const testThing = function () {
   }
   console.log('Number of subdivisions in dictionary:', xCounter)
   console.table(xTable)
+  console.log(dictionaryObject['LI'].indexOf('LIT'))
 }
 
 function DictionaryDetail (numberWords, numberLetters, lastWord, indexOfLastWord) {

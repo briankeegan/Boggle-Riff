@@ -209,7 +209,7 @@ function pathIsDeadEnd (coordinateList, boardArray) {
     if (word.indexOf('#') !== -1) {
       for (let i = 0; i < letters.alphabet.length; i++) {
         const specialWord = word.replace('#', letters.alphabet[i])
-        const twoLettersSpecial = specialWord.charAt(0) + specialWord.charAt(1)
+        const twoLettersSpecial = specialWord.charAt(1) + specialWord.charAt(2)
         if (dictionaryObject[twoLettersSpecial]) {
           if (dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) {
             // placehodler
@@ -301,7 +301,7 @@ function PrintWordsToPage () {
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
 }
-
+;
 function enterWord (event) {
   event.preventDefault()
   if (!timeIsUp) {
