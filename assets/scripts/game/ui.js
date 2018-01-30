@@ -4,6 +4,7 @@ const store = require('../store')
 const gameApi = require('./api')
 
 const newGameSuccess = function (data) {
+  console.log(data)
   store.game = data.game
   // fetchPlayerProfile()
   // console.log(data.game)

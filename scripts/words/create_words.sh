@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# ID=1 GAME_ID=1 WORD="SAGE,SAG" TOKEN=BAhJIiVkMmQwYTY1Yjg3MzcyMDQwODE1NDI3YjA2MjIyNDVmYQY6BkVG--7af6df9a4b7720a1a78fe80caecfb7f27a581f53 sh scripts/words/create_words.sh
+# PLAYER=1 GAME_ID=4 WORD="SAGE,SAG" TOKEN=BAhJIiU5NGNiNDFlYjZlODMxNGNlYmNlZjA2YWZhYjUxMWRjZgY6BkVG--93d0815a4c78661ef7f037181c212a21b0269195 sh scripts/words/create_words.sh
 
 curl "http://localhost:4741/words" \
   --include \

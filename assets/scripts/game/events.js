@@ -56,6 +56,7 @@ function pushWordsToAPI () {
       word: playerWords.toString()
     }
   }
+  console.log(data)
   api.uploadWords(data)
     .then(ui.wordPushSuccess)
     .catch(ui.wordPushFailure)
@@ -82,6 +83,8 @@ function makeNewBoardArray (chooseYourDice) {
   document.getElementById('timer-div').innerText = '3:00'
   playerWords = []
   timeIsUp = false
+  document.getElementById('quit-early').style.display = 'inline-block'
+  document.getElementById('player-word-input').focus()
   return newBoard
 }
 
@@ -371,6 +374,17 @@ function Countdown () {
   }, 1000)
 }
 
+function QuitEarly () {
+  const newDateObj = moment(Date.now()).add(183, 's').toDate()
+  countDownDate = new Date(newDateObj).getTime()
+  if (store.game) { pushWordsToAPI() }
+  setTimeout(() => {
+    document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
+    timeIsUp = true
+    document.getElementById('quit-early').style.display = 'none'
+  }, 1000)
+}
+
 // On document ready
 function AddHandlers () {
   // createBoard16()
@@ -379,6 +393,7 @@ function AddHandlers () {
   $('#newBoardButton3').on('click', createBoard36)
   $('#getWordsButton').on('click', PrintWordsToPage)
   $('#player-word-form').on('submit', enterWord)
+  $('#quit-early').on('click', QuitEarly)
 }
 
 module.exports = {
