@@ -44,6 +44,12 @@ body {
   text-align: center;
 }
 
+button {
+  background-color: $header-background-color;
+  color: $header-text-color;
+  font-size: 16pt;
+}
+
 .clearfix::after {
   clear: both;
   content: ' ';
@@ -67,7 +73,7 @@ footer {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: .08em;
-  padding: 0 20px;
+  padding: 8px 20px;
   text-transform: uppercase;
 }
 
@@ -104,7 +110,9 @@ img {
 }
 
 input {
-  color: #000;
+  background-color: $off-white;
+  color: $darkest-color;
+  font-size: 12pt;
 }
 
 .introSnippet {
