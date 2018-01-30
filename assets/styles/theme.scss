@@ -11,7 +11,7 @@ a:hover {
 }
 
 .blank-square {
-  border: 1px solid $middle-dark-color;
+  border: 3px solid $middle-dark-color;
   border-radius: 15px;
   box-sizing: border-box;
   color: $darkest-color;
@@ -50,6 +50,13 @@ button {
   font-size: 16pt;
 }
 
+.btn-primary {
+  background-color: $middle-color;
+  color: $darkest-color;
+  font-size: 11pt;
+  font-weight: 450;
+}
+
 .clearfix::after {
   clear: both;
   content: ' ';
@@ -61,6 +68,8 @@ button {
 
 .copyright {
   float: left;
+  margin: 0;
+  padding: 0;
 }
 
 div {
@@ -126,6 +135,8 @@ main {
 
 .message {
   float: right;
+  margin: 0;
+  padding: 0;
 }
 
 .name {
