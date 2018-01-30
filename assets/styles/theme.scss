@@ -115,21 +115,21 @@ input {
   font-size: 12pt;
 }
 
-.introSnippet {
-	margin: 30px auto;
+.intro-snippet {
+  margin: 30px auto;
 }
 
 main {
 	/* width: 850px; */
-	margin: 20px auto;
+  margin: 20px auto;
 }
 
 .message {
-	float: right;
+  float: right;
 }
 
 .name {
-	color: #F15B31;
+  color: $middle-color;
   font-weight: 700;
 }
 
@@ -154,66 +154,66 @@ p {
   text-decoration: none;
 }
 
-.rowBlock {
-	height: 200px;
-	/* width: 900px; */
-	margin: 0 auto;
-	padding: 0;
-	border: 0;
-	box-sizing: border-box;
+.row-block {
+  border: 0;
+  box-sizing: border-box;
+  height: 200px;
+  // width: 900px;
+  margin: 0 auto;
+  padding: 0;
 }
 
 .complete-word-list {
-	column-count:	3;
-	font-size:	14pt;
+  column-count:	3;
+  font-size:	14pt;
 }
 
 .timer {
-  text-align: center;
   font-size: 26pt;
+  text-align: center;
 }
 
 ul {
   color: $main-text-color;
   font-size: 16pt;
-  text-align: left;
   list-style: none;
+  text-align: left;
 }
 
 .x-left {
-	border-right: 10px solid #000;
+  border-right: 10px solid $outline-color-test;
 }
 
 .x-middle {
-	border-right: 10px solid #000;
-	border-left: 10px solid #000;
+  border-left: 10px solid $outline-color-test;
+  border-right: 10px solid $outline-color-test;
 }
 
 .x-right {
-	border-left: 10px solid #000;
+  border-left: 10px solid $outline-color-test;
 }
 
 .y-top {
-	border-bottom: 10px solid #000;
+  border-bottom: 10px solid $outline-color-test;
 }
 
 .y-middle {
-	border-bottom: 10px solid #000;
-	border-top: 10px solid #000;
+  border-bottom: 10px solid $outline-color-test;
+  border-top: 10px solid $outline-color-test;
 }
 
 .y-bottom {
-	border-top: 10px solid #000;
+  border-top: 10px solid $outline-color-test;
 }
 
 .win-message {
-	position: absolute;
-	background-color: rgba(20, 49, 240, .6);
-	color: #FFF;
-	height: 50%;
-	width: 80%;
-	line-height: 400px;
-	font-size: 60pt;
-	text-align: center;
-	margin: 0 auto;
+  background-color: rgba(20, 49, 240, .6);
+  color: $off-white;
+  font-size: 60pt;
+  height: 50%;
+  line-height: 400px;
+  margin: 0 auto;
+  position: absolute;
+  text-align: center;
+  width: 80%;
 }
