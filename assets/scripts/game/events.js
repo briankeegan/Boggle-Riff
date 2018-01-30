@@ -28,6 +28,9 @@ let minWordLength = 3
 let secondsInTimer = 180
 let scoreCard = scores.scoreList16
 
+// let logTrue = false
+// let counter = 0
+
 // These variables often change and need to be accessed globally,
 // hence they are defined here.
 let newBoard
@@ -83,6 +86,7 @@ function makeNewBoardArray (chooseYourDice) {
   }
   availableWords = wordFinder()
   document.getElementById('player-word-list').innerText = ''
+  document.getElementById('scored-table').innerText = ''
   document.getElementById('timer-div').innerText = '3:00'
   playerWords = []
   timeIsUp = false
@@ -125,7 +129,7 @@ function createBoard16 () {
 }
 
 function createBoard25 () {
-  minWordLength = 3
+  minWordLength = 4
   secondsInTimer = 180
   scoreCard = scores.scoreList25
   createBoard(letters.diceList25)
@@ -202,9 +206,6 @@ function checkForWord (coordinateList, wordList, boardArray) {
     }
   }
 }
-
-let logTrue = false
-let counter = 0
 
 function pathIsDeadEnd (coordinateList, boardArray) {
   if (coordinateList) {
@@ -385,9 +386,7 @@ function Countdown () {
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x)
-      document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
-      timeIsUp = true
-      if (store.game) { pushWordsToAPI() }
+      endGame()
     }
   }, 1000)
 }
@@ -395,12 +394,17 @@ function Countdown () {
 function QuitEarly () {
   const newDateObj = moment(Date.now()).add(183, 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
-  if (store.game) { pushWordsToAPI() }
   setTimeout(() => {
-    document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
-    timeIsUp = true
-    document.getElementById('quit-early').style.display = 'none'
+    endGame()
   }, 1000)
+}
+
+function endGame () {
+  if (store.game) { pushWordsToAPI() }
+  document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
+  document.getElementById('quit-early').style.display = 'none'
+  timeIsUp = true
+  scores.scorePresentation(playerWords, scoreCard)
 }
 
 // On document ready

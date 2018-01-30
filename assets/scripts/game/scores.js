@@ -81,8 +81,47 @@ const scoreList36 = {
   36: 67
 }
 
+const scoreGame = function (wordList, scoreCard) {
+  let score = 0
+  for (let i = 0; i < wordList.length; i++) {
+    const word = wordList[i]
+    score += scoreCard[word.length]
+  }
+  return score
+}
+
+const scorePresentation = function (wordList, scoreCard) {
+  let i = 0
+  const iAmParent = document.getElementById('scored-table')
+  iAmParent.innerHTML = '<tr><th>Word</th><th>Points</th></tr>'
+  const removeMyLastChild = document.getElementById('player-word-list')
+  const x = setInterval(function () {
+    // remove word from original list
+    removeMyLastChild.removeChild(removeMyLastChild.lastChild)
+
+    // add word and its score to a description list
+    const word = wordList[i]
+    const newItem = '<tr><td>' + word + '</td><td>' + scoreCard[word.length] + '</td></tr>'
+    // const iAmFirstNewChild = document.createElement('dt')
+    // iAmFirstNewChild.innerText = word
+    // const iAmSecondNewChild = document.createElement('dd')
+    // iAmSecondNewChild.innerText = scoreCard[word.length]
+    // iAmParent.appendChild(iAmFirstNewChild)
+    // iAmParent.appendChild(iAmSecondNewChild)
+    iAmParent.innerHTML = iAmParent.innerHTML + newItem
+    // move to next iteration
+    i++
+    if (i === wordList.length) {
+      document.getElementById('timer-div').innerHTML = 'Your Score: ' + scoreGame(wordList, scoreCard)
+      clearInterval(x)
+    }
+  }, 200)
+}
+
 module.exports = {
   scoreList16,
   scoreList25,
-  scoreList36
+  scoreList36,
+  scoreGame,
+  scorePresentation
 }
