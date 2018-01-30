@@ -1,0 +1,47 @@
+@import 'breakpoints';
+
+// body {
+//   @include breakpoint(tiny) {
+//     margin: $body-margin-height 20px;
+//     max-width: 100%;
+//   }
+//   @include breakpoint(medium) {
+//     margin: $body-margin-height 200px;
+//     max-width: 40%;
+//   }
+// }
+
+.medium-at-least {
+  @include breakpoint(medium) {
+    display: block;
+    // visibility: visible;
+  }
+  @include breakpoint(less-medium) {
+    // display: none;
+    // visibility: hidden;
+    color: $main-background-color;
+    outline: 1px solid transparent;
+  }
+}
+
+.medium-less-than {
+  @include breakpoint(less-medium) {
+    display: block;
+    // visibility: visible;
+  }
+  @include breakpoint(medium) {
+    display: none;
+    // visibility: hidden;
+  }
+}
+
+.game-square {
+  @include breakpoint(less-medium) {
+    font-size: 7vh;
+    // visibility: visible;
+  }
+  // @include breakpoint(medium) {
+  //   display: none;
+  //   // visibility: hidden;
+  // }
+}

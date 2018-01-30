@@ -1,0 +1,33 @@
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+$darkest-color: #472407;
+$middle-dark-color: #96250f;
+$middle-color: #ff5000;
+$middle-light-color: #cd6a00;
+$lightest-color: #ffb600;
+
+$main-background-color: $middle-light-color;
+$main-text-color: $darkest-color;
+$outline-color-test: #000;
+
+$header-background-color: $darkest-color;
+$header-text-color: $lightest-color;
+$offline-background: #900;
+// #f15b31
+
+$nav-background: $middle-color;
+$nav-color: $darkest-color;
+
+$game-square-text-color: $darkest-color;
+$game-square-background: $main-background-color;
+
+$player-text-color: $main-text-color;
+$player-background: $main-background-color;
+
+$grid-border: 5px solid #333;
