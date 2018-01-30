@@ -11,6 +11,7 @@ const numeral = require(`../../../node_modules/numeral/numeral`)
 const dictionaryFile = require('./sensibleDictionary')
 const dictionaryFile2 = require('./ludicrousDictionary')
 const letters = require('./letters.js')
+const scores = require('./scores.js')
 
 // use require with a reference to bundle the file and use it in this file
 // const example = require('./example')
@@ -23,7 +24,9 @@ const letters = require('./letters.js')
 const dictionaryObject = dictionaryFile2
 let dictionaryString
 
-const minWordLength = 3
+let minWordLength = 3
+let secondsInTimer = 180
+let scoreCard = scores.scoreList16
 
 // These variables often change and need to be accessed globally,
 // hence they are defined here.
@@ -115,14 +118,23 @@ function createBoard (diceList) {
 }
 
 function createBoard16 () {
+  minWordLength = 3
+  secondsInTimer = 180
+  scoreCard = scores.scoreList16
   createBoard(letters.diceList16)
 }
 
 function createBoard25 () {
+  minWordLength = 3
+  secondsInTimer = 180
+  scoreCard = scores.scoreList25
   createBoard(letters.diceList25)
 }
 
 function createBoard36 () {
+  minWordLength = 4
+  secondsInTimer = 240
+  scoreCard = scores.scoreList36
   createBoard(letters.diceList36)
 }
 
@@ -203,25 +215,31 @@ function pathIsDeadEnd (coordinateList, boardArray) {
       word = word + boardArray[boardIndex]
     }
     word = ',' + word.toUpperCase()
-    if ((logTrue) && (dictionaryString.indexOf(word) === -1)) {
-      console.log('not a word', word)
-      counter++
-      if (counter > 5) { logTrue = false }
-      // if (counter === 6) { console.log(dictionaryString) }
-    }
+    // if ((logTrue) && (dictionaryString.indexOf(word) === -1)) {
+    //   console.log('not a word', word)
+    //   counter++
+    //   if (counter > 5) { logTrue = false }
+    //   // if (counter === 6) { console.log(dictionaryString) }
+    // }
+    // if there's hashtag...
     if (word.indexOf('#') !== -1) {
+      // iterate through all possible letters
       for (let i = 0; i < letters.alphabet.length; i++) {
         const specialWord = word.replace('#', letters.alphabet[i])
         const twoLettersSpecial = specialWord.charAt(1) + specialWord.charAt(2)
+        // if that dictionary exists...
         if (dictionaryObject[twoLettersSpecial]) {
-          if (dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) {
-            // placehodler
+          // and the mystery word appears somewhere in that dictionary...
+          if (dictionaryObject[twoLettersSpecial].toString().indexOf(specialWord) !== -1) {
+            // return FALSE, because path is NOT dead end
             return false
           }
         }
       }
+      // return TRUE, path IS a dead end because the hashtag string never found a word.
       return true
     } else {
+      // if there's no hashtag, just check if the string could become a word later
       const twoLetters = word.charAt(1) + word.charAt(2)
       if (dictionaryObject[twoLetters]) {
         dictionaryString = dictionaryObject[twoLetters].toString()
@@ -335,7 +353,7 @@ function enterWord (event) {
 function Countdown () {
   // Set the date we're counting down to
   // const currentDate = Date.now()
-  const newDateObj = moment(Date.now()).add(183, 's').toDate()
+  const newDateObj = moment(Date.now()).add((secondsInTimer + 3), 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
   let i = 0
 
