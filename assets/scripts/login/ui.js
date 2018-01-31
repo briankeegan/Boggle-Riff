@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const api = require('./api')
 
 // const gameApi = require('../game/api')
 
@@ -66,6 +67,11 @@ const toggleSignInButtons = function () {
 const signUpSuccess = function (data) {
   // console.log(data)
   $('#timer-div').html('Make a new board to play!')
+  $('#create-account-message-box').html('<p>Account Created!</p>')
+  setTimeout(() => {
+    document.getElementById('close-create-account-button').click()
+  }, 600)
+  // console.log(data)
   // $('#message-box').text('Successfully created account!')
   clearFields()
   toggleSignInButtons()
@@ -115,6 +121,8 @@ const signOutSuccess = function (data) {
   store.game = ''
   $('#timer-div').text(`You signed out!`)
   $('#game-board').text(``)
+  $('#scored-table').text(``)
+  $('#player-word-list').text(``)
   clearFields()
   toggleSignInButtons()
   localStorage.clear()

@@ -53,17 +53,21 @@ button {
   background: $buttonBackground;
   color: $black;
   font-size: 16pt;
+  font-weight: 500
 }
 
 .button-quit {
-  display: inline-block;
-  border-radius: 4px;
+  background: $quitButtonBackground;
+  border-radius: 10px;
   border: 0;
-  margin: 12px;
+  display: inline-block;
+  float: right;
+  margin: 12px 8px 6px;
   outline: 0;
   padding: 15px;
   &:hover {
-    background: $middle-dark-color;
+    background: $quitOtherButtonBackground;
+    color: $offWhite
   }
 }
 
@@ -97,9 +101,11 @@ div {
 
 .dropbtn {
   background: $newGameButtonBackground;
+  border-radius: 8px;
   border: 0;
-  color: $darkest-color;
-  font-size: 16px;
+  color: $black;
+  font-size: 24px;
+  font-weight: 600;
   height: 100%;
   padding: 16px;
   width: 100%;
@@ -119,6 +125,7 @@ div {
 
 .dropdown-content {
   background: $butWaitOtherBackground;
+  border-radius: 0 0 10px 10px;
   // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   display: none;
   // min-width: 160px;
@@ -144,6 +151,7 @@ div {
 
 footer {
   background: $footerBackground;
+  border-radius: 0 0 6px 6px;
   color: $header-text-color;
   font-size: 14px;
   font-weight: 500;
@@ -175,6 +183,7 @@ h3 {
 
 header {
   background: $headerBackground;
+  border-radius: 10px 10px 0 0;
   color: $header-text-color;
   padding: 30px 20px;
 }
@@ -223,6 +232,8 @@ nav {
 
 .nav-new-game {
   background: $newGameButtonBackground;
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 10px;
   &:hover {
     background: $newHoverGameButtonBackground;
     // outline: 4px solid $middle-color;
@@ -278,6 +289,7 @@ p {
 .complete-word-list {
   column-count:	3;
   font-size:	14pt;
+  padding-left: 0px;
 }
 
 table {

@@ -86,7 +86,9 @@ const scoreGame = function (wordList, scoreCard) {
   let score = 0
   for (let i = 0; i < wordList.length; i++) {
     const word = wordList[i]
-    score += scoreCard[word.length]
+    if (word) {
+      score += scoreCard[word.length]
+    }
   }
   document.getElementById('timer-div').innerHTML = 'Your Score: ' + score
   return score
@@ -108,14 +110,16 @@ const scorePresentation = function (wordList, scoreCard) {
 
     // add word and its score to a description list
     const word = wordList[i]
-    const newItem = '<tr><td>' + word + '</td><td>' + scoreCard[word.length] + '</td></tr>'
+    if (word) {
+      const newItem = '<tr><td>' + word + '</td><td>' + scoreCard[word.length] + '</td></tr>'
+      iAmParent.innerHTML = iAmParent.innerHTML + newItem
+    }
     // const iAmFirstNewChild = document.createElement('dt')
     // iAmFirstNewChild.innerText = word
     // const iAmSecondNewChild = document.createElement('dd')
     // iAmSecondNewChild.innerText = scoreCard[word.length]
     // iAmParent.appendChild(iAmFirstNewChild)
     // iAmParent.appendChild(iAmSecondNewChild)
-    iAmParent.innerHTML = iAmParent.innerHTML + newItem
     // move to next iteration
     i++
     if (i === wordList.length) {

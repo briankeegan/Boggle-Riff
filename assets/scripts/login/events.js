@@ -13,12 +13,23 @@ const onSignUp = function (event) {
   event.preventDefault()
   api.signUp(data)
     .then(ui.signUpSuccess)
+    .then(() => {
+      const newData = {
+        credentials: {
+          email: data.credentials.email,
+          password: data.credentials.password
+        }
+      }
+      api.signIn(newData)
+        .then(ui.signInSuccess)
+        .catch(ui.signInFailure)
+    })
     .catch(ui.signUpFailure)
 }
 
 const onSignIn = function (event) {
   const data = getFormFields(this)
-  // console.log(data)
+  console.log(data)
   event.preventDefault()
   api.signIn(data)
     .then(ui.signInSuccess)

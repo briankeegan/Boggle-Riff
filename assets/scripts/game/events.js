@@ -80,7 +80,7 @@ const refreshPage = function () {
       }
     } else {
       endGame(false)
-        .then($('timer-div').text('Welcome Back!'))
+      setTimeout($('timer-div').text('Welcome Back!'), 1000)
     }
     // console.log('store.user:', store.user)
   }
@@ -448,8 +448,10 @@ function Countdown (gotNoDate) {
       if (i > 1) {
         endGame(true)
       } else {
-        scores.scoreGame(playerWords, scoreCard)
-        scores.scorePresentation(playerWords, scoreCard)
+        if (playerWords) {
+          scores.scoreGame(playerWords, scoreCard)
+          scores.scorePresentation(playerWords, scoreCard)
+        }
         countDownDate = null
         document.getElementById('quit-early').style.display = 'none'
         document.getElementById('primary-game-nav').style.display = 'block'
@@ -490,8 +492,10 @@ function endGame (tallyScoreTrue) {
   document.getElementById('quit-early').style.display = 'none'
   document.getElementById('primary-game-nav').style.display = 'block'
   timeIsUp = true
-  if (store.user) { document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!' }
-  if (tallyScoreTrue) {
+  if ((store.game) && (store.user)) {
+    document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
+  }
+  if ((tallyScoreTrue) && (playerWords)) {
     scores.scorePresentation(playerWords, scoreCard)
   }
   setTimeout(moveFooter(), 200)
