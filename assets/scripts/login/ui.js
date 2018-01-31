@@ -37,8 +37,19 @@ const toggleSignInButtons = function () {
     $('#changePasswordButton').css('display', 'inline-block')
     $('#sign-out').css('display', 'inline-block')
     $('#main-game-container').css('display', 'block')
-    $('#primary-game-nav').css('display', 'block')
-    $('#player-word-input').css('display', 'none')
+    let x
+    let y
+    if (store.game) {
+      store.game.game_over ? x = 'none' : x = 'block'
+      store.game.game_over ? y = 'block' : y = 'none'
+      $('#player-word-input').css('display', x)
+      $('#primary-game-nav').css('display', y)
+      $('#in-game-buttons').css('display', 'block')
+      $('#quit-early').css('display', x)
+    } else {
+      $('#player-word-input').css('display', 'none')
+      $('#primary-game-nav').css('display', 'block')
+    }
   } else {
     $('#sign-in-form').css('display', 'inline-block')
     $('#createAccountButton').css('display', 'inline-block')

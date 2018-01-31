@@ -2,7 +2,7 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config.js')
-const store = require('./store.js')
+// const store = require('./store.js')
 const gameEvents = require('./game/events.js')
 const dictionaryTests = require('./game/dictionary_tests.js')
 
@@ -11,7 +11,6 @@ const loginEvents = require('./login/events.js')
 
 $(() => {
   setAPIOrigin(location, config)
-  gameEvents.refreshPage()
 })
 
 // use require with a reference to bundle the file and use it in this file
@@ -29,6 +28,7 @@ $(() => {
 $(() => {
   loginEvents.addHandlers()
   gameEvents.AddHandlers()
+  gameEvents.refreshPage()
   loginUi.toggleSignInButtons()
   dictionaryTests.AddHandlers()
 })

@@ -87,6 +87,7 @@ const scoreGame = function (wordList, scoreCard) {
     const word = wordList[i]
     score += scoreCard[word.length]
   }
+  document.getElementById('timer-div').innerHTML = 'Your Score: ' + score
   return score
 }
 
@@ -97,7 +98,12 @@ const scorePresentation = function (wordList, scoreCard) {
   const removeMyLastChild = document.getElementById('player-word-list')
   const x = setInterval(function () {
     // remove word from original list
-    removeMyLastChild.removeChild(removeMyLastChild.lastChild)
+    if (removeMyLastChild.lastChild) {
+      removeMyLastChild.removeChild(removeMyLastChild.lastChild)
+    } else {
+      document.getElementById('timer-div').innerHTML = 'Your Score: ' + scoreGame(wordList, scoreCard)
+      clearInterval(x)
+    }
 
     // add word and its score to a description list
     const word = wordList[i]
@@ -112,7 +118,7 @@ const scorePresentation = function (wordList, scoreCard) {
     // move to next iteration
     i++
     if (i === wordList.length) {
-      document.getElementById('timer-div').innerHTML = 'Your Score: ' + scoreGame(wordList, scoreCard)
+      scoreGame(wordList, scoreCard)
       clearInterval(x)
     }
   }, 200)

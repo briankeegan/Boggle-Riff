@@ -43,15 +43,18 @@ let oldDownDate
 const onNewGame = function () {
   const NewGameData = {
     game: {
-      board_string: newBoard.toString()
+      board_string: newBoard.toString(),
+      game_over: false
     }
   }
   if (store.user) {
     api.newGame(NewGameData)
       .then(ui.newGameSuccess)
       .catch(ui.newGameFailure)
+    store.game = NewGameData.game
     $('#offline-message-box').html('')
   }
+  store.game = NewGameData.game
 }
 
 const refreshPage = function () {
@@ -65,15 +68,19 @@ const refreshPage = function () {
       createBoard(null)
       console.log('hooray you have a stored game...')
       if (localStorage.getItem('playerWords')) {
-        playerWords = JSON.parse(localStorage.getItem('savedGame'))
+        playerWords = JSON.parse(localStorage.getItem('playerWords'))
         for (let i = 0; i < playerWords.length; i++) {
           addPlayerWordToList(playerWords[i])
         }
         countDownDate = JSON.parse(localStorage.getItem('countDownDate'))
         oldDownDate = JSON.parse(localStorage.getItem('oldDownDate'))
+        console.log('playerWords: ', playerWords)
+        console.log('countDownDate: ', countDownDate)
+        console.log('oldDownDate: ', oldDownDate)
       }
     } else {
       endGame(false)
+        .then($('timer-div').text('Welcome Back!'))
     }
     // console.log('store.user:', store.user)
   }
@@ -129,6 +136,7 @@ function createBoard (diceList) {
   playerWords = []
   timeIsUp = false
   document.getElementById('in-game-buttons').style.display = 'block'
+  document.getElementById('quit-early').style.display = 'inline-block'
   document.getElementById('player-word-input').style.display = 'block'
   document.getElementById('primary-game-nav').style.display = 'none'
   document.getElementById('player-word-input').focus()
@@ -137,6 +145,9 @@ function createBoard (diceList) {
   availableWords = wordFinder()
   document.getElementById('game-board').innerHTML = ''
   const sideLength = Math.sqrt(newBoard.length)
+  if (sideLength === 4) { scoreCard = scores.scoreList16 }
+  if (sideLength === 5) { scoreCard = scores.scoreList25 }
+  if (sideLength === 6) { scoreCard = scores.scoreList36 }
   for (let y = 0; y < sideLength; y++) {
     const rowElement = document.createElement('div')
     // console.log('Created row element ' + (y + 1))
@@ -156,28 +167,25 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
   }
   document.getElementById('wordList').innerHTML = ''
-  Countdown(countDownDate)
+  if (!store.game.game_over) { Countdown(countDownDate) }
   setTimeout(moveFooter(), 200)
 }
 
 function createBoard16 () {
   minWordLength = 3
   secondsInTimer = 180
-  scoreCard = scores.scoreList16
   createBoard(letters.diceList16)
 }
 
 function createBoard25 () {
   minWordLength = 4
   secondsInTimer = 180
-  scoreCard = scores.scoreList25
   createBoard(letters.diceList25)
 }
 
 function createBoard36 () {
   minWordLength = 4
   secondsInTimer = 240
-  scoreCard = scores.scoreList36
   createBoard(letters.diceList36)
 }
 
@@ -366,6 +374,7 @@ function PrintWordsToPage () {
       .then(ui.getAllWordsSuccess)
       .catch(ui.getAllWordsFailure)
   }
+  moveFooter()
 }
 
 function inputWord (event) {
@@ -392,6 +401,7 @@ function addPlayerWordToList (newWord) {
   } else {
     listParent.appendChild(newItem)
   }
+  moveFooter()
 }
 
 function Countdown (gotNoDate) {
@@ -399,6 +409,7 @@ function Countdown (gotNoDate) {
   if (!gotNoDate) {
     // Set the date we're counting down to
     // const currentDate = Date.now()
+    console.log('I made a new date for the countdown!')
     const newDateObj = moment(Date.now()).add((secondsInTimer + 2), 's').toDate()
     countDownDate = new Date(newDateObj).getTime()
   }
@@ -412,8 +423,8 @@ function Countdown (gotNoDate) {
       }
     } else {
       oldDownDate = countDownDate
-      i++
     }
+    i++
     // Get todays date and time
     const now = new Date().getTime()
 
@@ -427,12 +438,22 @@ function Countdown (gotNoDate) {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
     // Display the result in the element with id="demo"
-    if (store.user) { document.getElementById('timer-div').innerHTML = minutes + ':' + numeral(seconds).format('00') }
+    if ((distance >= 0) && (store.user)) {
+      document.getElementById('timer-div').innerHTML = minutes + ':' + numeral(seconds).format('00')
+    }
 
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x)
-      endGame(true)
+      if (i > 1) {
+        endGame(true)
+      } else {
+        scores.scoreGame(playerWords, scoreCard)
+        scores.scorePresentation(playerWords, scoreCard)
+        countDownDate = null
+        document.getElementById('quit-early').style.display = 'none'
+        document.getElementById('primary-game-nav').style.display = 'block'
+      }
     }
   }, 1000)
 }
@@ -452,7 +473,7 @@ function signOutQuit () {
 }
 
 function endGame (tallyScoreTrue) {
-  if (store.game) {
+  if ((store.game) && (store.user)) {
     pushWordsToAPI()
     store.game.game_over = true
     const NewGameData = {
@@ -465,7 +486,8 @@ function endGame (tallyScoreTrue) {
       .catch(ui.newGameFailure)
     $('#offline-message-box').html('')
   }
-  document.getElementById('in-game-buttons').style.display = 'none'
+  // document.getElementById('in-game-buttons').style.display = 'none'
+  document.getElementById('quit-early').style.display = 'none'
   document.getElementById('primary-game-nav').style.display = 'block'
   timeIsUp = true
   if (store.user) { document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!' }
@@ -483,9 +505,9 @@ function moveFooter () {
   } else {
     $('#footer-div').removeClass('fix-to-bottom')
   }
-  console.log('I tried to move the footer!')
-  console.log('body height: ', bodyRect['height'])
-  console.log('window height: ', $(window).height())
+  // console.log('I tried to move the footer!')
+  // console.log('body height: ', bodyRect['height'])
+  // console.log('window height: ', $(window).height())
 }
 
 // On document ready
@@ -498,6 +520,7 @@ function AddHandlers () {
   $('#player-word-form').on('submit', inputWord)
   $('#quit-early').on('click', QuitEarly)
   $(window).on('beforeunload', onBeforeUnload)
+  $(window).on('resize', moveFooter)
 }
 
 module.exports = {

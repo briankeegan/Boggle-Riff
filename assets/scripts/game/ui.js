@@ -6,7 +6,11 @@ const gameApi = require('./api')
 const newGameSuccess = function (data) {
   console.log(data)
   store.game = data.game
-  localStorage.setItem('savedGame', JSON.stringify(store.game))
+  if (store.game.game_over) {
+    store.game = ''
+  } else {
+    localStorage.setItem('savedGame', JSON.stringify(store.game))
+  }
   // fetchPlayerProfile()
   // console.log(data.game)
   // console.log('id from data.game.id: ', data.game.id)
