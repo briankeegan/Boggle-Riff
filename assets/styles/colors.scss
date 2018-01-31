@@ -6,7 +6,14 @@
   @return mix(black, $color, $percentage);
 }
 
-$off-white: #ddd;
+$offWhite: #FFF8F3;
+$black: #000;
+
+$pink: #D0006F;
+$orange: #F47700;
+$green: #84E22B;
+$blue: #16BABC;
+$yellow: #FFDE17;
 
 $darkest-color: #472407;
 $middle-dark-color: #96250f;
@@ -14,12 +21,15 @@ $middle-color: #ff5000;
 $middle-light-color: #cd6a00;
 $lightest-color: #ffb600;
 
+$mainBackground: linear-gradient($orange, $offWhite);
+
 $main-background-color: $middle-light-color;
 $main-text-color: $darkest-color;
 $outline-color-test: #000;
 
+$headerBackground: linear-gradient(to right, $orange, $blue);
 $header-background-color: $darkest-color;
-$header-text-color: $lightest-color;
+$header-text-color: $offWhite;
 $offline-background: #900;
 // #f15b31
 

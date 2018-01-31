@@ -39,13 +39,18 @@ a:hover {
 }
 
 body {
-  background-color: $main-background-color;
+  background: $offWhite;
   margin: 0;
+  // position: relative;
   text-align: center;
+
+  // position: absolute;
+  // height: 100%;
+  // width: 100%;
 }
 
 button {
-  background-color: $header-background-color;
+  background: $header-background-color;
   color: $header-text-color;
   font-size: 16pt;
 }
@@ -57,12 +62,12 @@ button {
   outline: 0;
   padding: 15px;
   &:hover {
-    background-color: $middle-dark-color;
+    background: $middle-dark-color;
   }
 }
 
 .btn-primary {
-  background-color: $middle-color;
+  background: $middle-color;
   color: $darkest-color;
   font-size: 11pt;
   font-weight: 450;
@@ -90,7 +95,7 @@ div {
 }
 
 .dropbtn {
-  background-color: $middle-color;
+  background: $middle-color;
   border: 0;
   color: $darkest-color;
   font-size: 16px;
@@ -106,13 +111,13 @@ div {
       display: block;
     }
     .dropbtn {
-      background-color: $lightest-color;
+      background: $lightest-color;
     }
   }
 }
 
 .dropdown-content {
-  background-color: $middle-color;
+  background: $middle-color;
   // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   display: none;
   // min-width: 160px;
@@ -122,13 +127,22 @@ div {
     display: block;
     text-decoration: none;
     &:hover {
-      background-color: $lightest-color;
+      background: $lightest-color;
     }
   }
 }
 
+.fix-to-bottom {
+  bottom: 0;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  // margin: 0 auto;
+}
+
 footer {
-  background-color: $header-background-color;
+  background: $headerBackground;
   color: $header-text-color;
   font-size: 14px;
   font-weight: 500;
@@ -144,7 +158,7 @@ footer {
 }
 
 h1 {
-  background-color: $header-background-color;
+  background: $header-background-color;
   color: $header-text-color;
   font-family: 'Raleway', sans-serif;
   font-size: 45px;
@@ -155,7 +169,7 @@ h1 {
 }
 
 h3 {
-  background-color: $header-background-color;
+  background: $header-background-color;
   color: $header-text-color;
   font-family: 'Raleway', sans-serif;
   font-size: 20px;
@@ -165,7 +179,7 @@ h3 {
 }
 
 header {
-  background-color: $header-background-color;
+  background: $headerBackground;
   color: $header-text-color;
   padding: 30px 20px;
 }
@@ -176,7 +190,7 @@ img {
 }
 
 input {
-  background-color: $off-white;
+  background: $offWhite;
   color: $darkest-color;
   font-size: 12pt;
 }
@@ -201,12 +215,12 @@ main {
 }
 
 .name {
-  color: $middle-color;
+  color: $black;
   font-weight: 700;
 }
 
 nav {
-  background-color: $nav-background;
+  background: $nav-background;
   color: $nav-color;
   padding: 20px 0;
   position: relative;
@@ -214,16 +228,16 @@ nav {
 
 .nav-new-game {
   &:hover {
-    background-color: $lightest-color;
+    background: $lightest-color;
     outline: 4px solid $middle-color;
     .dropbtn {
-      background-color: $lightest-color;
+      background: $lightest-color;
     }
   }
 }
 
 .new-game-list {
-  background-color: $nav-background;
+  background: $nav-background;
 }
 
 .no-border {
@@ -330,8 +344,8 @@ ul > li:hover ul {
 }
 
 .win-message {
-  background-color: rgba(20, 49, 240, .6);
-  color: $off-white;
+  background: rgba(20, 49, 240, .6);
+  color: $offWhite;
   font-size: 60pt;
   height: 50%;
   line-height: 400px;
