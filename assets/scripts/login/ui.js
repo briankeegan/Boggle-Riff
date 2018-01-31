@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-const gameEvents = require('../game/events')
+
 // const gameApi = require('../game/api')
 
 const clearFields = function () {
@@ -96,7 +96,6 @@ const changePasswordFailure = function (error) {
 
 const signOutSuccess = function (data) {
   // console.log(data)
-  gameEvents.signOutQuit()
   store.user = ''
   store.game = ''
   $('#timer-div').text(`You signed out!`)
