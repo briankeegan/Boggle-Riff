@@ -10,33 +10,33 @@
     <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
   </head>
   <body>
-    <div class="container">
-    	<header class="clearfix">
-    		<h1 style="float:left;">Ted's Proggle Bogject</h1>
-        <div class="navbar-nav" style="float:right;">
-          <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
-          <form id="sign-in-form">
-            <input name="credentials[email]" type="text" placeholder="Username" id="sign-in-email">
-            <input name="credentials[password]" type="password" placeholder="Password" id="sign-in-password">
-            <input type="submit" class="btn btn-primary" value="Sign In">
-          </form>
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccount" id="createAccountButton">
-            Create New Account
-          </button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword" id="changePasswordButton">
-            Change Password
-          </button>
-          <form id=sign-out>
-            <input type="text" name="fake[data]" value="spacetakerupper" style="display: none;">
-            <button type="submit" class="btn btn-primary">
-              Sign Out
+    <main>
+      <div class="container">
+      	<header class="clearfix">
+      		<h1 style="float:left;">Ted's Proggle Bogject</h1>
+          <div class="navbar-nav" style="float:right;">
+            <!-- <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a> -->
+            <form id="sign-in-form">
+              <input name="credentials[email]" type="text" placeholder="Username" id="sign-in-email">
+              <input name="credentials[password]" type="password" placeholder="Password" id="sign-in-password">
+              <input type="submit" class="btn btn-primary" value="Sign In">
+            </form>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAccount" id="createAccountButton">
+              Create New Account
             </button>
-          </form>
-        </div>
-    	</header>
-    </div>
-    <main class="no-margin">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changePassword" id="changePasswordButton">
+              Change Password
+            </button>
+            <form id=sign-out>
+              <input type="text" name="fake[data]" value="spacetakerupper" style="display: none;">
+              <button type="submit" class="btn btn-primary">
+                Sign Out
+              </button>
+            </form>
+          </div>
+      	</header>
+      </div>
     	<!-- <h3>Instructions</h3>
     	<p class="introSnippet">If you don't know TicTacToe, <br>
     	Then kindly show yourself the door!<br></p> -->

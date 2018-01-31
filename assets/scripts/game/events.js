@@ -432,7 +432,7 @@ function endGame (tallyScoreTrue) {
 }
 
 function moveFooter () {
-  const bodyRect = document.getElementsByTagName('body')[0].getBoundingClientRect()
+  const bodyRect = document.getElementsByTagName('main')[0].getBoundingClientRect()
   const footerRect = document.getElementById('footer-div').getBoundingClientRect()
   if ($(window).height() > (bodyRect['height'] + footerRect['height'])) {
     $('#footer-div').addClass('fix-to-bottom')
