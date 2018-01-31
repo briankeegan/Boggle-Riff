@@ -92,6 +92,7 @@ function makeNewBoardArray (chooseYourDice) {
   timeIsUp = false
   document.getElementById('quit-early').style.display = 'inline-block'
   document.getElementById('player-word-input').style.display = 'block'
+  document.getElementById('primary-game-nav').style.display = 'none'
   document.getElementById('player-word-input').focus()
   return newBoard
 }
@@ -355,7 +356,7 @@ function enterWord (event) {
 function Countdown () {
   // Set the date we're counting down to
   // const currentDate = Date.now()
-  const newDateObj = moment(Date.now()).add((secondsInTimer + 3), 's').toDate()
+  const newDateObj = moment(Date.now()).add((secondsInTimer + 2), 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
   let i = 0
 
@@ -415,6 +416,7 @@ function endGame () {
   }
   document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
   document.getElementById('quit-early').style.display = 'none'
+  document.getElementById('primary-game-nav').style.display = 'block'
   timeIsUp = true
   scores.scorePresentation(playerWords, scoreCard)
 }
