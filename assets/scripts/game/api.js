@@ -58,7 +58,7 @@ const getAllCompletedGames = () => {
   }
 }
 
-const patchOffsite = function (data) {
+const updateGame = function (data) {
   // Verifies a user is logged in before updating a game
   if (store.user) {
     const json = JSON.stringify(data)
@@ -107,7 +107,7 @@ module.exports = {
   getGame,
   getAllGames,
   getAllCompletedGames,
-  patchOffsite,
+  updateGame,
   uploadWords,
   getAllWords
 }

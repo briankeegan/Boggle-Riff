@@ -393,7 +393,7 @@ function Countdown () {
 }
 
 function QuitEarly () {
-  const newDateObj = moment(Date.now()).add(183, 's').toDate()
+  const newDateObj = moment(Date.now()).add(182, 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
   setTimeout(() => {
     endGame()
@@ -401,7 +401,18 @@ function QuitEarly () {
 }
 
 function endGame () {
-  if (store.game) { pushWordsToAPI() }
+  if (store.game) {
+    pushWordsToAPI()
+    const NewGameData = {
+      game: {
+        game_over: true
+      }
+    }
+    api.updateGame(NewGameData)
+      .then(ui.newGameSuccess)
+      .catch(ui.newGameFailure)
+    $('#offline-message-box').html('')
+  }
   document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
   document.getElementById('quit-early').style.display = 'none'
   timeIsUp = true
