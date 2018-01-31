@@ -46,7 +46,7 @@ const toggleSignInButtons = function () {
     $('#sign-out').css('display', 'none')
     $('#main-game-container').css('display', 'none')
     $('#primary-game-nav').css('display', 'none')
-    $('#quit-early').css('display', 'none')
+    $('#in-game-buttons').css('display', 'none')
   }
 }
 

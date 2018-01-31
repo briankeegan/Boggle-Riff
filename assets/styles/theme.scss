@@ -21,7 +21,7 @@ a:hover {
   font-family: 'Droid Serif', serif;
   font-size: 40pt;
   height: 90px;
-  line-height: 90px;
+  line-height: 80px;
   margin: 0;
   padding: 5px;
   text-align: center;
@@ -51,8 +51,14 @@ button {
 }
 
 .button-quit {
+  display: inline-block;
+  border: 0;
   margin: 12px;
+  outline: 0;
   padding: 15px;
+  &:hover {
+    background-color: $middle-dark-color;
+  }
 }
 
 .btn-primary {

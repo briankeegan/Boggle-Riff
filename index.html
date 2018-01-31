@@ -35,7 +35,7 @@
           </form>
         </div>
     	</header>
-      </div>
+    </div>
     <main class="no-margin">
     	<!-- <h3>Instructions</h3>
     	<p class="introSnippet">If you don't know TicTacToe, <br>
@@ -53,8 +53,6 @@
                 <a class="placeholder new-game-list" href="#" id="newBoardButton">4x4</a>
                 <a class="placeholder new-game-list" href="#" id="newBoardButton2">5x5</a>
                 <a class="placeholder new-game-list" href="#" id="newBoardButton3">6x6</a>
-              	<a class="placeholder new-game-list" href="#" id="getWordsButton">Get Solutions</a>
-                <a class="placeholder new-game-list" href="#" id="testSomething" title="This link is for testing random things">#</a>
               </div>
             </div>
             <!-- </div> -->
@@ -63,8 +61,9 @@
         <div class="timer clearfix col-md-3" id="timer-div">
           Sign in to play!
         </div>
-        <div class="clearfix col-md-7" id="placeholder-to-move-timer-left">
+        <div class="clearfix col-md-7" id="in-game-buttons">
           <button class="button-quit" type="button" id="quit-early">End Round Early</button>
+          <button class="button-quit" type="button" id="getWordsButton">Get Solutions</button>
         </div>
       </div>
       <div class="container" id="main-game-container">
@@ -83,14 +82,15 @@
 
         </div>
       </div>
-      <div class="container footer-down-shifter"><div>
+      <div class="container footer-down-shifter"></div>
   	</main>
   	<!-- <script src="assets/scripts/index.js"></script> -->
   </body>
   <div class="container">
     <footer class="clearfix">
     	<p class="copyright">I don't own Boggle. Hasbro does. <span style="font-size: 8pt;">Geez...</span></p>
-    	<p class="message">Created with &hearts; by <span class="name">Ted Cart</span></p>
+      <a class="no-padding no-margin" href="#" id="testSomething" title="This link is for testing random things" style="float: right">#</a>
+      <p class="message">Created with &hearts; by <span class="name">Ted Cart</span></p>
     </footer>
   </div>
   <div class="modal fade" id="createAccount" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

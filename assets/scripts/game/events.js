@@ -90,7 +90,7 @@ function makeNewBoardArray (chooseYourDice) {
   document.getElementById('timer-div').innerText = '3:00'
   playerWords = []
   timeIsUp = false
-  document.getElementById('quit-early').style.display = 'inline-block'
+  document.getElementById('in-game-buttons').style.display = 'block'
   document.getElementById('player-word-input').style.display = 'block'
   document.getElementById('primary-game-nav').style.display = 'none'
   document.getElementById('player-word-input').focus()
@@ -415,7 +415,7 @@ function endGame () {
     $('#offline-message-box').html('')
   }
   document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
-  document.getElementById('quit-early').style.display = 'none'
+  document.getElementById('in-game-buttons').style.display = 'none'
   document.getElementById('primary-game-nav').style.display = 'block'
   timeIsUp = true
   scores.scorePresentation(playerWords, scoreCard)
