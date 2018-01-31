@@ -17,21 +17,33 @@ $yellow: #FFDE17;
 
 $darkest-color: #472407;
 $middle-dark-color: #96250f;
-$middle-color: #ff5000;
+$middle-color: #F47700;
 $middle-light-color: #cd6a00;
 $lightest-color: #ffb600;
 
 $mainBackground: linear-gradient($orange, $offWhite);
 
 $main-background-color: $middle-light-color;
-$main-text-color: $darkest-color;
+$main-text-color: $black;
 $outline-color-test: #000;
 
-$headerBackground: linear-gradient(to right, $orange, $blue);
+$headerBackground: linear-gradient(to top right, $orange, $pink);
 $header-background-color: $darkest-color;
 $header-text-color: $offWhite;
 $offline-background: #900;
 // #f15b31
+
+$footerBackground: linear-gradient(to top right, $pink, $orange);
+
+$buttonBackground: linear-gradient($green, $blue);
+$butOtherBackground: linear-gradient(to right, $blue, $green);
+$butWaitOtherBackground: linear-gradient(to right, $green, $blue);
+
+$quitButtonBackground: linear-gradient($pink, $blue);
+$quitOtherButtonBackground: linear-gradient($blue, $pink);
+
+$newGameButtonBackground: linear-gradient($orange, $green);
+$newHoverGameButtonBackground: linear-gradient($green, $blue);
 
 $nav-background: $middle-color;
 $nav-color: $darkest-color;

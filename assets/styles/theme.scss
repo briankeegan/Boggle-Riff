@@ -11,10 +11,10 @@ a:hover {
 }
 
 .blank-square {
-  border: 3px solid $middle-dark-color;
+  border: 3px solid $pink;
   border-radius: 15px;
   box-sizing: border-box;
-  color: $darkest-color;
+  color: $black;
   // cursor: pointer;
   display: inline;
   float: left;
@@ -50,13 +50,14 @@ body {
 }
 
 button {
-  background: $header-background-color;
-  color: $header-text-color;
+  background: $buttonBackground;
+  color: $black;
   font-size: 16pt;
 }
 
 .button-quit {
   display: inline-block;
+  border-radius: 4px;
   border: 0;
   margin: 12px;
   outline: 0;
@@ -67,8 +68,8 @@ button {
 }
 
 .btn-primary {
-  background: $middle-color;
-  color: $darkest-color;
+  background: $buttonBackground;
+  color: $black;
   font-size: 11pt;
   font-weight: 450;
 }
@@ -95,7 +96,7 @@ div {
 }
 
 .dropbtn {
-  background: $middle-color;
+  background: $newGameButtonBackground;
   border: 0;
   color: $darkest-color;
   font-size: 16px;
@@ -117,7 +118,7 @@ div {
 }
 
 .dropdown-content {
-  background: $middle-color;
+  background: $butWaitOtherBackground;
   // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   display: none;
   // min-width: 160px;
@@ -127,7 +128,7 @@ div {
     display: block;
     text-decoration: none;
     &:hover {
-      background: $lightest-color;
+      background: $footerBackground;
     }
   }
 }
@@ -142,7 +143,7 @@ div {
 }
 
 footer {
-  background: $headerBackground;
+  background: $footerBackground;
   color: $header-text-color;
   font-size: 14px;
   font-weight: 500;
@@ -221,17 +222,18 @@ nav {
 }
 
 .nav-new-game {
+  background: $newGameButtonBackground;
   &:hover {
-    background: $lightest-color;
-    outline: 4px solid $middle-color;
+    background: $newHoverGameButtonBackground;
+    // outline: 4px solid $middle-color;
     .dropbtn {
-      background: $lightest-color;
+      background: $newHoverGameButtonBackground ;
     }
   }
 }
 
 .new-game-list {
-  background: $nav-background;
+  background: $butOtherBackground;
 }
 
 .no-border {
