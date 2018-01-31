@@ -54,6 +54,39 @@ const onNewGame = function () {
   }
 }
 
+const refreshPage = function () {
+  // Restores previous session on accidental page refresh
+  if (localStorage.getItem('savedUser')) {
+    store.user = JSON.parse(localStorage.getItem('savedUser'))
+    $('#timer-div').text('Welcome Back!')
+    if (localStorage.getItem('savedGame')) {
+      store.game = JSON.parse(localStorage.getItem('savedGame'))
+      newBoard = store.game.board_string.split(',')
+      createBoard(null)
+      console.log('hooray you have a stored game...')
+      if (localStorage.getItem('playerWords')) {
+        playerWords = JSON.parse(localStorage.getItem('savedGame'))
+        for (let i = 0; i < playerWords.length; i++) {
+          addPlayerWordToList(playerWords[i])
+        }
+        countDownDate = JSON.parse(localStorage.getItem('countDownDate'))
+        oldDownDate = JSON.parse(localStorage.getItem('oldDownDate'))
+      }
+    } else {
+      endGame(false)
+    }
+    // console.log('store.user:', store.user)
+  }
+}
+
+const onBeforeUnload = function () {
+  if (store.game) {
+    localStorage.setItem('playerWords', JSON.stringify(playerWords))
+    localStorage.setItem('countDownDate', JSON.stringify(countDownDate))
+    localStorage.setItem('oldDownDate', JSON.stringify(oldDownDate))
+  }
+}
+
 function pushWordsToAPI () {
   const data = {
     word: {
@@ -84,7 +117,12 @@ function makeNewBoardArray (chooseYourDice) {
   if (store.user) {
     onNewGame()
   }
-  availableWords = wordFinder()
+  return newBoard
+}
+
+function createBoard (diceList) {
+  diceList = diceList || false
+  // clear out old game stuff
   document.getElementById('player-word-list').innerText = ''
   document.getElementById('scored-table').innerText = ''
   document.getElementById('timer-div').innerText = '3:00'
@@ -94,11 +132,9 @@ function makeNewBoardArray (chooseYourDice) {
   document.getElementById('player-word-input').style.display = 'block'
   document.getElementById('primary-game-nav').style.display = 'none'
   document.getElementById('player-word-input').focus()
-  return newBoard
-}
-
-function createBoard (diceList) {
-  makeNewBoardArray(diceList)
+  // comment
+  if (diceList) { makeNewBoardArray(diceList) }
+  availableWords = wordFinder()
   document.getElementById('game-board').innerHTML = ''
   const sideLength = Math.sqrt(newBoard.length)
   for (let y = 0; y < sideLength; y++) {
@@ -120,7 +156,7 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
   }
   document.getElementById('wordList').innerHTML = ''
-  Countdown()
+  Countdown(countDownDate)
   setTimeout(moveFooter(), 200)
 }
 
@@ -331,8 +367,8 @@ function PrintWordsToPage () {
       .catch(ui.getAllWordsFailure)
   }
 }
-;
-function enterWord (event) {
+
+function inputWord (event) {
   event.preventDefault()
   if (!timeIsUp) {
     const data = getFormFields(this)
@@ -340,25 +376,32 @@ function enterWord (event) {
     if ((availableWords.indexOf(newWord) !== -1) &&
     (playerWords.indexOf(newWord) === -1)) {
       playerWords.push(newWord)
-      const newItem = document.createElement('li')
-      newItem.innerText = newWord
-      const listParent = document.getElementById('player-word-list')
-      if (playerWords.length > 1) {
-        const goBeforeMe = listParent.getElementsByTagName('li')[0]
-        listParent.insertBefore(newItem, goBeforeMe)
-      } else {
-        listParent.appendChild(newItem)
-      }
+      addPlayerWordToList(newWord)
     }
     $('#player-word-input').val('')
   }
 }
 
-function Countdown () {
-  // Set the date we're counting down to
-  // const currentDate = Date.now()
-  const newDateObj = moment(Date.now()).add((secondsInTimer + 2), 's').toDate()
-  countDownDate = new Date(newDateObj).getTime()
+function addPlayerWordToList (newWord) {
+  const newItem = document.createElement('li')
+  newItem.innerText = newWord
+  const listParent = document.getElementById('player-word-list')
+  if (playerWords.length > 1) {
+    const goBeforeMe = listParent.getElementsByTagName('li')[0]
+    listParent.insertBefore(newItem, goBeforeMe)
+  } else {
+    listParent.appendChild(newItem)
+  }
+}
+
+function Countdown (gotNoDate) {
+  gotNoDate = gotNoDate || false
+  if (!gotNoDate) {
+    // Set the date we're counting down to
+    // const currentDate = Date.now()
+    const newDateObj = moment(Date.now()).add((secondsInTimer + 2), 's').toDate()
+    countDownDate = new Date(newDateObj).getTime()
+  }
   let i = 0
 
   // Update the count down every 1 second
@@ -411,6 +454,7 @@ function signOutQuit () {
 function endGame (tallyScoreTrue) {
   if (store.game) {
     pushWordsToAPI()
+    store.game.game_over = true
     const NewGameData = {
       game: {
         game_over: true
@@ -451,11 +495,13 @@ function AddHandlers () {
   $('#newBoardButton2').on('click', createBoard25)
   $('#newBoardButton3').on('click', createBoard36)
   $('#getWordsButton').on('click', PrintWordsToPage)
-  $('#player-word-form').on('submit', enterWord)
+  $('#player-word-form').on('submit', inputWord)
   $('#quit-early').on('click', QuitEarly)
+  $(window).on('beforeunload', onBeforeUnload)
 }
 
 module.exports = {
   AddHandlers,
-  signOutQuit
+  signOutQuit,
+  refreshPage
 }

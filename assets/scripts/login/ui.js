@@ -71,8 +71,10 @@ const signInSuccess = function (data) {
   $('#message-box').text('Successfully signed in!')
   $('#timer-div').html('Make a new board to play!')
   store.user = data.user
+  console.log('store.user: ', store.user)
   clearFields()
   toggleSignInButtons()
+  localStorage.setItem('savedUser', JSON.stringify(store.user))
   // fetchPlayerProfile()
   // gameEvents.resetBoard()
 }
@@ -102,6 +104,7 @@ const signOutSuccess = function (data) {
   $('#game-board').text(``)
   clearFields()
   toggleSignInButtons()
+  localStorage.clear()
   // gameEvents.resetBoard()
 }
 
