@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-// const gameEvents = require('../game/events')
+const gameEvents = require('../game/events')
 // const gameApi = require('../game/api')
 
 const clearFields = function () {
@@ -52,7 +52,6 @@ const toggleSignInButtons = function () {
 
 const signUpSuccess = function (data) {
   // console.log(data)
-  document.getElementById('timer-div').innerHTML = 'Make a new board to play!<br><br><br><br><br><br><br>'
   $('#timer-div').html('Make a new board to play!')
   // $('#message-box').text('Successfully created account!')
   clearFields()
@@ -97,9 +96,11 @@ const changePasswordFailure = function (error) {
 
 const signOutSuccess = function (data) {
   // console.log(data)
+  gameEvents.signOutQuit()
   store.user = ''
   store.game = ''
-  $('#message-box').text(`You signed out!`)
+  $('#timer-div').text(`You signed out!`)
+  $('#game-board').text(``)
   clearFields()
   toggleSignInButtons()
   // gameEvents.resetBoard()

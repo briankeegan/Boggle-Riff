@@ -383,12 +383,12 @@ function Countdown () {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000)
 
     // Display the result in the element with id="demo"
-    document.getElementsByClassName('timer')[0].innerHTML = minutes + ':' + numeral(seconds).format('00')
+    if (store.user) { document.getElementById('timer-div').innerHTML = minutes + ':' + numeral(seconds).format('00') }
 
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x)
-      endGame()
+      endGame(true)
     }
   }, 1000)
 }
@@ -397,11 +397,17 @@ function QuitEarly () {
   const newDateObj = moment(Date.now()).add(182, 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
   setTimeout(() => {
-    endGame()
+    endGame(true)
   }, 1000)
 }
 
-function endGame () {
+function signOutQuit () {
+  const newDateObj = moment(Date.now()).add(182, 's').toDate()
+  countDownDate = new Date(newDateObj).getTime()
+  endGame(false)
+}
+
+function endGame (tallyScoreTrue) {
   if (store.game) {
     pushWordsToAPI()
     const NewGameData = {
@@ -414,11 +420,13 @@ function endGame () {
       .catch(ui.newGameFailure)
     $('#offline-message-box').html('')
   }
-  document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!'
   document.getElementById('in-game-buttons').style.display = 'none'
   document.getElementById('primary-game-nav').style.display = 'block'
   timeIsUp = true
-  scores.scorePresentation(playerWords, scoreCard)
+  if (store.user) { document.getElementsByClassName('timer')[0].innerHTML = 'Time\'s up!' }
+  if (tallyScoreTrue) {
+    scores.scorePresentation(playerWords, scoreCard)
+  }
 }
 
 // On document ready
@@ -433,5 +441,6 @@ function AddHandlers () {
 }
 
 module.exports = {
-  AddHandlers
+  AddHandlers,
+  signOutQuit
 }
