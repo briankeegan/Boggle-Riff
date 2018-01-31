@@ -86,20 +86,21 @@ div {
 .dropbtn {
   background-color: $middle-color;
   border: 0;
-  color: $off-white;
+  color: $darkest-color;
   font-size: 16px;
+  height: 100%;
   padding: 16px;
+  width: 100%;
 }
 
 .dropdown {
   display: inline-block;
-  position: relative;
   &:hover {
     .dropdown-content {
       display: block;
     }
     .dropbtn {
-      background-color: #3e8e41;
+      background-color: $lightest-color;
     }
   }
 }
@@ -202,6 +203,17 @@ nav {
   background-color: $nav-background;
   color: $nav-color;
   padding: 20px 0;
+  position: relative;
+}
+
+.nav-new-game {
+  &:hover {
+    background-color: $lightest-color;
+    outline: 4px solid $middle-color;
+    .dropbtn {
+      background-color: $lightest-color;
+    }
+  }
 }
 
 .new-game-list {
@@ -233,6 +245,9 @@ p {
   font-weight: 600;
   letter-spacing: 1px;
   text-decoration: none;
+  &:hover {
+    color: $nav-color;
+  }
 }
 
 .row-block {
