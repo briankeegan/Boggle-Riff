@@ -91,6 +91,7 @@ function makeNewBoardArray (chooseYourDice) {
   playerWords = []
   timeIsUp = false
   document.getElementById('quit-early').style.display = 'inline-block'
+  document.getElementById('player-word-input').style.display = 'block'
   document.getElementById('player-word-input').focus()
   return newBoard
 }

@@ -38,6 +38,7 @@ const toggleSignInButtons = function () {
     $('#sign-out').css('display', 'inline-block')
     $('#main-game-container').css('display', 'block')
     $('#primary-game-nav').css('display', 'block')
+    $('#player-word-input').css('display', 'none')
   } else {
     $('#sign-in-form').css('display', 'inline-block')
     $('#createAccountButton').css('display', 'inline-block')
@@ -51,7 +52,7 @@ const toggleSignInButtons = function () {
 
 const signUpSuccess = function (data) {
   // console.log(data)
-  document.getElementById('timer-div').innerHTML = 'Make a new board to play!'
+  document.getElementById('timer-div').innerHTML = 'Make a new board to play!<br><br><br><br><br><br><br>'
   $('#timer-div').html('Make a new board to play!')
   // $('#message-box').text('Successfully created account!')
   clearFields()

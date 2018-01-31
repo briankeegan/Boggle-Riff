@@ -50,6 +50,11 @@ button {
   font-size: 16pt;
 }
 
+.button-quit {
+  margin: 12px;
+  padding: 15px;
+}
+
 .btn-primary {
   background-color: $middle-color;
   color: $darkest-color;
@@ -57,13 +62,15 @@ button {
   font-weight: 450;
 }
 
-.clearfix::after {
-  clear: both;
-  content: ' ';
-  display: block;
-  font-size: 0;
-  height: 0;
-  visibility: hidden;
+.clearfix {
+  &::after {
+    clear: both;
+    content: ' ';
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+  }
 }
 
 .copyright {
@@ -76,6 +83,43 @@ div {
   color: $main-text-color;
 }
 
+.dropbtn {
+  background-color: $middle-color;
+  border: 0;
+  color: $off-white;
+  font-size: 16px;
+  padding: 16px;
+}
+
+.dropdown {
+  display: inline-block;
+  position: relative;
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+    .dropbtn {
+      background-color: #3e8e41;
+    }
+  }
+}
+
+.dropdown-content {
+  background-color: $middle-color;
+  // box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  display: none;
+  // min-width: 160px;
+  position: absolute;
+  z-index: 1;
+  a {
+    display: block;
+    text-decoration: none;
+    &:hover {
+      background-color: $lightest-color;
+    }
+  }
+}
+
 footer {
   background-color: $header-background-color;
   color: $header-text-color;
@@ -84,6 +128,12 @@ footer {
   letter-spacing: .08em;
   padding: 8px 20px;
   text-transform: uppercase;
+}
+
+.footer-down-shifter {
+  height: 200px;
+  position: relative;
+  width: 10px;
 }
 
 h1 {
@@ -128,6 +178,10 @@ input {
   margin: 30px auto;
 }
 
+li {
+  text-align: left;
+}
+
 main {
 	/* width: 850px; */
   margin: 20px auto;
@@ -148,6 +202,22 @@ nav {
   background-color: $nav-background;
   color: $nav-color;
   padding: 20px 0;
+}
+
+.new-game-list {
+  background-color: $nav-background;
+}
+
+.no-border {
+  border: 0;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
 }
 
 p {
@@ -181,6 +251,7 @@ p {
 
 table {
   // text-align: center;
+  font-size: 12pt;
 }
 
 .timer {
@@ -193,6 +264,21 @@ ul {
   font-size: 16pt;
   list-style: none;
   text-align: left;
+}
+
+ul > li {
+  position: relative;
+}
+
+ul ul {
+  display: none;
+  left: 0;
+  position: absolute;
+  top: 1em;
+}
+
+ul > li:hover ul {
+  display: block;
 }
 
 .x-left {

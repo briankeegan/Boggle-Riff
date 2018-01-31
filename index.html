@@ -35,32 +35,36 @@
           </form>
         </div>
     	</header>
-      <nav class="clearfix navbar navbar-expand-lg navbar-light bg-light" id="primary-game-nav">
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">toggle-icon</span>
-        </button> -->
-        <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
-        <a class="placeholder" href="#" id="newBoardButton">New 4x4 Board</a>
-        <a class="placeholder" href="#" id="newBoardButton2">New 5x5 Board</a>
-        <a class="placeholder" href="#" id="newBoardButton3">New 6x6 Board</a>
-    		<a class="placeholder" href="#" id="getWordsButton">Get Solutions</a>
-        <a class="placeholder" href="#" id="testSomething" title="This link is for testing random things">#</a>
-
-        <!-- </div> -->
-      </nav>
-    </div>
-    <main>
+      </div>
+    <main class="no-margin">
     	<!-- <h3>Instructions</h3>
     	<p class="introSnippet">If you don't know TicTacToe, <br>
     	Then kindly show yourself the door!<br></p> -->
       <div class="container" id="timer-container">
-        <div class="clearfix col-md-2" id="placeholder-to-move-timer-right">
+        <div class="clearfix col-md-2 no-padding" id="placeholder-to-move-timer-right">
+          <nav class="clearfix nav navbar-pills nav-stacked" id="primary-game-nav">
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon">toggle-icon</span>
+            </button> -->
+            <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
+            <div class="dropdown placeholder">
+              <button class="dropbtn">NewGame</button>
+              <div class="dropdown-content">
+                <a class="placeholder new-game-list" href="#" id="newBoardButton">4x4</a>
+                <a class="placeholder new-game-list" href="#" id="newBoardButton2">5x5</a>
+                <a class="placeholder new-game-list" href="#" id="newBoardButton3">6x6</a>
+              	<a class="placeholder new-game-list" href="#" id="getWordsButton">Get Solutions</a>
+                <a class="placeholder new-game-list" href="#" id="testSomething" title="This link is for testing random things">#</a>
+              </div>
+            </div>
+            <!-- </div> -->
+          </nav>
         </div>
         <div class="timer clearfix col-md-3" id="timer-div">
           Sign in to play!
         </div>
         <div class="clearfix col-md-7" id="placeholder-to-move-timer-left">
-          <button type="button" id="quit-early">End Round Early</button>
+          <button class="button-quit" type="button" id="quit-early">End Round Early</button>
         </div>
       </div>
       <div class="container" id="main-game-container">
@@ -79,6 +83,7 @@
 
         </div>
       </div>
+      <div class="container footer-down-shifter"><div>
   	</main>
   	<!-- <script src="assets/scripts/index.js"></script> -->
   </body>
