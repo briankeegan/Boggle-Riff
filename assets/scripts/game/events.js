@@ -121,6 +121,7 @@ function createBoard (diceList) {
   }
   document.getElementById('wordList').innerHTML = ''
   Countdown()
+  setTimeout(moveFooter(), 200)
 }
 
 function createBoard16 () {
@@ -427,6 +428,20 @@ function endGame (tallyScoreTrue) {
   if (tallyScoreTrue) {
     scores.scorePresentation(playerWords, scoreCard)
   }
+  setTimeout(moveFooter(), 200)
+}
+
+function moveFooter () {
+  const bodyRect = document.getElementsByTagName('body')[0].getBoundingClientRect()
+  const footerRect = document.getElementById('footer-div').getBoundingClientRect()
+  if ($(window).height() > (bodyRect['height'] + footerRect['height'])) {
+    $('#footer-div').addClass('fix-to-bottom')
+  } else {
+    $('#footer-div').removeClass('fix-to-bottom')
+  }
+  console.log('I tried to move the footer!')
+  console.log('body height: ', bodyRect['height'])
+  console.log('window height: ', $(window).height())
 }
 
 // On document ready
