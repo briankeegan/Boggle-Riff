@@ -39,13 +39,15 @@ const toggleSignInButtons = function () {
     $('#main-game-container').css('display', 'block')
     let x
     let y
+    let z
     if (store.game) {
       store.game.game_over ? x = 'none' : x = 'block'
+      store.game.game_over ? z = 'none' : z = 'inline-block'
       store.game.game_over ? y = 'block' : y = 'none'
       $('#player-word-input').css('display', x)
       $('#primary-game-nav').css('display', y)
       $('#in-game-buttons').css('display', 'block')
-      $('#quit-early').css('display', x)
+      $('#quit-early').css('display', z)
     } else {
       $('#player-word-input').css('display', 'none')
       $('#primary-game-nav').css('display', 'block')

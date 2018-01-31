@@ -142,12 +142,12 @@ function createBoard (diceList) {
   document.getElementById('player-word-input').focus()
   // comment
   if (diceList) { makeNewBoardArray(diceList) }
-  availableWords = wordFinder()
   document.getElementById('game-board').innerHTML = ''
   const sideLength = Math.sqrt(newBoard.length)
-  if (sideLength === 4) { scoreCard = scores.scoreList16 }
-  if (sideLength === 5) { scoreCard = scores.scoreList25 }
-  if (sideLength === 6) { scoreCard = scores.scoreList36 }
+  if (sideLength === 4) { scoreCard = scores.scoreList16; minWordLength = 3 }
+  if (sideLength === 5) { scoreCard = scores.scoreList25; minWordLength = 4 }
+  if (sideLength === 6) { scoreCard = scores.scoreList36; minWordLength = 4 }
+  availableWords = wordFinder()
   for (let y = 0; y < sideLength; y++) {
     const rowElement = document.createElement('div')
     // console.log('Created row element ' + (y + 1))

@@ -19,6 +19,7 @@ const scoreList16 = {
 }
 
 const scoreList25 = {
+  3: 0,
   4: 1,
   5: 2,
   6: 3,
@@ -45,7 +46,7 @@ const scoreList25 = {
 }
 
 const scoreList36 = {
-  3: 1,
+  3: 0,
   4: 1,
   5: 2,
   6: 3,
