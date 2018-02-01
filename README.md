@@ -1,7 +1,3 @@
-## This project is a mess.
-
-I just wanted to get that out of the way. That said, the main challenge here was to get it working and it basically does.
-
 ## Boggle Experiment
 
 Challenged myself to build a boggle board and have it "solve" itself.
@@ -28,3 +24,5 @@ I removed all the white space from the dictionary file and made it an object ful
 Source: http://www.luke-g.com/boggle/#thedict
 
 I considered other dictionaries but they were WAY larger and full of words I've never seen (that are also not in a regular dictionary), so I ended up not using them.
+
+## Wireframes and Uer-Stories available [Here](https://git.generalassemb.ly/TedCart/full-stack-project-practice/blob/response/practice.md)
