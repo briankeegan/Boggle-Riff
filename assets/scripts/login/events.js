@@ -5,7 +5,7 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
 const gameEvents = require('../game/events')
-// const store = require('../store')
+const store = require('../store')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
@@ -48,9 +48,18 @@ const onChangePassword = function (event) {
 const onSignOut = function (event) {
   // console.log(store.user)
   event.preventDefault()
-  api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signOutFailure)
+  if ((store.game) && (!store.game.game_over)) {
+    gameEvents.signOutQuit()
+      .then(
+        api.signOut()
+          .then(ui.signOutSuccess)
+          .catch(ui.signOutFailure)
+      )
+  } else {
+    api.signOut()
+      .then(ui.signOutSuccess)
+      .catch(ui.signOutFailure)
+  }
 }
 
 const addHandlers = function () {

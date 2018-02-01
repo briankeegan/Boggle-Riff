@@ -49,9 +49,11 @@ const toggleSignInButtons = function () {
       $('#primary-game-nav').css('display', y)
       $('#in-game-buttons').css('display', 'block')
       $('#quit-early').css('display', z)
+      $('#getWordsButton').css('display', 'inline-block')
     } else {
       $('#player-word-input').css('display', 'none')
       $('#primary-game-nav').css('display', 'block')
+      $('#getWordsButton').css('display', 'none')
     }
   } else {
     $('#sign-in-form').css('display', 'inline-block')
@@ -116,16 +118,16 @@ const changePasswordFailure = function (error) {
 }
 
 const signOutSuccess = function (data) {
-  // console.log(data)
+  console.log(data)
   store.user = ''
   store.game = ''
   $('#timer-div').text(`You signed out!`)
-  $('#game-board').text(``)
+  $('#game-board').html('')
   $('#scored-table').text(``)
   $('#player-word-list').text(``)
+  localStorage.clear()
   clearFields()
   toggleSignInButtons()
-  localStorage.clear()
   // gameEvents.resetBoard()
 }
 

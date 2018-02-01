@@ -35,6 +35,8 @@ let scoreCard = scores.scoreList16
 // hence they are defined here.
 let newBoard
 let availableWords
+let currentCoordinates
+let wordCoordinates
 let playerWords
 let timeIsUp
 let countDownDate
@@ -65,18 +67,22 @@ const refreshPage = function () {
     if (localStorage.getItem('savedGame')) {
       store.game = JSON.parse(localStorage.getItem('savedGame'))
       newBoard = store.game.board_string.split(',')
-      createBoard(null)
       console.log('hooray you have a stored game...')
       if (localStorage.getItem('playerWords')) {
-        playerWords = JSON.parse(localStorage.getItem('playerWords'))
-        for (let i = 0; i < playerWords.length; i++) {
-          addPlayerWordToList(playerWords[i])
+        try {
+          playerWords = JSON.parse(localStorage.getItem('playerWords'))
+          for (let i = 0; i < playerWords.length; i++) {
+            addPlayerWordToList(playerWords[i])
+          }
+          countDownDate = JSON.parse(localStorage.getItem('countDownDate'))
+          oldDownDate = JSON.parse(localStorage.getItem('oldDownDate'))
+          createBoard(null)
+          console.log('playerWords: ', playerWords)
+          console.log('countDownDate: ', countDownDate)
+          console.log('oldDownDate: ', oldDownDate)
+        } catch (e) {
+          console.log(e)
         }
-        countDownDate = JSON.parse(localStorage.getItem('countDownDate'))
-        oldDownDate = JSON.parse(localStorage.getItem('oldDownDate'))
-        console.log('playerWords: ', playerWords)
-        console.log('countDownDate: ', countDownDate)
-        console.log('oldDownDate: ', oldDownDate)
       }
     } else {
       endGame(false)
@@ -87,10 +93,14 @@ const refreshPage = function () {
 }
 
 const onBeforeUnload = function () {
-  if (store.game) {
+  if ((store.game) && (countDownDate !== '')) {
     localStorage.setItem('playerWords', JSON.stringify(playerWords))
     localStorage.setItem('countDownDate', JSON.stringify(countDownDate))
     localStorage.setItem('oldDownDate', JSON.stringify(oldDownDate))
+  } else {
+    localStorage.removeItem('playerWords')
+    localStorage.removeItem('countDownDate')
+    localStorage.removeItem('oldDownDate')
   }
 }
 
@@ -113,6 +123,7 @@ function makeNewBoardArray (chooseYourDice) {
   const diceArray = Object.keys(diceList)
   const boardSize = diceArray.length
   newBoard = []
+  wordCoordinates = []
   // newBoard.push('A')
   for (let i = 0; i < boardSize; i++) {
     const currentDie = Math.floor(Math.random() * diceArray.length)
@@ -224,8 +235,10 @@ function checkForWord (coordinateList, wordList, boardArray) {
   if (coordinateList) {
     const sideLength = Math.sqrt(boardArray.length)
     let word = ''
+    currentCoordinates = []
     for (let i = 0; i < coordinateList.length; i++) {
       const boardIndex = (coordinateList[i][0] + (coordinateList[i][1] * sideLength))
+      currentCoordinates.push(boardIndex)
       word += boardArray[boardIndex]
     }
     word = word.toUpperCase()
@@ -238,6 +251,7 @@ function checkForWord (coordinateList, wordList, boardArray) {
               (wordList.indexOf(specialWord) === -1) &&
               (specialWord.length >= minWordLength)) {
             wordList.push(specialWord)
+            wordCoordinates.push(currentCoordinates)
           }
         }
       }
@@ -248,6 +262,7 @@ function checkForWord (coordinateList, wordList, boardArray) {
             (wordList.indexOf(word) === -1) &&
             (word.length >= minWordLength)) {
           wordList.push(word)
+          wordCoordinates.push(currentCoordinates)
         }
       }
     }
@@ -305,6 +320,7 @@ function wordFinder () {
   const sideLength = Math.sqrt(newBoard.length)
   // blank array for words
   const wordList = []
+  wordCoordinates = []
 
   // let wordBefore = 0
 
@@ -359,11 +375,12 @@ function wordFinder () {
 }
 
 function PrintWordsToPage () {
-  console.log(availableWords)
+  // console.log(availableWords)
   const listElement = document.createElement('ul')
   listElement.classList.add('complete-word-list')
   for (let i = 0; i < availableWords.length; i++) {
     const newItem = document.createElement('li')
+    newItem.setAttribute('data-squares', wordCoordinates[i].toString())
     newItem.innerText = availableWords[i]
     listElement.appendChild(newItem)
   }
@@ -472,10 +489,11 @@ function signOutQuit () {
   const newDateObj = moment(Date.now()).add(182, 's').toDate()
   countDownDate = new Date(newDateObj).getTime()
   endGame(false)
+  return 'turkey'
 }
 
 function endGame (tallyScoreTrue) {
-  if ((store.game) && (store.user)) {
+  if ((store.game) && (store.user) && (playerWords)) {
     pushWordsToAPI()
     store.game.game_over = true
     const NewGameData = {
@@ -498,7 +516,10 @@ function endGame (tallyScoreTrue) {
   if ((tallyScoreTrue) && (playerWords)) {
     scores.scorePresentation(playerWords, scoreCard)
   }
-  setTimeout(moveFooter(), 200)
+  setTimeout(() => {
+    moveFooter()
+    countDownDate = ''
+  }, 3000)
 }
 
 function moveFooter () {
