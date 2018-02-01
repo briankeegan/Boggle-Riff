@@ -1,6 +1,6 @@
 ## Boggle Experiment
 
-Challenged myself to build a boggle board and have it "solve" itself.
+Challenged myself to build a boggle board and have it "solve" itself and be playable.
 
 ## The Board
 
@@ -8,12 +8,11 @@ All boards in this page are possible in the official boggle game. It's not just 
 
 ## The "Game Logic"
 
-I wrote a script that iterates through all possible combinations of letters on the board. If a combination is nowhere in the dictionary (like "XSFM" or something like that) the script will skip to the next letter. If a combination IS in the dictionary, it adds it to a word list which is ultimately printed on the screen.
+I wrote a script that iterates through all possible combinations of letters on the board. If a combination is nowhere in the dictionary (like "XSFM" or something like that) the script will stop going down that path. If a combination IS in the dictionary, it adds it to a word list which is ultimately available for the player.
 
 ## The Word List
 
-Source Host: http://www.mieliestronk.com/wordlist.html
-Source: http://www.mieliestronk.com/corncob_caps.txt
+Source: http://www.luke-g.com/boggle/#thedict
 
 The dictionary was the trickiest thing here. It used to slow the whole thing down A LOT. No more!
 
@@ -21,8 +20,18 @@ I removed all the white space from the dictionary file and made it an object ful
 
 ## Other Dictionaries...
 
-Source: http://www.luke-g.com/boggle/#thedict
+Source Host: http://www.mieliestronk.com/wordlist.html
+Source: http://www.mieliestronk.com/corncob_caps.txt
 
-I considered other dictionaries but they were WAY larger and full of words I've never seen (that are also not in a regular dictionary), so I ended up not using them.
+I considered a more slim dictionary but it was missing certain words (like all profanity), so I ended up not using it. Players enjoy finding naughty words, so the inclusion of that sort of thing was important to me.
 
 ## Wireframes and Uer-Stories available [Here](https://git.generalassemb.ly/TedCart/full-stack-project-practice/blob/response/practice.md)
+
+## Technologies Used
+
+  - Bootstrap
+  - HTML
+  - SASS
+  - Javascript
+  - AJAX
+  - Organic Fish Oil
