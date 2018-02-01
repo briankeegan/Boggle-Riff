@@ -35,3 +35,13 @@ I considered a more slim dictionary but it was missing certain words (like all p
   - Javascript
   - AJAX
   - Organic Fish Oil
+
+  ## Links
+
+  Live link to deployed back-end: https://salty-sierra-37921.herokuapp.com/
+
+  Live link to deployed front-end: https://tedcart.github.io/Boggle-Riff
+
+  Link to GitHub repo for back-end: https://github.com/TedCart/BigBadProjectTwo
+
+  Link to GitHub repo for front-end: https://github.com/TedCart/Boggle-Riff
