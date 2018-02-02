@@ -148,6 +148,7 @@ function createBoard (diceList) {
   timeIsUp = false
   document.getElementById('in-game-buttons').style.display = 'block'
   document.getElementById('quit-early').style.display = 'inline-block'
+  document.getElementById('getWordsButton').style.display = 'inline-block'
   document.getElementById('player-word-input').style.display = 'block'
   document.getElementById('primary-game-nav').style.display = 'none'
   document.getElementById('player-word-input').focus()
