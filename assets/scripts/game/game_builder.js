@@ -71,6 +71,7 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
   }
   document.getElementById('wordList').innerHTML = ''
+  document.getElementById('player-word-input').focus()
   timer.startCountdown()
   player.moveFooter()
 }
