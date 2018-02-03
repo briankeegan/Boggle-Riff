@@ -1,7 +1,7 @@
 'use strict'
 
 const store = require('../store')
-const api = require('./api')
+// const api = require('./api')
 
 // const gameApi = require('../game/api')
 
@@ -12,36 +12,19 @@ const clearFields = function () {
 const toggleSignInButtons = function () {
   // console.log(store.user)
   if (store.user) {
-    $('#sign-in-form').css('display', 'none')
-    $('#createAccountButton').css('display', 'none')
-    $('#changePasswordButton').css('display', 'inline-block')
-    $('#sign-out').css('display', 'inline-block')
-    $('#main-game-container').css('display', 'block')
-    let x
-    let y
-    let z
-    if (store.game) {
-      store.game.game_over ? x = 'none' : x = 'block'
-      store.game.game_over ? z = 'none' : z = 'inline-block'
-      store.game.game_over ? y = 'block' : y = 'none'
-      $('#player-word-input').css('display', x)
-      $('#primary-game-nav').css('display', y)
-      $('#in-game-buttons').css('display', 'block')
-      $('#quit-early').css('display', z)
-      $('#getWordsButton').css('display', 'inline-block')
-    } else {
-      $('#player-word-input').css('display', 'none')
-      $('#primary-game-nav').css('display', 'block')
-      $('#getWordsButton').css('display', 'none')
-    }
+    $('#sign-in-form').hide()
+    $('#createAccountButton').hide()
+    $('#changePasswordButton').show()
+    $('#sign-out').show()
+    $('#main-game-container').show()
+    $('#primary-game-nav').show()
   } else {
-    $('#sign-in-form').css('display', 'inline-block')
-    $('#createAccountButton').css('display', 'inline-block')
-    $('#changePasswordButton').css('display', 'none')
-    $('#sign-out').css('display', 'none')
-    $('#main-game-container').css('display', 'none')
-    $('#primary-game-nav').css('display', 'none')
-    $('#in-game-buttons').css('display', 'none')
+    $('#sign-in-form').show()
+    $('#createAccountButton').show()
+    $('#changePasswordButton').hide()
+    $('#sign-out').hide()
+    $('#main-game-container').hide()
+    $('#primary-game-nav').hide()
   }
 }
 
@@ -102,8 +85,8 @@ const signOutSuccess = function (data) {
   store.game = ''
   $('#timer-div').text(`You signed out!`)
   $('#game-board').html('')
-  $('#scored-table').text(``)
-  $('#player-word-list').text(``)
+  $('#scored-table').html(``)
+  $('#player-word-list').html(``)
   localStorage.clear()
   clearFields()
   toggleSignInButtons()

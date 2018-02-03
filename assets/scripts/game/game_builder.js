@@ -10,6 +10,8 @@ const dictionaryFile2 = require('./ludicrousDictionary')
 const grid = require('./grid.js')
 const letters = require('./letters.js')
 const scores = require('./scores.js')
+const player = require('./player.js')
+const timer = require('./timer.js')
 
 const dictionaryObject = dictionaryFile2
 
@@ -68,6 +70,8 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
   }
   document.getElementById('wordList').innerHTML = ''
+  timer.startCountdown()
+  player.moveFooter()
 }
 
 function createBoard16 () { createBoard(letters.diceList16) }

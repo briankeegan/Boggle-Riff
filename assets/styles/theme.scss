@@ -74,6 +74,7 @@ button {
 .btn-primary {
   background: $buttonBackground;
   color: $black;
+  display: inline-block;
   font-size: 11pt;
   font-weight: 450;
 }
@@ -290,6 +291,10 @@ p {
   column-count:	3;
   font-size:	14pt;
   padding-left: 0px;
+}
+
+#sign-in-form {
+  display: inline-block;
 }
 
 table {

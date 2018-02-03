@@ -46,6 +46,20 @@ function moveFooter () {
   }
 }
 
+function togglePage () {
+  if (store.game) {
+    $('#player-word-input').show()
+    $('#primary-game-nav').show()
+    $('#in-game-buttons').show()
+    $('#quit-early').show()
+    $('#getWordsButton').show()
+  } else {
+    $('#player-word-input').show()
+    $('#primary-game-nav').show()
+    $('#getWordsButton').show()
+  }
+}
+
 module.exports = {
   refresh,
   moveFooter

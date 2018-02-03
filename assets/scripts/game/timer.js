@@ -13,10 +13,13 @@ function resetTimer () {
 
 function startCountdown () {
   // Set the end time
-  const newDateObj = moment(Date.now()).add((store.secondsInTimer + 2), 's').toDate()
-  store.timerEndPoint = new Date(newDateObj).getTime()
-  store.timerCheck = store.timerEndPoint
+  if (!store.timerCheck) {
+    const newDateObj = moment(Date.now()).add((store.secondsInTimer + 2), 's').toDate()
+    store.timerEndPoint = new Date(newDateObj).getTime()
+    store.timerCheck = store.timerEndPoint
+  }
   const endTime = store.timerEndPoint
+  console.log(endTime)
 
   // Update the count down every 1 second
   const x = setInterval(function () {
@@ -36,7 +39,7 @@ function startCountdown () {
     const seconds = Math.floor((store.timeLeft % (1000 * 60)) / 1000)
 
     // Display the result in the element with id="demo"
-    if ((store.timeLeft >= 0) && (store.user)) {
+    if ((store.timeLeft >= 0) && (store.user) && (store.timerCheck !== '')) {
       $('#timer-div').html(minutes + ':' + numeral(seconds).format('00'))
     }
 
@@ -45,6 +48,7 @@ function startCountdown () {
       clearInterval(x)
       $('#timer-div').html("Time's Up!!")
       player.endGame()
+      store.timerCheck = ''
     }
   }, 1000)
 }

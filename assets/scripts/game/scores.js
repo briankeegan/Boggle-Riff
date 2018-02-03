@@ -86,8 +86,8 @@ const scoreList36 = {
 
 const scoreGame = function () {
   let score = 0
-  for (let i = 0; i < store.wordList.length; i++) {
-    const word = store.wordList[i]
+  for (let i = 0; i < store.playerWords.length; i++) {
+    const word = store.playerWords[i]
     if (word) {
       score += store.scoreCard[word.length]
     }
@@ -104,17 +104,19 @@ const scorePresentation = function () {
     const removeMyLastChild = document.getElementById('player-word-list')
     const x = setInterval(function () {
       // remove word from original list
-      removeMyLastChild.removeChild(removeMyLastChild.lastChild)
-
-      // add word and its score to a description list
-      const word = store.wordList[i]
-      if (word) {
-        const newItem = '<tr><td>' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
-        iAmParent.innerHTML = iAmParent.innerHTML + newItem
+      if (removeMyLastChild.lastChild) {
+        removeMyLastChild.removeChild(removeMyLastChild.lastChild)
       }
-      i++
-      if (store.wordList) {
-        if (i === store.wordList.length) {
+
+      if (store.playerWords) {
+        // add word and its score to a description list
+        const word = store.playerWords[i]
+        if (word) {
+          const newItem = '<tr><td>' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
+          iAmParent.innerHTML = iAmParent.innerHTML + newItem
+        }
+        i++
+        if (i === store.playerWords.length) {
           scoreGame()
           clearInterval(x)
         }

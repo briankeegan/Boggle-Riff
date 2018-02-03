@@ -7,8 +7,10 @@ const api = require('./api')
 const ui = require('./ui')
 const events = require('./events')
 const scores = require('./scores')
-const timer = require('./timer')
 const page = require('./page')
+
+const apiLogin = require('../login/api')
+const uiLogin = require('../login/ui')
 
 function inputWord (event) {
   event.preventDefault()
@@ -37,15 +39,28 @@ function addPlayerWordToList (newWord) {
   }
 }
 
+function resetTimer () {
+  store.timerCheck = ''
+  store.timeLeft = 0
+}
+
 function QuitEarly () {
-  timer.resetTimer()
+  resetTimer()
   endGame()
+}
+
+function SignOutQuit () {
+  resetTimer()
+  endGame()
+  apiLogin.signOut()
+    .then(uiLogin.signOutSuccess)
+    .catch(uiLogin.signOutFailure)
 }
 
 function endGame () {
   store.game.game_over = true
   if ((store.game) && (store.user) && (store.playerWords)) {
-    events.pushWordsToAPI()
+    pushWordsToAPI()
     const NewGameData = {
       game: {
         game_over: true
@@ -81,7 +96,31 @@ function printWordsToPage () {
       .then(ui.getAllWordsSuccess)
       .catch(ui.getAllWordsFailure)
   }
-  page.moveFooter()
+  moveFooter()
+}
+
+function pushWordsToAPI () {
+  const data = {
+    word: {
+      player_id: store.user.id,
+      game_id: store.game.id,
+      word: store.playerWords.toString()
+    }
+  }
+  console.log(data)
+  api.uploadWords(data)
+    .then(ui.wordPushSuccess)
+    .catch(ui.wordPushFailure)
+}
+
+function moveFooter () {
+  const bodyRect = document.getElementsByTagName('main')[0].getBoundingClientRect()
+  const footerRect = document.getElementById('footer-div').getBoundingClientRect()
+  if ($(window).height() > (bodyRect['height'] + footerRect['height'])) {
+    $('#footer-div').addClass('fix-to-bottom')
+  } else {
+    $('#footer-div').removeClass('fix-to-bottom')
+  }
 }
 
 module.exports = {
@@ -89,5 +128,7 @@ module.exports = {
   addPlayerWordToList,
   endGame,
   QuitEarly,
-  printWordsToPage
+  SignOutQuit,
+  printWordsToPage,
+  moveFooter
 }

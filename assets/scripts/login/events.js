@@ -48,25 +48,21 @@ const onChangePassword = function (event) {
 const onSignOut = function (event) {
   // console.log(store.user)
   event.preventDefault()
-  if ((store.game) && (!store.game.game_over)) {
-    player.QuitEarly()
-      .then(
-        api.signOut()
-          .then(ui.signOutSuccess)
-          .catch(ui.signOutFailure)
-      )
+  if ((store.game) && (!store.game.game_over) && (store.playerWords)) {
+    player.SignOutQuit()
   } else {
     api.signOut()
       .then(ui.signOutSuccess)
       .catch(ui.signOutFailure)
   }
+  localStorage.clear()
 }
 
 const addHandlers = function () {
   $('#sign-up-form').on('submit', onSignUp)
   $('#sign-in-form').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
-  $('#sign-out').on('submit', onSignOut)
+  $('#sign-out').on('click', onSignOut)
 }
 
 module.exports = {
