@@ -1,8 +1,8 @@
 'use strict'
 
-const api = require('./api')
-const ui = require('./ui')
-const events = require('./events')
+const api = require('./api.js')
+const ui = require('./ui.js')
+const events = require('./events.js')
 const store = require('../store')
 
 const dictionaryFile = require('./sensibleDictionary')
@@ -38,7 +38,9 @@ function makeNewBoardArray (chooseYourDice) {
     store.newBoard.push(newLetter)
     diceArray.splice(currentDie, 1)
   }
-  if (store.user) { events.onNewGame() }
+  if (store.user) {
+    onNewGame()
+  }
   return store.newBoard
 }
 
@@ -211,6 +213,23 @@ function wordFinder () {
     // wordBefore = wordList.length
   }
   return store.wordList
+}
+
+const onNewGame = function () {
+  const NewGameData = {
+    game: {
+      board_string: store.newBoard.toString(),
+      game_over: false
+    }
+  }
+  if (store.user) {
+    api.newGame(NewGameData)
+      .then(ui.newGameSuccess)
+      .catch(ui.newGameFailure)
+    store.game = NewGameData.game
+    $('#offline-message-box').html('')
+  }
+  store.game = NewGameData.game
 }
 
 module.exports = {

@@ -4,7 +4,7 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
-const gameEvents = require('../game/events')
+const player = require('../game/player')
 const store = require('../store')
 
 const onSignUp = function (event) {
@@ -49,7 +49,7 @@ const onSignOut = function (event) {
   // console.log(store.user)
   event.preventDefault()
   if ((store.game) && (!store.game.game_over)) {
-    gameEvents.signOutQuit()
+    player.QuitEarly()
       .then(
         api.signOut()
           .then(ui.signOutSuccess)

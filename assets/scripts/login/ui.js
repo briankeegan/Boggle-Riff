@@ -9,27 +9,6 @@ const clearFields = function () {
   $('input:text, input:password').val('')
 }
 
-// const fetchPlayerProfile = function () {
-//   if (store.user) {
-//     let HTMLstring = ''
-//     HTMLstring = HTMLstring + '<dt>Player 1:</dt><dd>' + store.user.email + '</dd>'
-//     gameApi.getAllCompletedGames()
-//       .then((data) => {
-//         store.completedGames = data.games
-//         if (store.completedGames) {
-//           HTMLstring = HTMLstring + '<dt>Games Played:</dt><dd>' + store.completedGames.length + '</dd>'
-//         } else {
-//           HTMLstring = HTMLstring + '<dt>Games Played:</dt><dd>' + '0' + '</dd>'
-//         }
-//         HTMLstring = HTMLstring + '</dl>'
-//         $('#player-one-side').html(HTMLstring)
-//         $('#player-one-bottom').html(HTMLstring)
-//         $('#player-two-side').html(`<p class="message-offline">Mystery Opponent</p>`)
-//         $('#player-two-bottom').html(`<p class="message-offline">Mystery Opponent</p>`)
-//       })
-//   }
-// }
-
 const toggleSignInButtons = function () {
   // console.log(store.user)
   if (store.user) {

@@ -97,31 +97,32 @@ const scoreGame = function () {
 }
 
 const scorePresentation = function () {
-  let i = 0
-  const iAmParent = document.getElementById('scored-table')
-  iAmParent.innerHTML = '<tr><th>Word</th><th>Points</th></tr>'
-  const removeMyLastChild = document.getElementById('player-word-list')
-  const x = setInterval(function () {
-    // remove word from original list
-    if (removeMyLastChild.lastChild) {
+  if (store.game) {
+    let i = 0
+    const iAmParent = document.getElementById('scored-table')
+    iAmParent.innerHTML = '<tr><th>Word</th><th>Points</th></tr>'
+    const removeMyLastChild = document.getElementById('player-word-list')
+    const x = setInterval(function () {
+      // remove word from original list
       removeMyLastChild.removeChild(removeMyLastChild.lastChild)
-    } else {
-      document.getElementById('timer-div').innerHTML = 'Your Score: ' + scoreGame(store.wordList, store.scoreCard)
-      clearInterval(x)
-    }
 
-    // add word and its score to a description list
-    const word = store.wordList[i]
-    if (word) {
-      const newItem = '<tr><td>' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
-      iAmParent.innerHTML = iAmParent.innerHTML + newItem
-    }
-    i++
-    if (i === store.wordList.length) {
-      scoreGame()
-      clearInterval(x)
-    }
-  }, 200)
+      // add word and its score to a description list
+      const word = store.wordList[i]
+      if (word) {
+        const newItem = '<tr><td>' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
+        iAmParent.innerHTML = iAmParent.innerHTML + newItem
+      }
+      i++
+      if (store.wordList) {
+        if (i === store.wordList.length) {
+          scoreGame()
+          clearInterval(x)
+        }
+      } else {
+        clearInterval(x)
+      }
+    }, 200)
+  }
 }
 
 module.exports = {

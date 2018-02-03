@@ -66,6 +66,6 @@ function AddHandlers () {
 
 module.exports = {
   AddHandlers,
-  onNewGame,
-  pushWordsToAPI
+  pushWordsToAPI,
+  onNewGame
 }

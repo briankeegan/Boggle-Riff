@@ -42,11 +42,6 @@ function QuitEarly () {
   endGame()
 }
 
-function signOutQuit () {
-  timer.resetTimer()
-  endGame()
-}
-
 function endGame () {
   store.game.game_over = true
   if ((store.game) && (store.user) && (store.playerWords)) {
