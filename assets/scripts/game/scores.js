@@ -1,5 +1,7 @@
 'use strict'
 
+const store = require('../store')
+
 const scoreList16 = {
   3: 1,
   4: 1,
@@ -82,19 +84,19 @@ const scoreList36 = {
   36: 67
 }
 
-const scoreGame = function (wordList, scoreCard) {
+const scoreGame = function () {
   let score = 0
-  for (let i = 0; i < wordList.length; i++) {
-    const word = wordList[i]
+  for (let i = 0; i < store.wordList.length; i++) {
+    const word = store.wordList[i]
     if (word) {
-      score += scoreCard[word.length]
+      score += store.scoreCard[word.length]
     }
   }
   document.getElementById('timer-div').innerHTML = 'Your Score: ' + score
   return score
 }
 
-const scorePresentation = function (wordList, scoreCard) {
+const scorePresentation = function () {
   let i = 0
   const iAmParent = document.getElementById('scored-table')
   iAmParent.innerHTML = '<tr><th>Word</th><th>Points</th></tr>'
@@ -104,26 +106,19 @@ const scorePresentation = function (wordList, scoreCard) {
     if (removeMyLastChild.lastChild) {
       removeMyLastChild.removeChild(removeMyLastChild.lastChild)
     } else {
-      document.getElementById('timer-div').innerHTML = 'Your Score: ' + scoreGame(wordList, scoreCard)
+      document.getElementById('timer-div').innerHTML = 'Your Score: ' + scoreGame(store.wordList, store.scoreCard)
       clearInterval(x)
     }
 
     // add word and its score to a description list
-    const word = wordList[i]
+    const word = store.wordList[i]
     if (word) {
-      const newItem = '<tr><td>' + word + '</td><td>' + scoreCard[word.length] + '</td></tr>'
+      const newItem = '<tr><td>' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
       iAmParent.innerHTML = iAmParent.innerHTML + newItem
     }
-    // const iAmFirstNewChild = document.createElement('dt')
-    // iAmFirstNewChild.innerText = word
-    // const iAmSecondNewChild = document.createElement('dd')
-    // iAmSecondNewChild.innerText = scoreCard[word.length]
-    // iAmParent.appendChild(iAmFirstNewChild)
-    // iAmParent.appendChild(iAmSecondNewChild)
-    // move to next iteration
     i++
-    if (i === wordList.length) {
-      scoreGame(wordList, scoreCard)
+    if (i === store.wordList.length) {
+      scoreGame()
       clearInterval(x)
     }
   }, 200)
