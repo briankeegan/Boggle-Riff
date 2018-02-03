@@ -18,11 +18,17 @@ const refresh = function () {
         try {
           store.timerEndPoint = (localStorage.getItem('timerEndPoint'))
           store.timerCheck = (localStorage.getItem('timerCheck'))
+          console.log('timerEndPoint', store.timerEndPoint)
+          console.log('timerCheck', store.timerCheck)
           gameBuilder.createBoard(null)
           if (localStorage.getItem('playerWords') !== 'undefined') {
+            console.log('The player words from last time is NOT undefined - we should have words from before.')
             store.playerWords = JSON.parse(localStorage.getItem('playerWords'))
+            store.playerWordCoordinates = JSON.parse(localStorage.getItem('playerWordCoordinates'))
           } else {
+            console.log('The player words from last time is undefined')
             store.playerWords = []
+            store.playerWordCoordinates = []
           }
           for (let i = 0; i < store.playerWords.length; i++) {
             player.addPlayerWordToList(store.playerWords[i])

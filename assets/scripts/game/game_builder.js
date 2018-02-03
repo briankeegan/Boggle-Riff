@@ -32,6 +32,7 @@ function makeNewBoardArray (chooseYourDice) {
   store.newBoard = []
   store.playerWords = []
   store.playerWordCoordinates = []
+  timer.resetTimer()
   // newBoard.push('A')
   for (let i = 0; i < boardSize; i++) {
     const currentDie = Math.floor(Math.random() * diceArray.length)
