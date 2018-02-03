@@ -13,13 +13,14 @@ function resetTimer () {
 
 function startCountdown () {
   // Set the end time
-  if (!store.timerCheck) {
+  if ((!store.timerCheck) || (store.timerCheck === 'undefined')) {
     const newDateObj = moment(Date.now()).add((store.secondsInTimer + 2), 's').toDate()
     store.timerEndPoint = new Date(newDateObj).getTime()
     store.timerCheck = store.timerEndPoint
   }
   const endTime = store.timerEndPoint
-  console.log(endTime)
+  console.log('endTime: ', endTime)
+  console.log('store.timerCheck: ', store.timerCheck)
 
   // Update the count down every 1 second
   const x = setInterval(function () {

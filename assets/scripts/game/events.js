@@ -28,8 +28,8 @@ const onNewGame = function () {
 const onBeforeUnload = function () {
   if ((store.game) && (store.timerCheck !== '')) {
     localStorage.setItem('playerWords', JSON.stringify(store.playerWords))
-    localStorage.setItem('timerEndPoint', JSON.stringify(store.timerEndPoint))
-    localStorage.setItem('timerCheck', JSON.stringify(store.timerCheck))
+    localStorage.setItem('timerEndPoint', (store.timerEndPoint))
+    localStorage.setItem('timerCheck', (store.timerCheck))
   } else {
     localStorage.removeItem('playerWords')
     localStorage.removeItem('timerEndPoint')
