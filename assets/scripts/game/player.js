@@ -86,6 +86,7 @@ function printWordsToPage () {
   for (let i = 0; i < store.wordList.length; i++) {
     const newItem = document.createElement('li')
     newItem.setAttribute('data-squares', store.wordListCoordinates[i].toString())
+    newItem.classList.add('word-list-item')
     newItem.innerText = store.wordList[i]
     listElement.appendChild(newItem)
   }

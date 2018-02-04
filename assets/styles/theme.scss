@@ -11,6 +11,7 @@ a:hover {
 }
 
 .blank-square {
+  background-color: transparent;
   border: 3px solid $pink;
   border-radius: 15px;
   box-sizing: border-box;
@@ -25,7 +26,12 @@ a:hover {
   margin: 0;
   padding: 5px;
   text-align: center;
+  transition: background-color .5s;
   width: 90px;
+}
+
+.blank-square.click-me {
+  background-color: $green;
 }
 
 .board {
@@ -366,4 +372,8 @@ ul > li:hover ul {
   position: absolute;
   text-align: center;
   width: 80%;
+}
+
+.word-list-item {
+  cursor: pointer;
 }

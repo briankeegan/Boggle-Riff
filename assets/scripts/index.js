@@ -4,6 +4,7 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config.js')
 // const store = require('./store.js')
 const gameEvents = require('./game/events.js')
+const gameAnimate = require('./game/animate.js')
 const refresh = require('./game/refresh.js')
 const dictionaryTests = require('./game/dictionary_tests.js')
 
@@ -32,4 +33,5 @@ $(() => {
   refresh.refresh()
   loginUi.toggleSignInButtons()
   dictionaryTests.AddHandlers()
+  gameAnimate.AddHandlers()
 })
