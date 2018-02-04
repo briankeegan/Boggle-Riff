@@ -112,7 +112,7 @@ const scorePresentation = function () {
         // add word and its score to a description list
         const word = store.playerWords[i]
         if (word) {
-          const newItem = '<tr><td>' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
+          const newItem = '<tr><td class="word-list-item" data-squares="' + store.playerWordCoordinates[i].toString() + '">' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
           iAmParent.innerHTML = iAmParent.innerHTML + newItem
         }
         i++

@@ -13,7 +13,7 @@ function resetTimer () {
 
 function startCountdown () {
   // Set the end time
-  if ((!store.timerCheck) || (store.timerCheck === 'undefined')) {
+  if ((!store.game.game_over) && ((!store.timerCheck) || (store.timerCheck === 'undefined'))) {
     const newDateObj = moment(Date.now()).add((store.secondsInTimer + 2), 's').toDate()
     store.timerEndPoint = new Date(newDateObj).getTime()
     store.timerCheck = store.timerEndPoint

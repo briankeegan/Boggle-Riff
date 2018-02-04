@@ -6,7 +6,7 @@ function solutionsBoardHighlights (event) {
     const boardIds = wordElement.dataset.squares.split(',')
     // console.log('boardIds: ', boardIds)
 
-    const intervalLength = 300
+    const intervalLength = 200
     const overlapInterval = 200
 
     let i = 0

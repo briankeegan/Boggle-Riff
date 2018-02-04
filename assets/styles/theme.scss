@@ -72,7 +72,7 @@ button {
   outline: 0;
   padding: 15px;
   &:hover {
-    background: $quitOtherButtonBackground;
+    // background: $quitOtherButtonBackground;
     color: $offWhite
   }
 }
@@ -94,6 +94,10 @@ button {
     height: 0;
     visibility: hidden;
   }
+}
+
+.container {
+  position: relative;
 }
 
 .copyright {
@@ -294,9 +298,15 @@ p {
 }
 
 .complete-word-list {
-  column-count:	3;
+  // column-count:	3;
   font-size:	14pt;
+  height: 540px;
+  width: 220px;
+  overflow: auto;
+  // overflow-x: hidden;
+  // overflow-y: scroll;
   padding-left: 0px;
+  position: absolute;
 }
 
 #sign-in-form {
@@ -306,6 +316,11 @@ p {
 table {
   // text-align: center;
   font-size: 12pt;
+  margin: 15px 0 0 50px;
+}
+
+td {
+  font-size: 14pt;
 }
 
 .timer {
@@ -376,4 +391,8 @@ ul > li:hover ul {
 
 .word-list-item {
   cursor: pointer;
+  &:hover {
+    background: $blue;
+    color: $offWhite
+  }
 }

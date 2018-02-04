@@ -29,6 +29,8 @@ function inputWord (event) {
 
 function addPlayerWordToList (newWord) {
   const newItem = document.createElement('li')
+  newItem.setAttribute('data-squares', store.wordListCoordinates[store.wordList.indexOf(newWord)].toString())
+  newItem.classList.add('word-list-item')
   newItem.innerText = newWord
   const listParent = document.getElementById('player-word-list')
   if (store.playerWords.length > 1) {
