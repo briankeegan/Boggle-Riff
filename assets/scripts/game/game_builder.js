@@ -12,6 +12,7 @@ const letters = require('./letters.js')
 const scores = require('./scores.js')
 const player = require('./player.js')
 const timer = require('./timer.js')
+const page = require('./page.js')
 
 const dictionaryObject = dictionaryFile2
 
@@ -74,7 +75,7 @@ function createBoard (diceList) {
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('player-word-input').focus()
   timer.startCountdown()
-  player.moveFooter()
+  page.moveFooter()
 }
 
 function createBoard16 () { createBoard(letters.diceList16) }

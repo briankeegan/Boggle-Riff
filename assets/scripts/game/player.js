@@ -5,7 +5,7 @@ const getFormFields = require(`../../../lib/get-form-fields`)
 
 const api = require('./api')
 const ui = require('./ui')
-const events = require('./events')
+// const events = require('./events')
 const scores = require('./scores')
 const page = require('./page')
 
@@ -100,7 +100,7 @@ function printWordsToPage () {
       .then(ui.getAllWordsSuccess)
       .catch(ui.getAllWordsFailure)
   }
-  moveFooter()
+  page.moveFooter()
 }
 
 function pushWordsToAPI () {
@@ -117,22 +117,11 @@ function pushWordsToAPI () {
     .catch(ui.wordPushFailure)
 }
 
-function moveFooter () {
-  const bodyRect = document.getElementsByTagName('main')[0].getBoundingClientRect()
-  const footerRect = document.getElementById('footer-div').getBoundingClientRect()
-  if ($(window).height() > (bodyRect['height'] + footerRect['height'])) {
-    $('#footer-div').addClass('fix-to-bottom')
-  } else {
-    $('#footer-div').removeClass('fix-to-bottom')
-  }
-}
-
 module.exports = {
   inputWord,
   addPlayerWordToList,
   endGame,
   QuitEarly,
   SignOutQuit,
-  printWordsToPage,
-  moveFooter
+  printWordsToPage
 }
