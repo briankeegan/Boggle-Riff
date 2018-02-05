@@ -12,20 +12,22 @@ function moveFooter () {
   }
 }
 
-function togglePage () {
-  if (store.game) {
-    $('#player-word-input').show()
-    $('#primary-game-nav').show()
-    $('#in-game-buttons').show()
-    $('#quit-early').show()
-    $('#getWordsButton').show()
-  } else {
-    $('#player-word-input').show()
-    $('#primary-game-nav').show()
-    $('#getWordsButton').show()
-  }
+function liveGame () {
+  // Show these during a live game
+  $('#player-word-input').show()
+  $('#in-game-buttons').show()
+  $('#quit-early').show()
+  $('#getWordsButton').show()
+
+  // Hide these during a live game
+  $('#primary-game-nav').hide()
+}
+
+function deadGame () {
+
 }
 
 module.exports = {
-  moveFooter
+  moveFooter,
+  liveGame
 }
