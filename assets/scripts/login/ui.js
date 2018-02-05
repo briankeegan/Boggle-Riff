@@ -88,6 +88,7 @@ const signOutSuccess = function (data) {
   localStorage.clear()
   clearFields()
   toggleSignInButtons()
+  document.getElementById('sign-in-email').focus()
   // gameEvents.resetBoard()
 }
 

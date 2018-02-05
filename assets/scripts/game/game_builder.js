@@ -74,9 +74,9 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
   }
   page.moveFooter()
-  document.getElementById('player-word-input').focus()
   timer.startCountdown()
   store.game.game_over ? page.deadGame() : page.liveGame()
+  document.getElementById('player-word-input').focus()
 }
 
 function createBoard16 () { createBoard(letters.diceList16) }
