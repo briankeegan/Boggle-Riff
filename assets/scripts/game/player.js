@@ -48,6 +48,7 @@ function resetTimer () {
 
 function QuitEarly () {
   resetTimer()
+  store.timerEndPoint = new Date().getTime()
   endGame()
 }
 
@@ -62,6 +63,12 @@ function SignOutQuit () {
 
 function endGame () {
   store.game.game_over = true
+  console.log('game_over should be true now')
+  console.log('store.game.game_over: ', store.game.game_over)
+  console.log('store.game: ', store.game)
+  page.deadGame()
+  localStorage.setItem('savedGame', JSON.stringify(store.game))
+  console.log('attempted overwrite of local storage game')
   if ((store.game) && (store.user) && (store.playerWords)) {
     pushWordsToAPI()
     const NewGameData = {

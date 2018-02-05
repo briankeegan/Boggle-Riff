@@ -58,6 +58,7 @@ function createBoard (diceList) {
   setGameRules(sideLength)
   document.getElementById('game-board').innerHTML = ''
   wordFinder()
+  page.clearLists()
   for (let y = 0; y < sideLength; y++) {
     const rowElement = document.createElement('div')
     // console.log('Created row element ' + (y + 1))
@@ -72,10 +73,10 @@ function createBoard (diceList) {
     }
     document.getElementById('game-board').appendChild(rowElement)
   }
-  document.getElementById('wordList').innerHTML = ''
+  page.moveFooter()
   document.getElementById('player-word-input').focus()
   timer.startCountdown()
-  page.moveFooter()
+  store.game.game_over ? page.deadGame() : page.liveGame()
 }
 
 function createBoard16 () { createBoard(letters.diceList16) }

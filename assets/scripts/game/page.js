@@ -5,7 +5,7 @@ const store = require('../store')
 const listToClear = [
   '#player-word-list',
   '#scored-table',
-  '#word-list',
+  '#wordList',
   '#game-board'
 ]
 
@@ -55,11 +55,12 @@ function moveFooter () {
 function toggleGameButtons (showArray) {
   for (let i = 0; i < gameObjectIds.length; i++) {
     // if current ID is NOT in the show array, hide it.
+    // console.log('Toggling Button:', gameObjectIds[i])
     if (showArray.indexOf(gameObjectIds[i]) === -1) {
-      $(gameObjectIds).hide()
+      $(gameObjectIds[i]).hide()
     } else {
       // otherwise, show it.
-      $(gameObjectIds).show()
+      $(gameObjectIds[i]).show()
     }
   }
 }

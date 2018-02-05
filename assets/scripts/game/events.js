@@ -26,11 +26,14 @@ const onNewGame = function () {
 }
 
 const onBeforeUnload = function () {
-  if ((store.game) && (store.timerCheck !== '')) {
+  // if ((store.game) && (store.timerCheck !== '')) {
+  if ((store.game) || (true)) {
+    localStorage.setItem('savedGame', JSON.stringify(store.game))
     localStorage.setItem('playerWords', JSON.stringify(store.playerWords))
     localStorage.setItem('playerWordCoordinates', JSON.stringify(store.playerWordCoordinates))
     localStorage.setItem('timerEndPoint', (store.timerEndPoint))
     localStorage.setItem('timerCheck', (store.timerCheck))
+    alert('saving stuff')
   } else {
     localStorage.removeItem('playerWords')
     localStorage.removeItem('playerWordCoordinates')

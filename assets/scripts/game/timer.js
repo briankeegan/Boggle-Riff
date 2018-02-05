@@ -12,9 +12,19 @@ function resetTimer () {
 }
 
 function checkEndTime () {
-  if (store.timerEndPoint) {
+  store.timerEndPoint = parseFloat(store.timerEndPoint)
+  if ((store.timerEndPoint)) {
+    console.log('running end time check')
+    console.log('store.timerEndPoint :', store.timerEndPoint)
     const now = new Date().getTime()
-    if (store.timerEndPoint < now) { store.game.game_over = true }
+    console.log('now :', now)
+    if ((store.timerEndPoint < now) || (store.timerEndPoint === 'undefined') || (isNaN(store.timerEndPoint))) {
+      console.log('now is greater than end point - game should be over')
+      store.game.game_over = true
+    } else {
+      console.log('now is less than end point - game should resume')
+      store.timerCheck = store.timerEndPoint
+    }
   }
 }
 

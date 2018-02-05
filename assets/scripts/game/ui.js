@@ -7,9 +7,10 @@ const newGameSuccess = function (data) {
   console.log(data)
   store.game = data.game
   if (store.game.game_over) {
-    store.game = ''
+    // store.game = ''
   } else {
     localStorage.setItem('savedGame', JSON.stringify(store.game))
+    console.log('game saved at initiation')
   }
   // fetchPlayerProfile()
   // console.log(data.game)
