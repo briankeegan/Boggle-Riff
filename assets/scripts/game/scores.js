@@ -97,7 +97,7 @@ const scoreGame = function () {
 }
 
 const scorePresentation = function () {
-  if (store.game) {
+  if ((store.game) && (!store.skipScore)) {
     let i = 0
     const iAmParent = document.getElementById('scored-table')
     iAmParent.innerHTML = '<tr><th>Word</th><th>Points</th></tr>'

@@ -52,6 +52,7 @@ function QuitEarly () {
 }
 
 function SignOutQuit () {
+  store.skipScore = true
   resetTimer()
   endGame()
   apiLogin.signOut()
@@ -110,7 +111,7 @@ function pushWordsToAPI () {
       word: store.playerWords.toString()
     }
   }
-  console.log(data)
+  // console.log(data)
   api.uploadWords(data)
     .then(ui.wordPushSuccess)
     .catch(ui.wordPushFailure)

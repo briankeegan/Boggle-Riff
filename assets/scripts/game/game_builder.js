@@ -52,6 +52,7 @@ function createBoard (diceList) {
   diceList = diceList || false
   // clear out old game stuff
   if (diceList) { makeNewBoardArray(diceList) }
+  store.skipScore = false
   const sideLength = Math.sqrt(store.newBoard.length)
   setGameRules(sideLength)
   document.getElementById('game-board').innerHTML = ''
