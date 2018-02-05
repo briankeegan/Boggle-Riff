@@ -11,6 +11,13 @@ function resetTimer () {
   store.timeLeft = 0
 }
 
+function checkEndTime () {
+  if (store.timerEndPoint) {
+    const now = new Date().getTime()
+    if (store.timerEndPoint < now) { store.game.game_over = true }
+  }
+}
+
 function startCountdown () {
   // Set the end time
   if ((!store.game.game_over) && ((!store.timerCheck) || (store.timerCheck === 'undefined'))) {
@@ -56,5 +63,6 @@ function startCountdown () {
 
 module.exports = {
   resetTimer,
-  startCountdown
+  startCountdown,
+  checkEndTime
 }

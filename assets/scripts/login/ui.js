@@ -84,9 +84,7 @@ const signOutSuccess = function (data) {
   store.user = ''
   store.game = ''
   $('#timer-div').text(`You signed out!`)
-  $('#game-board').html('')
-  $('#scored-table').html(``)
-  $('#player-word-list').html(``)
+  page.clearLists()
   localStorage.clear()
   clearFields()
   toggleSignInButtons()

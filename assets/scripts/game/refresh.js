@@ -4,6 +4,7 @@ const store = require('../store')
 
 const gameBuilder = require('./game_builder')
 const player = require('./player')
+const timer = require('./timer')
 
 const refresh = function () {
   // Restores previous session on accidental page refresh
@@ -13,13 +14,14 @@ const refresh = function () {
     if (localStorage.getItem('savedGame')) {
       store.game = JSON.parse(localStorage.getItem('savedGame'))
       store.newBoard = store.game.board_string.split(',')
-      console.log('hooray you have a stored game...')
+      // console.log('hooray you have a stored game...')
       if (localStorage.getItem('playerWords')) {
         try {
           store.timerEndPoint = (localStorage.getItem('timerEndPoint'))
           store.timerCheck = (localStorage.getItem('timerCheck'))
-          console.log('timerEndPoint', store.timerEndPoint)
-          console.log('timerCheck', store.timerCheck)
+          // console.log('timerEndPoint', store.timerEndPoint)
+          // console.log('timerCheck', store.timerCheck)
+          timer.checkEndTime()
           gameBuilder.createBoard(null)
           if (localStorage.getItem('playerWords') !== 'undefined') {
             console.log('The player words from last time is NOT undefined - we should have words from before.')

@@ -2,8 +2,16 @@
 
 const store = require('../store')
 
+const listToClear = [
+  '#player-word-list',
+  '#scored-table',
+  '#word-list',
+  '#game-board'
+]
+
 const gameObjectIds = [
   '#player-word-input',
+  '#player-word-form',
   '#in-game-buttons',
   '#quit-early',
   '#getWordsButton',
@@ -18,6 +26,7 @@ const noGameIds = [
 
 const liveGameIds = [
   '#player-word-input',
+  '#player-word-form',
   '#in-game-buttons',
   '#quit-early',
   '#getWordsButton',
@@ -55,15 +64,22 @@ function toggleGameButtons (showArray) {
   }
 }
 
-function noGame () { toggleGameButtons(noGameIds) }
+function clearLists () {
+  for (let i = 0; i < listToClear.length; i++) {
+    $(listToClear[i]).html('')
+  }
+}
+
+function noGame () { toggleGameButtons(noGameIds); clearLists() }
 function liveGame () { toggleGameButtons(liveGameIds) }
 function deadGame () { toggleGameButtons(deadGameIds) }
-function signedOut () { toggleGameButtons(signedOutIds) }
+function signedOut () { toggleGameButtons(signedOutIds); clearLists() }
 
 module.exports = {
   moveFooter,
   noGame,
   liveGame,
   deadGame,
-  signedOut
+  signedOut,
+  clearLists
 }
