@@ -92,7 +92,7 @@ const scoreGame = function () {
       score += store.scoreCard[word.length]
     }
   }
-  document.getElementById('timer-div').innerHTML = 'Your Score: ' + score
+  // add API push score somewhere
   return score
 }
 
@@ -117,7 +117,7 @@ const scorePresentation = function () {
         }
         i++
         if (i === store.playerWords.length) {
-          scoreGame()
+          $('#timer-div').html('Your Score: ' + scoreGame())
           clearInterval(x)
         }
       } else {
