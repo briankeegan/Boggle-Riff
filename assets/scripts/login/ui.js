@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const page = require('../game/page')
 // const api = require('./api')
 
 // const gameApi = require('../game/api')
@@ -23,8 +24,7 @@ const toggleSignInButtons = function () {
     $('#createAccountButton').show()
     $('#changePasswordButton').hide()
     $('#sign-out').hide()
-    $('#main-game-container').hide()
-    $('#primary-game-nav').hide()
+    page.signedOut()
   }
 }
 
