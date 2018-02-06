@@ -42,6 +42,7 @@ const acutePoints = 4
 const rightPoints = 3
 const obtusePoints = 2
 const straightPoints = 1
+const longDiagonalPoints = 1
 const hashtagDifficultyBonus = 5
 
 function abDiff (a, b) {
@@ -74,6 +75,9 @@ function assessDifficulty (coordinateList) {
       wordRank += rightPoints
     } else if (((x1 - x2) === (x2 - x3)) && ((y1 - y2) === (y2 - y3))) {
       wordRank += straightPoints
+      if ((x1 - x2) === (y1 - y2)) {
+        wordRank += longDiagonalPoints
+      }
     } else {
       wordRank += obtusePoints
     }

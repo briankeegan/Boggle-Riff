@@ -128,7 +128,7 @@ function printWordsToPage () {
 function printOpponentsWords () {
   const listElement = document.createElement('table')
   // listElement.classList.add('complete-word-list')
-  listElement.setAttribute('style', 'padding:0;')
+  listElement.setAttribute('style', 'padding:0; margin:0;')
   // listElement.classList.add('dl-horizontal')
   listElement.innerHTML = '<tr style="padding:0;"><th style="padding:0;">Word</th><th style="padding:0;">Points</th></tr>'
   for (let i = 0; i < store.opponentWords.length; i++) {
