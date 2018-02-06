@@ -107,6 +107,7 @@ function checkForWord (coordinateList) {
               (specialWord.length >= store.minWordLength)) {
             store.wordList.push(specialWord)
             store.wordListCoordinates.push(currentCoordinates)
+            store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
           }
         }
       }
@@ -119,6 +120,7 @@ function checkForWord (coordinateList) {
             (word.length >= store.minWordLength)) {
           store.wordList.push(word)
           store.wordListCoordinates.push(currentCoordinates)
+          store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
         }
       }
     }
@@ -171,6 +173,7 @@ function wordFinder () {
   // blank array for words
   store.wordList = []
   store.wordListCoordinates = []
+  store.wordListDifficulty = []
 
   // let wordBefore = 0
 

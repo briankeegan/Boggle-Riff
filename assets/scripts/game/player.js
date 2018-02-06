@@ -108,7 +108,7 @@ function printWordsToPage () {
     newItem.classList.add('word-list-item')
     newItem.innerText = store.wordList[i]
     const newItem2 = document.createElement('dd')
-    newItem2.innerText = 1
+    newItem2.innerText = store.wordListDifficulty[i]
     listElement.appendChild(newItem)
     listElement.appendChild(newItem2)
   }
@@ -120,6 +120,29 @@ function printWordsToPage () {
       .catch(ui.getAllWordsFailure)
   }
   page.moveFooter()
+  tableConsoleWordList()
+}
+
+function WordDetail (word, difficulty, points) {
+  this.word = word
+  this.difficulty = difficulty
+  this.points = points
+}
+
+function tableConsoleWordList () {
+  const xTable = {}
+  let xCounter = 0
+  console.log(`Details regarding this board's word list:`)
+  for (let i = 0; i < store.wordList.length; i++) {
+    const word = store.wordList[i]
+    const difficulty = store.wordListDifficulty[i]
+    const points = store.scoreCard[word.length]
+    xTable[i] = new WordDetail(word, difficulty, points)
+    xCounter++
+  }
+  console.log('Number of words in list:', xCounter)
+  console.table(xTable)
+  // console.log(dictionaryObject['LI'].indexOf('LIT'))
 }
 
 function pushWordsToAPI () {

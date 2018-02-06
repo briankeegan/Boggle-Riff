@@ -37,7 +37,51 @@ function thisCoordinateIsOk (newCoordinate, coordinateList, xWidth, yHeight) {
   }
 }
 
+const leftPoints = 2
+const acutePoints = 4
+const rightPoints = 3
+const obtusePoints = 2
+const straightPoints = 1
+
+function abDiff (a, b) {
+  return Math.abs(a - b)
+}
+
+function assessDifficulty (coordinateList) {
+  // check for left moving
+  let wordRank = 0
+  for (let i = 1; i < coordinateList.length; i++) {
+    if (coordinateList[i][0] < coordinateList[i - 1][0]) {
+      wordRank += leftPoints
+    }
+  }
+  for (let i = 2; i < coordinateList.length; i++) {
+    const x1 = coordinateList[i - 2][0]
+    const y1 = coordinateList[i - 2][1]
+    const x2 = coordinateList[i - 1][0]
+    const y2 = coordinateList[i - 1][1]
+    const x3 = coordinateList[i][0]
+    const y3 = coordinateList[i][1]
+    // acute angle check
+    if (((y1 === y3) && (y1 !== y2) && (abDiff(x1, x3) === 1)) ||
+        ((x1 === x3) && (x1 !== x2) && (abDiff(y1, y3) === 1))) {
+      wordRank += acutePoints
+    } else if (((y1 === y2) && (y2 !== y3) && (x1 !== x2) && (x2 === x3)) ||
+        ((x1 === x2) && (x2 !== x3) && (y1 !== y2) && (y2 === y3)) ||
+        ((y1 === y3) && (y1 !== y2) && (abDiff(x1, x3) === 2)) ||
+        ((x1 === x3) && (x1 !== x2) && (abDiff(y1, y3) === 2))) {
+      wordRank += rightPoints
+    } else if (((x1 - x2) === (x2 - x3)) && ((y1 - y2) === (y2 - y3))) {
+      wordRank += straightPoints
+    } else {
+      wordRank += obtusePoints
+    }
+  }
+  return wordRank
+}
+
 module.exports = {
   getNewCoordinate,
-  thisCoordinateIsOk
+  thisCoordinateIsOk,
+  assessDifficulty
 }
