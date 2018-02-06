@@ -15,6 +15,9 @@ const timer = require('./timer.js')
 const page = require('./page.js')
 
 const dictionaryObject = dictionaryFile2
+const otherDictionaryObject = dictionaryFile
+
+store.gameDifficulty = 8
 
 function setGameRules (sideLength) {
   let settings
@@ -104,13 +107,13 @@ function checkForWord (coordinateList) {
         if (dictionaryObject[twoLettersSpecial]) {
           if ((dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
               (specialWord.length >= store.minWordLength)) {
+            const newDifficulty = grid.assessDifficulty(coordinateList) + grid.hashtagDifficultyBonus
             if (store.wordList.indexOf(specialWord) === -1) {
               store.wordList.push(specialWord)
               store.wordListCoordinates.push(currentCoordinates)
               store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
             } else {
               const oldWordIndex = store.wordList.indexOf(specialWord)
-              const newDifficulty = grid.assessDifficulty(coordinateList) + grid.hashtagDifficultyBonus
               const oldDifficulty = store.wordListDifficulty[oldWordIndex]
               if (newDifficulty < oldDifficulty) {
                 // remove more difficult word
@@ -122,6 +125,12 @@ function checkForWord (coordinateList) {
                 store.wordListCoordinates.push(currentCoordinates)
                 store.wordListDifficulty.push(newDifficulty)
               }
+            }
+            if ((otherDictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
+                (store.opponentWords.indexOf(specialWord) === -1) &&
+                (newDifficulty <= store.gameDifficulty)) {
+              store.opponentWords.push(specialWord)
+              store.opponentWordCoordinates.push(currentCoordinates)
             }
           }
         }
@@ -150,6 +159,12 @@ function checkForWord (coordinateList) {
               store.wordListCoordinates.push(currentCoordinates)
               store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
             }
+          }
+          if ((otherDictionaryObject[twoLetters].indexOf(word) !== -1) &&
+              (store.opponentWords.indexOf(word) === -1) &&
+              (grid.assessDifficulty(coordinateList) <= store.gameDifficulty)) {
+            store.opponentWords.push(word)
+            store.opponentWordCoordinates.push(currentCoordinates)
           }
         }
       }
@@ -204,6 +219,8 @@ function wordFinder () {
   store.wordList = []
   store.wordListCoordinates = []
   store.wordListDifficulty = []
+  store.opponentWords = []
+  store.opponentWordCoordinates = []
 
   // let wordBefore = 0
 

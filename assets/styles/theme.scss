@@ -310,12 +310,12 @@ p {
   // column-count:	3;
   font-size:	14pt;
   height: 540px;
-  width: 220px;
   overflow: auto;
+  padding-left: 0;
+  width: 175px;
   // overflow-x: hidden;
   // overflow-y: scroll;
-  padding-left: 0px;
-  position: absolute;
+  // position: absolute;
 }
 
 #sign-in-form {

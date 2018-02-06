@@ -48,27 +48,40 @@
               <button class="dropbtn">New Game</button>
               <div class="dropdown-content">
                 <a class="placeholder new-game-list" href="#" id="newBoardButton">4x4</a>
-                <a class="placeholder new-game-list" href="#" id="newBoardButtonCPU" style="display: inline-block">vs CPU</a>
                 <a class="placeholder new-game-list" href="#" id="newBoardButton2">5x5</a>
-                <a class="placeholder new-game-list" href="#" id="newBoardButtonCPU2" style="display: inline-block">vs CPU</a>
                 <a class="placeholder new-game-list" href="#" id="newBoardButton3">6x6</a>
-                <a class="placeholder new-game-list" href="#" id="newBoardButtonCPU3" style="display: inline-block">vs CPU</a>
               </div>
             </div>
             <!-- </div> -->
           </nav>
         </div>
-        <div class="col-md-2"></div>
         <div class="timer clearfix col-md-3" id="timer-div">
           Sign in to play!
+        </div>
+        <div class="col-md-2">
+          <nav class="clearfix nav navbar-pills nav-stacked nav-new-game" id="secondary-game-nav">
+            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon">toggle-icon</span>
+            </button> -->
+            <!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> -->
+            <div class="dropdown placeholder" id="cpu-game-menu-div">
+              <button class="dropbtn">Vs. CPU</button>
+              <div class="dropdown-content">
+                <a class="placeholder new-game-list" href="#" id="newBoardButtonCPU">4x4 vs CPU</a>
+                <a class="placeholder new-game-list" href="#" id="newBoardButtonCPU2">5x5 vs CPU</a>
+                <a class="placeholder new-game-list" href="#" id="newBoardButtonCPU3">6x6 vs CPU</a>
+              </div>
+            </div>
+            <!-- </div> -->
+          </nav>
         </div>
         <div class="clearfix col-md-5" id="in-game-buttons">
           <button class="button-quit" type="button" id="getWordsButton">Get Solutions</button>
           <button class="button-quit" type="button" id="quit-early">End Round Early</button>
         </div>
       </div>
-      <div class="container" id="main-game-container">
-        <div id="player-words" class="clearfix col-md-2">
+      <div class="container no-padding" id="main-game-container">
+        <div id="player-words" class="clearfix no-padding col-md-2">
           <form id=player-word-form>
             <input name="playerWord" type="text" placeholder="Type words here!" id="player-word-input">
           </form>
@@ -79,10 +92,10 @@
       	</div>
         <div id="game-board" class="board clearfix col-md-6">
       	</div>
-        <div id="opponentList" class="message col-md-2">
+        <div id="opponentList" class="col-md-2">
 
         </div>
-        <div id="wordList" class="message col-md-2">
+        <div id="wordList" class="col-md-2">
 
         </div>
       </div>

@@ -39,6 +39,7 @@ function addPlayerWordToList (newWord) {
   } else {
     listParent.appendChild(newItem)
   }
+  page.moveFooter()
 }
 
 function resetTimer () {
@@ -87,6 +88,7 @@ function endGame () {
   }
   scores.scorePresentation()
   store.timerCheck = ''
+  printOpponentsWords()
 }
 
 function printWordsToPage () {
@@ -114,6 +116,39 @@ function printWordsToPage () {
   }
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
+  if (store.user) {
+    api.getAllWords()
+      .then(ui.getAllWordsSuccess)
+      .catch(ui.getAllWordsFailure)
+  }
+  page.moveFooter()
+  tableConsoleWordList()
+}
+
+function printOpponentsWords () {
+  const listElement = document.createElement('dl')
+  listElement.classList.add('complete-word-list')
+  listElement.classList.add('dl-horizontal')
+  const headRowHeader1 = document.createElement('dt')
+  headRowHeader1.innerText = 'Word'
+  headRowHeader1.setAttribute('style', 'text-align: left;')
+  const headRowHeader2 = document.createElement('dd')
+  headRowHeader2.innerText = 'Points'
+  listElement.appendChild(headRowHeader1)
+  listElement.appendChild(headRowHeader2)
+  for (let i = 0; i < store.opponentWords.length; i++) {
+    const newItem = document.createElement('dt')
+    newItem.setAttribute('data-squares', store.opponentWordCoordinates[i].toString())
+    newItem.setAttribute('style', 'text-align: left;')
+    newItem.classList.add('word-list-item')
+    newItem.innerText = store.opponentWords[i]
+    const newItem2 = document.createElement('dd')
+    newItem2.innerText = store.scoreCard[store.opponentWords[i].length]
+    listElement.appendChild(newItem)
+    listElement.appendChild(newItem2)
+  }
+  document.getElementById('opponentList').innerHTML = ''
+  document.getElementById('opponentList').appendChild(listElement)
   if (store.user) {
     api.getAllWords()
       .then(ui.getAllWordsSuccess)
@@ -165,5 +200,6 @@ module.exports = {
   endGame,
   QuitEarly,
   SignOutQuit,
-  printWordsToPage
+  printWordsToPage,
+  printOpponentsWords
 }

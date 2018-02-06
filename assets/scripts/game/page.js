@@ -16,11 +16,13 @@ const gameObjectIds = [
   '#quit-early',
   '#getWordsButton',
   '#primary-game-nav',
+  '#secondary-game-nav',
   '#main-game-container'
 ]
 
 const noGameIds = [
   '#primary-game-nav',
+  '#secondary-game-nav',
   '#main-game-container'
 ]
 
@@ -37,6 +39,7 @@ const deadGameIds = [
   '#in-game-buttons',
   '#getWordsButton',
   '#primary-game-nav',
+  '#secondary-game-nav',
   '#main-game-container'
 ]
 
