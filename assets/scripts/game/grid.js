@@ -42,6 +42,7 @@ const acutePoints = 4
 const rightPoints = 3
 const obtusePoints = 2
 const straightPoints = 1
+const hashtagDifficultyBonus = 5
 
 function abDiff (a, b) {
   return Math.abs(a - b)
@@ -83,5 +84,6 @@ function assessDifficulty (coordinateList) {
 module.exports = {
   getNewCoordinate,
   thisCoordinateIsOk,
-  assessDifficulty
+  assessDifficulty,
+  hashtagDifficultyBonus
 }

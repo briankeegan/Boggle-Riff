@@ -103,11 +103,26 @@ function checkForWord (coordinateList) {
         const twoLettersSpecial = specialWord.charAt(0) + specialWord.charAt(1)
         if (dictionaryObject[twoLettersSpecial]) {
           if ((dictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
-              (store.wordList.indexOf(specialWord) === -1) &&
               (specialWord.length >= store.minWordLength)) {
-            store.wordList.push(specialWord)
-            store.wordListCoordinates.push(currentCoordinates)
-            store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
+            if (store.wordList.indexOf(specialWord) === -1) {
+              store.wordList.push(specialWord)
+              store.wordListCoordinates.push(currentCoordinates)
+              store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
+            } else {
+              const oldWordIndex = store.wordList.indexOf(specialWord)
+              const newDifficulty = grid.assessDifficulty(coordinateList) + grid.hashtagDifficultyBonus
+              const oldDifficulty = store.wordListDifficulty[oldWordIndex]
+              if (newDifficulty < oldDifficulty) {
+                // remove more difficult word
+                store.wordList.splice(oldWordIndex, 1)
+                store.wordListCoordinates.splice(oldWordIndex, 1)
+                store.wordListDifficulty.splice(oldWordIndex, 1)
+                // add the easier word
+                store.wordList.push(specialWord)
+                store.wordListCoordinates.push(currentCoordinates)
+                store.wordListDifficulty.push(newDifficulty)
+              }
+            }
           }
         }
       }
@@ -116,11 +131,26 @@ function checkForWord (coordinateList) {
       const twoLetters = word.charAt(0) + word.charAt(1)
       if (dictionaryObject[twoLetters]) {
         if ((dictionaryObject[twoLetters].indexOf(word) !== -1) &&
-            (store.wordList.indexOf(word) === -1) &&
             (word.length >= store.minWordLength)) {
-          store.wordList.push(word)
-          store.wordListCoordinates.push(currentCoordinates)
-          store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
+          if (store.wordList.indexOf(word) === -1) {
+            store.wordList.push(word)
+            store.wordListCoordinates.push(currentCoordinates)
+            store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
+          } else {
+            const oldWordIndex = store.wordList.indexOf(word)
+            const newDifficulty = grid.assessDifficulty(coordinateList)
+            const oldDifficulty = store.wordListDifficulty[oldWordIndex]
+            if (newDifficulty < oldDifficulty) {
+              // remove more difficult word
+              store.wordList.splice(oldWordIndex, 1)
+              store.wordListCoordinates.splice(oldWordIndex, 1)
+              store.wordListDifficulty.splice(oldWordIndex, 1)
+              // add the easier word
+              store.wordList.push(word)
+              store.wordListCoordinates.push(currentCoordinates)
+              store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
+            }
+          }
         }
       }
     }
