@@ -96,6 +96,18 @@ const scoreGame = function () {
   return score
 }
 
+function scoreOpponent () {
+  let score = 0
+  for (let i = 0; i < store.opponentWords.length; i++) {
+    const word = store.opponentWords[i]
+    if (word) {
+      score += store.scoreCard[word.length]
+    }
+  }
+  // add API push score somewhere
+  return score
+}
+
 const scorePresentation = function () {
   if ((store.game) && (!store.skipScore)) {
     let i = 0
@@ -117,7 +129,7 @@ const scorePresentation = function () {
         }
         i++
         if (i === store.playerWords.length) {
-          $('#timer-div').html('Your Score: ' + scoreGame())
+          $('#timer-div').html('You Got: ' + scoreGame() + '<br> They Got: ' + scoreOpponent())
           clearInterval(x)
         }
       } else {
@@ -132,5 +144,6 @@ module.exports = {
   scoreList25,
   scoreList36,
   scoreGame,
+  scoreOpponent,
   scorePresentation
 }

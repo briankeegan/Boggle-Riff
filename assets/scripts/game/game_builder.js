@@ -17,7 +17,7 @@ const page = require('./page.js')
 const dictionaryObject = dictionaryFile2
 const otherDictionaryObject = dictionaryFile
 
-store.gameDifficulty = 8
+store.gameDifficulty = 6
 
 function setGameRules (sideLength) {
   let settings
@@ -126,11 +126,13 @@ function checkForWord (coordinateList) {
                 store.wordListDifficulty.push(newDifficulty)
               }
             }
-            if ((otherDictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
-                (store.opponentWords.indexOf(specialWord) === -1) &&
-                (newDifficulty <= store.gameDifficulty)) {
-              store.opponentWords.push(specialWord)
-              store.opponentWordCoordinates.push(currentCoordinates)
+            if (dictionaryObject[twoLettersSpecial]) {
+              if ((otherDictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
+                  (store.opponentWords.indexOf(specialWord) === -1) &&
+                  (newDifficulty <= store.gameDifficulty)) {
+                store.opponentWords.push(specialWord)
+                store.opponentWordCoordinates.push(currentCoordinates)
+              }
             }
           }
         }
@@ -160,11 +162,13 @@ function checkForWord (coordinateList) {
               store.wordListDifficulty.push(grid.assessDifficulty(coordinateList))
             }
           }
-          if ((otherDictionaryObject[twoLetters].indexOf(word) !== -1) &&
-              (store.opponentWords.indexOf(word) === -1) &&
-              (grid.assessDifficulty(coordinateList) <= store.gameDifficulty)) {
-            store.opponentWords.push(word)
-            store.opponentWordCoordinates.push(currentCoordinates)
+          if (otherDictionaryObject[twoLetters]) {
+            if ((otherDictionaryObject[twoLetters].indexOf(word) !== -1) &&
+                (store.opponentWords.indexOf(word) === -1) &&
+                (grid.assessDifficulty(coordinateList) <= store.gameDifficulty)) {
+              store.opponentWords.push(word)
+              store.opponentWordCoordinates.push(currentCoordinates)
+            }
           }
         }
       }

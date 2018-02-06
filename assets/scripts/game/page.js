@@ -6,6 +6,7 @@ const listToClear = [
   '#player-word-list',
   '#scored-table',
   '#wordList',
+  '#opponentList',
   '#game-board'
 ]
 

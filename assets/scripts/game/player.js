@@ -126,26 +126,17 @@ function printWordsToPage () {
 }
 
 function printOpponentsWords () {
-  const listElement = document.createElement('dl')
-  listElement.classList.add('complete-word-list')
-  listElement.classList.add('dl-horizontal')
-  const headRowHeader1 = document.createElement('dt')
-  headRowHeader1.innerText = 'Word'
-  headRowHeader1.setAttribute('style', 'text-align: left;')
-  const headRowHeader2 = document.createElement('dd')
-  headRowHeader2.innerText = 'Points'
-  listElement.appendChild(headRowHeader1)
-  listElement.appendChild(headRowHeader2)
+  const listElement = document.createElement('table')
+  // listElement.classList.add('complete-word-list')
+  listElement.setAttribute('style', 'padding:0;')
+  // listElement.classList.add('dl-horizontal')
+  listElement.innerHTML = '<tr style="padding:0;"><th style="padding:0;">Word</th><th style="padding:0;">Points</th></tr>'
   for (let i = 0; i < store.opponentWords.length; i++) {
-    const newItem = document.createElement('dt')
-    newItem.setAttribute('data-squares', store.opponentWordCoordinates[i].toString())
-    newItem.setAttribute('style', 'text-align: left;')
-    newItem.classList.add('word-list-item')
-    newItem.innerText = store.opponentWords[i]
-    const newItem2 = document.createElement('dd')
-    newItem2.innerText = store.scoreCard[store.opponentWords[i].length]
-    listElement.appendChild(newItem)
-    listElement.appendChild(newItem2)
+    const word = store.opponentWords[i]
+    if (word) {
+      const newItem = '<tr><td class="word-list-item" data-squares="' + store.opponentWordCoordinates[i].toString() + '">' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
+      listElement.innerHTML = listElement.innerHTML + newItem
+    }
   }
   document.getElementById('opponentList').innerHTML = ''
   document.getElementById('opponentList').appendChild(listElement)
@@ -155,7 +146,7 @@ function printOpponentsWords () {
       .catch(ui.getAllWordsFailure)
   }
   page.moveFooter()
-  tableConsoleWordList()
+  // tableConsoleWordList()
 }
 
 function WordDetail (word, difficulty, points) {
