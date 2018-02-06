@@ -1,6 +1,7 @@
 'use strict'
 
 const dictionaryFile = require('./sensibleDictionary')
+const page = require('./page')
 const dictionaryObject = dictionaryFile
 
 const testThing = function () {
@@ -31,6 +32,7 @@ function DictionaryDetail (numberWords, numberLetters, lastWord, indexOfLastWord
 // On document ready
 function AddHandlers () {
   $('#testSomething').on('click', testThing)
+  $('#testSomething').on('click', page.moveFooter)
 }
 
 module.exports = {

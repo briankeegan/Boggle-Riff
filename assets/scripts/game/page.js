@@ -50,6 +50,9 @@ function moveFooter () {
   } else {
     $('#footer-div').removeClass('fix-to-bottom')
   }
+  // console.log('moved footer')
+  // console.log('body height: ', bodyRect['height'])
+  // console.log('window height: ', $(window).height())
 }
 
 function toggleGameButtons (showArray) {

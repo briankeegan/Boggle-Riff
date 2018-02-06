@@ -91,14 +91,26 @@ function endGame () {
 
 function printWordsToPage () {
   // console.log(availableWords)
-  const listElement = document.createElement('ul')
+  const listElement = document.createElement('dl')
   listElement.classList.add('complete-word-list')
+  listElement.classList.add('dl-horizontal')
+  const headRowHeader1 = document.createElement('dt')
+  headRowHeader1.innerText = 'Word'
+  headRowHeader1.setAttribute('style', 'text-align: left;')
+  const headRowHeader2 = document.createElement('dd')
+  headRowHeader2.innerText = 'Difficulty'
+  listElement.appendChild(headRowHeader1)
+  listElement.appendChild(headRowHeader2)
   for (let i = 0; i < store.wordList.length; i++) {
-    const newItem = document.createElement('li')
+    const newItem = document.createElement('dt')
     newItem.setAttribute('data-squares', store.wordListCoordinates[i].toString())
+    newItem.setAttribute('style', 'text-align: left;')
     newItem.classList.add('word-list-item')
     newItem.innerText = store.wordList[i]
+    const newItem2 = document.createElement('dd')
+    newItem2.innerText = 1
     listElement.appendChild(newItem)
+    listElement.appendChild(newItem2)
   }
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)

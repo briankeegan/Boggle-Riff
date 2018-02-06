@@ -151,6 +151,10 @@ div {
   }
 }
 
+dt {
+  text-align: left;
+}
+
 .fix-to-bottom {
   bottom: 0;
   margin: 0 auto;
@@ -158,6 +162,10 @@ div {
   left: 0;
   right: 0;
   // margin: 0 auto;
+}
+
+.fixed-table-header {
+  position:  absolute;
 }
 
 footer {
@@ -391,6 +399,7 @@ ul > li:hover ul {
 
 .word-list-item {
   cursor: pointer;
+  text-align: left;
   &:hover {
     background: $blue;
     color: $offWhite
