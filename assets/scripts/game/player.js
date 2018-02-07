@@ -98,19 +98,21 @@ function printWordsToPage () {
   listElement.classList.add('dl-horizontal')
   const headRowHeader1 = document.createElement('dt')
   headRowHeader1.innerText = 'Word'
-  headRowHeader1.setAttribute('style', 'text-align: left;')
+  headRowHeader1.setAttribute('style', 'text-align: left; width: 100px;')
   const headRowHeader2 = document.createElement('dd')
   headRowHeader2.innerText = 'Difficulty'
+  headRowHeader2.setAttribute('style', 'text-align: left; width: 20px; padding: 0;')
   listElement.appendChild(headRowHeader1)
   listElement.appendChild(headRowHeader2)
   for (let i = 0; i < store.wordList.length; i++) {
     const newItem = document.createElement('dt')
     newItem.setAttribute('data-squares', store.wordListCoordinates[i].toString())
-    newItem.setAttribute('style', 'text-align: left;')
+    newItem.setAttribute('style', 'text-align: left; width: 100px;')
     newItem.classList.add('word-list-item')
     newItem.innerText = store.wordList[i]
     const newItem2 = document.createElement('dd')
     newItem2.innerText = store.wordListDifficulty[i]
+    newItem2.setAttribute('style', 'text-align: left; width: 20px; padding: 0;')
     listElement.appendChild(newItem)
     listElement.appendChild(newItem2)
   }
