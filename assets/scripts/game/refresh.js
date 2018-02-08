@@ -12,17 +12,19 @@ const refresh = function () {
   if (localStorage.getItem('savedUser')) {
     store.user = JSON.parse(localStorage.getItem('savedUser'))
     // console.log('successfully retrieved user login info')
-    $('#timer-div').text('Welcome Back!')
+    $('#timer-div').html(`Welcome Back, ${store.user.email}!`)
     page.noGame()
     // console.log('savedGame : ', localStorage.getItem('savedGame'))
+    // console.log(`(localStorage.getItem('savedGame')) !== '""' :`, (localStorage.getItem('savedGame')) !== '""')
+    // console.log(`(localStorage.getItem('savedGame')) !== 'undefined' :`, (localStorage.getItem('savedGame')) !== 'undefined')
     if ((localStorage.getItem('savedGame')) &&
-        ((localStorage.getItem('savedGame')) !== '') &&
+        ((localStorage.getItem('savedGame')) !== '""') &&
         ((localStorage.getItem('savedGame')) !== 'undefined')) {
       store.game = JSON.parse(localStorage.getItem('savedGame'))
-      console.log('store.game.board_string: ', store.game.board_string)
+      // console.log('store.game.board_string: ', store.game.board_string)
       store.newBoard = store.game.board_string.split(',')
-      console.log('hooray you have a stored game...')
-      console.log('store.game :', store.game)
+      // console.log('hooray you have a stored game...')
+      // console.log('store.game :', store.game)
       if (localStorage.getItem('playerWords')) {
         try {
           store.timerEndPoint = (localStorage.getItem('timerEndPoint'))
@@ -48,7 +50,6 @@ const refresh = function () {
         }
       }
     } else {
-      $('timer-div').text('Welcome Back!')
       // console.log('savedGame is undefined')
     }
     // console.log('store.user:', store.user)

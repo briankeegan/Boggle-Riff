@@ -25,7 +25,7 @@ function solutionsBoardHighlights (event) {
 
 function AddHandlers () {
   $('body').on('click', '.word-list-item', solutionsBoardHighlights)
-  console.log('Added animation handlers')
+  // console.log('Added animation handlers')
 }
 
 module.exports = {

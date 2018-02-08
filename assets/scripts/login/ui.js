@@ -52,13 +52,13 @@ const signUpFailure = function (error) {
 
 const signInSuccess = function (data) {
   // console.log(data)
-  $('#message-box').text('Successfully signed in!')
-  $('#timer-div').html(`Welcome, ${store.name}!<br>Make a new board to play!`)
   store.user = data.user
-  console.log('store.user: ', store.user)
+  // $('#message-box').text('Successfully signed in!')
+  store.name = store.user.email
+  $('#timer-div').html(`Welcome, ${store.name}!<br>Make a new board to play!`)
+  // console.log('store.user: ', store.user)
   clearFields()
   toggleSignInButtons()
-  store.name = store.user.email
   localStorage.setItem('savedUser', JSON.stringify(store.user))
   // fetchPlayerProfile()
   // gameEvents.resetBoard()
