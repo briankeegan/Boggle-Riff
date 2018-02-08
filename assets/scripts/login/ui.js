@@ -18,7 +18,7 @@ const toggleSignInButtons = function () {
     $('#changePasswordButton').show()
     $('#sign-out').show()
     $('#main-game-container').show()
-    $('#primary-game-nav').show()
+    page.noGame()
   } else {
     $('#sign-in-form').show()
     $('#createAccountButton').show()
@@ -35,13 +35,12 @@ const signUpSuccess = function (data) {
   $('#create-account-message-box').html('<p>Account Created!</p>')
   setTimeout(() => {
     document.getElementById('close-create-account-button').click()
+    $('#create-account-message-box').html(placeholderHTML)
   }, 600)
   // console.log(data)
   // $('#message-box').text('Successfully created account!')
   clearFields()
   toggleSignInButtons()
-  $('#create-account-message-box').html(placeholderHTML)
-
   // $('#timer-div').html('Make a new board to play!')
 }
 
@@ -54,11 +53,12 @@ const signUpFailure = function (error) {
 const signInSuccess = function (data) {
   // console.log(data)
   $('#message-box').text('Successfully signed in!')
-  $('#timer-div').html('Make a new board to play!')
+  $('#timer-div').html(`Welcome, ${store.name}!<br>Make a new board to play!`)
   store.user = data.user
   console.log('store.user: ', store.user)
   clearFields()
   toggleSignInButtons()
+  store.name = store.user.email
   localStorage.setItem('savedUser', JSON.stringify(store.user))
   // fetchPlayerProfile()
   // gameEvents.resetBoard()

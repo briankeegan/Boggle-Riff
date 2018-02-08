@@ -15,7 +15,9 @@ const refresh = function () {
     $('#timer-div').text('Welcome Back!')
     page.noGame()
     // console.log('savedGame : ', localStorage.getItem('savedGame'))
-    if ((localStorage.getItem('savedGame')) && (localStorage.getItem('savedGame') !== '""')) {
+    if ((localStorage.getItem('savedGame')) &&
+        ((localStorage.getItem('savedGame')) !== '') &&
+        ((localStorage.getItem('savedGame')) !== 'undefined')) {
       store.game = JSON.parse(localStorage.getItem('savedGame'))
       console.log('store.game.board_string: ', store.game.board_string)
       store.newBoard = store.game.board_string.split(',')
