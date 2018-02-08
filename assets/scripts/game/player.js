@@ -33,12 +33,12 @@ function addPlayerWordToList (newWord) {
   newItem.classList.add('word-list-item')
   newItem.innerText = newWord
   const listParent = document.getElementById('player-word-list')
-  if (store.playerWords.length > 1) {
-    const goBeforeMe = listParent.getElementsByTagName('li')[0]
-    listParent.insertBefore(newItem, goBeforeMe)
-  } else {
-    listParent.appendChild(newItem)
-  }
+  // if (store.playerWords.length > 1) {
+  const goBeforeMe = listParent.getElementsByTagName('li')[0]
+  listParent.insertBefore(newItem, goBeforeMe)
+  // } else {
+  //   listParent.appendChild(newItem)
+  // }
   page.moveFooter()
 }
 

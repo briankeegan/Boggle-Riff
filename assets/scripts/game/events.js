@@ -90,9 +90,9 @@ function rebuildGame (event) {
 // On document ready
 function AddHandlers () {
   // createBoard16()
-  $('#newBoardButton').on('click', gameBuilder.createBoard16)
-  $('#newBoardButton2').on('click', gameBuilder.createBoard25)
-  $('#newBoardButton3').on('click', gameBuilder.createBoard36)
+  $('#newBoardButtonCPU').on('click', gameBuilder.createBoard16)
+  $('#newBoardButtonCPU2').on('click', gameBuilder.createBoard25)
+  $('#newBoardButtonCPU3').on('click', gameBuilder.createBoard36)
   $('#getWordsButton').on('click', player.printWordsToPage)
   $('#player-word-form').on('submit', player.inputWord)
   $('#quit-early').on('click', player.QuitEarly)
