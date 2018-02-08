@@ -17,6 +17,8 @@ const page = require('./page.js')
 const dictionaryObject = dictionaryFile2
 const otherDictionaryObject = dictionaryFile
 
+const wordListTemplate = require('../templates/vs-mode.handlebars')
+
 store.gameDifficulty = 6
 
 function setGameRules (sideLength) {
@@ -36,6 +38,7 @@ function makeNewBoardArray (chooseYourDice) {
   store.newBoard = []
   store.playerWords = []
   store.playerWordCoordinates = []
+  store.loadedOldGame = false
   timer.resetTimer()
   // newBoard.push('A')
   for (let i = 0; i < boardSize; i++) {
@@ -75,7 +78,9 @@ function createBoard (diceList) {
       rowElement.appendChild(newBlock)
     }
     document.getElementById('game-board').appendChild(rowElement)
+    // console.log('made the board')
   }
+  $('#main-game-container').append(wordListTemplate)
   page.moveFooter()
   timer.startCountdown()
   store.game.game_over ? page.deadGame() : page.liveGame()

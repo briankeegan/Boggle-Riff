@@ -4,13 +4,13 @@ const store = require('../store')
 const gameApi = require('./api')
 
 const newGameSuccess = function (data) {
-  console.log(data)
+  // console.log(data)
   store.game = data.game
   if (store.game.game_over) {
     // store.game = ''
   } else {
     localStorage.setItem('savedGame', JSON.stringify(store.game))
-    console.log('game saved at initiation')
+    // console.log('game saved at initiation')
   }
   // fetchPlayerProfile()
   // console.log(data.game)
@@ -58,7 +58,7 @@ const getAllCompletedGamesFailure = function (error) {
 }
 
 const wordPushSuccess = function (data) {
-  console.log(data)
+  // console.log(data)
 }
 
 const wordPushFailure = function (error) {
@@ -66,7 +66,7 @@ const wordPushFailure = function (error) {
 }
 
 const getAllWordsSuccess = function (data) {
-  console.log(data)
+  // console.log(data)
 }
 
 const getAllWordsFailure = function (error) {

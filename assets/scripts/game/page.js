@@ -72,13 +72,17 @@ function toggleGameButtons (showArray) {
   }
 }
 
+let councount = 0
 function clearLists () {
   for (let i = 0; i < listToClear.length; i++) {
     $(listToClear[i]).html('')
   }
+  councount++
+  // if (councount === 3) { debugger }
+  // console.log('cleared lists')
 }
 
-function noGame () { toggleGameButtons(noGameIds); clearLists() }
+function noGame () { toggleGameButtons(noGameIds); if (!store.loadedOldGame) {clearLists()} }
 function liveGame () { toggleGameButtons(liveGameIds) }
 function deadGame () { toggleGameButtons(deadGameIds) }
 function signedOut () { toggleGameButtons(signedOutIds); clearLists() }

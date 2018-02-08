@@ -18,7 +18,7 @@ const toggleSignInButtons = function () {
     $('#changePasswordButton').show()
     $('#sign-out').show()
     $('#main-game-container').show()
-    page.noGame()
+    // page.noGame()
   } else {
     $('#sign-in-form').show()
     $('#createAccountButton').show()
@@ -82,7 +82,7 @@ const changePasswordFailure = function (error) {
 }
 
 const signOutSuccess = function (data) {
-  console.log(data)
+  // console.log(data)
   store.user = ''
   store.game = ''
   $('#timer-div').text(`You signed out!`)

@@ -14,15 +14,15 @@ function resetTimer () {
 function checkEndTime () {
   store.timerEndPoint = parseFloat(store.timerEndPoint)
   if ((store.timerEndPoint)) {
-    console.log('running end time check')
-    console.log('store.timerEndPoint :', store.timerEndPoint)
+    // console.log('running end time check')
+    // console.log('store.timerEndPoint :', store.timerEndPoint)
     const now = new Date().getTime()
-    console.log('now :', now)
+    // console.log('now :', now)
     if ((store.timerEndPoint < now) || (store.timerEndPoint === 'undefined') || (isNaN(store.timerEndPoint))) {
-      console.log('now is greater than end point - game should be over')
+      // console.log('now is greater than end point - game should be over')
       store.game.game_over = true
     } else {
-      console.log('now is less than end point - game should resume')
+      // console.log('now is less than end point - game should resume')
       store.timerCheck = store.timerEndPoint
     }
   }
@@ -36,8 +36,8 @@ function startCountdown () {
     store.timerCheck = store.timerEndPoint
   }
   const endTime = store.timerEndPoint
-  console.log('endTime: ', endTime)
-  console.log('store.timerCheck: ', store.timerCheck)
+  // console.log('endTime: ', endTime)
+  // console.log('store.timerCheck: ', store.timerCheck)
 
   // Update the count down every 1 second
   const x = setInterval(function () {

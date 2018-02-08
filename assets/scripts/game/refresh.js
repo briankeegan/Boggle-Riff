@@ -8,6 +8,8 @@ const timer = require('./timer')
 const page = require('./page')
 
 const refresh = function () {
+  store.loadedOldGame = false
+  store.loadedDeadGame = false
   // Restores previous session on accidental page refresh
   if (localStorage.getItem('savedUser')) {
     store.user = JSON.parse(localStorage.getItem('savedUser'))
@@ -33,6 +35,8 @@ const refresh = function () {
           // console.log('timerCheck', store.timerCheck)
           timer.checkEndTime()
           gameBuilder.createBoard(null)
+          store.loadedOldGame = true
+          store.loadedDeadGame = store.game.game_over
           if (localStorage.getItem('playerWords') !== 'undefined') {
             // console.log('The player words from last time is NOT undefined - we should have words from before.')
             store.playerWords = JSON.parse(localStorage.getItem('playerWords'))
@@ -46,6 +50,7 @@ const refresh = function () {
             player.addPlayerWordToList(store.playerWords[i])
           }
         } catch (e) {
+          console.log('Made it here - failed to load saved game')
           console.log(e)
         }
       }
