@@ -31,6 +31,7 @@ const toggleSignInButtons = function () {
 const signUpSuccess = function (data) {
   // console.log(data)
   $('#timer-div').html('Make a new board to play!')
+  const placeholderHTML = document.getElementById('create-account-message-box').innerHTML
   $('#create-account-message-box').html('<p>Account Created!</p>')
   setTimeout(() => {
     document.getElementById('close-create-account-button').click()
@@ -39,6 +40,7 @@ const signUpSuccess = function (data) {
   // $('#message-box').text('Successfully created account!')
   clearFields()
   toggleSignInButtons()
+  $('#create-account-message-box').html(placeholderHTML)
 
   // $('#timer-div').html('Make a new board to play!')
 }
