@@ -39,6 +39,7 @@ function makeNewBoardArray (chooseYourDice) {
   store.playerWords = []
   store.playerWordCoordinates = []
   store.loadedOldGame = false
+  store.reviewMode = false
   timer.resetTimer()
   // newBoard.push('A')
   for (let i = 0; i < boardSize; i++) {
@@ -80,7 +81,7 @@ function createBoard (diceList) {
     document.getElementById('game-board').appendChild(rowElement)
     // console.log('made the board')
   }
-  $('#main-game-container').append(wordListTemplate)
+  page.addWordDivs()
   page.moveFooter()
   timer.startCountdown()
   store.game.game_over ? page.deadGame() : page.liveGame()

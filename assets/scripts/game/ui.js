@@ -3,6 +3,10 @@
 const store = require('../store')
 const gameApi = require('./api')
 
+const page = require('./page')
+
+const gameListTemplate = require('../templates/game-list.handlebars')
+
 const newGameSuccess = function (data) {
   // console.log(data)
   store.game = data.game
@@ -39,8 +43,22 @@ const getGameFailure = function (error) {
   console.log(error)
 }
 
+const removeGameSuccess = function (data) {
+  // console.log(data)
+  // console.log('data.game.cells returns this: ', data.game.cells)
+  // console.log('hopefully thats a useful array')
+}
+
+const removeGameFailure = function (error) {
+  console.log(error)
+}
+
 const getAllGamesSuccess = function (data) {
   store.games = data.games
+  page.clearAreaRightOfBoard()
+  const showGamesHtml = gameListTemplate({ cats: store.games })
+  $('#main-game-container').append(showGamesHtml)
+
   // console.log(data)
 }
 
@@ -78,6 +96,8 @@ module.exports = {
   newGameFailure,
   getGameSuccess,
   getGameFailure,
+  removeGameSuccess,
+  removeGameFailure,
   getAllGamesSuccess,
   getAllGamesFailure,
   getAllCompletedGamesSuccess,

@@ -1,0 +1,25 @@
+<div id="gameList" class="col-md-4">
+
+  {{#each cats as |game|}}
+
+  <ul data-id="{{game.id}}" data-board_string="{{game.board_string}}">
+    <li>
+      <h1> <small>Letters: {{game.board_string}}</small></h1>
+    </li>
+    <li>
+      Game Completed:
+      {{#if game.game_over}}
+        Yes
+      {{else}}
+        No
+      {{/if}}
+    </li>
+    <li>
+      <button type="button" class="review-button" style="display: inline-block;">Review Board</button>
+      <button type="button" class="remove-button" style="display: inline-block;">Delete Game</button>
+    </li>
+  </ul>
+
+  {{/each}}
+
+</div>

@@ -2,12 +2,15 @@
 
 const store = require('../store')
 
+const wordListTemplate = require('../templates/vs-mode.handlebars')
+
 const listToClear = [
   '#player-word-list',
   '#scored-table',
   '#wordList',
   '#opponentList',
-  '#game-board'
+  '#game-board',
+  '#gameList'
 ]
 
 const gameObjectIds = [
@@ -18,13 +21,15 @@ const gameObjectIds = [
   '#getWordsButton',
   '#primary-game-nav',
   '#secondary-game-nav',
-  '#main-game-container'
+  '#main-game-container',
+  '#oldGames'
 ]
 
 const noGameIds = [
   '#primary-game-nav',
   '#secondary-game-nav',
-  '#main-game-container'
+  '#main-game-container',
+  '#oldGames'
 ]
 
 const liveGameIds = [
@@ -41,7 +46,8 @@ const deadGameIds = [
   '#getWordsButton',
   '#primary-game-nav',
   '#secondary-game-nav',
-  '#main-game-container'
+  '#main-game-container',
+  '#oldGames'
 ]
 
 const signedOutIds = []
@@ -82,7 +88,20 @@ function clearLists () {
   // console.log('cleared lists')
 }
 
-function noGame () { toggleGameButtons(noGameIds); if (!store.loadedOldGame) {clearLists()} }
+function clearAreaRightOfBoard () {
+  while (document.getElementById('main-game-container').children[2]) {
+    document.getElementById('main-game-container').removeChild(document.getElementById('main-game-container').lastChild)
+  }
+}
+
+function addWordDivs () {
+  if (!document.getElementById('wordList')) {
+    clearAreaRightOfBoard()
+    $('#main-game-container').append(wordListTemplate)
+  }
+}
+
+function noGame () { toggleGameButtons(noGameIds); if (!store.loadedOldGame) { clearLists() } }
 function liveGame () { toggleGameButtons(liveGameIds) }
 function deadGame () { toggleGameButtons(deadGameIds) }
 function signedOut () { toggleGameButtons(signedOutIds); clearLists() }
@@ -93,5 +112,7 @@ module.exports = {
   liveGame,
   deadGame,
   signedOut,
-  clearLists
+  clearLists,
+  clearAreaRightOfBoard,
+  addWordDivs
 }

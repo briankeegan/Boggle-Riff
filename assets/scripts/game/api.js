@@ -32,6 +32,18 @@ const getGame = () => {
   }
 }
 
+const removeGame = (id) => {
+  if (store.user) {
+    return $.ajax({
+      url: config.apiOrigin + '/games/' + id,
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Token token=' + store.user.token
+      }
+    })
+  }
+}
+
 const getAllGames = () => {
   // Verifies a user is logged in before getting all games
   if (store.user) {
@@ -105,6 +117,7 @@ const getAllWords = () => {
 module.exports = {
   newGame,
   getGame,
+  removeGame,
   getAllGames,
   getAllCompletedGames,
   updateGame,

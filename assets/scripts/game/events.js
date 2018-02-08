@@ -56,6 +56,37 @@ function pushWordsToAPI () {
     .catch(ui.wordPushFailure)
 }
 
+function onGetAllGames () {
+  api.getAllGames()
+    .then(ui.getAllGamesSuccess)
+    .then(page.moveFooter)
+    .catch(ui.getAllGamesFailure)
+}
+
+function onRemoveGame (event) {
+  event.preventDefault()
+  const data = event.target
+  const gameId = data.parentNode.parentNode.dataset.id
+  data.parentNode.parentNode.innerHTML = '<li>Game Deleted!!</li>'
+  api.removeGame(gameId)
+    .then(ui.removeGameSuccess)
+    .catch(ui.removeGameFailure)
+}
+
+function rebuildGame (event) {
+  event.preventDefault()
+  store.reviewMode = true
+  const data = event.target
+  store.game.game_over = data.parentNode.parentNode.dataset.id
+  store.game.board_string = data.parentNode.parentNode.dataset.board_string
+  store.game.game_over = true
+  store.newBoard = store.game.board_string.split(',')
+  store.playerWords = []
+  store.playerWordCoordinates = []
+  page.clearAreaRightOfBoard()
+  gameBuilder.createBoard(null)
+}
+
 // On document ready
 function AddHandlers () {
   // createBoard16()
@@ -65,6 +96,9 @@ function AddHandlers () {
   $('#getWordsButton').on('click', player.printWordsToPage)
   $('#player-word-form').on('submit', player.inputWord)
   $('#quit-early').on('click', player.QuitEarly)
+  $('#oldGames').on('click', onGetAllGames)
+  $('body').on('click', '.remove-button', onRemoveGame)
+  $('body').on('click', '.review-button', rebuildGame)
   $(window).on('beforeunload', onBeforeUnload)
   $(window).on('resize', page.moveFooter)
 }

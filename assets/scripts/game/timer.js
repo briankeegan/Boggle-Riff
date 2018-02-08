@@ -64,7 +64,7 @@ function startCountdown () {
     // If the count down is finished, write some text
     if (store.timeLeft < 0) {
       clearInterval(x)
-      $('#timer-div').html("Time's Up!!")
+      !!store.reviewMode ? $('#timer-div').html('Review Mode') : $('#timer-div').html("Time's Up!!")
       player.endGame()
       store.timerCheck = ''
     }

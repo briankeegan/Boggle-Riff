@@ -85,7 +85,7 @@ function endGame () {
   }
   // document.getElementById('in-game-buttons').style.display = 'none'
   if ((store.game) && (store.user)) {
-    $('#timer-div').html("Time's up!")
+    store.reviewMode ? $('#timer-div').html('Review Mode') : $('#timer-div').html("Time's up!")
   }
   scores.scorePresentation()
   store.timerCheck = ''
@@ -117,6 +117,7 @@ function printWordsToPage () {
     listElement.appendChild(newItem)
     listElement.appendChild(newItem2)
   }
+  page.addWordDivs()
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
   if (store.user) {

@@ -24,10 +24,10 @@ const refresh = function () {
         ((localStorage.getItem('savedGame')) !== 'undefined')) {
       store.game = JSON.parse(localStorage.getItem('savedGame'))
       // console.log('store.game.board_string: ', store.game.board_string)
-      store.newBoard = store.game.board_string.split(',')
-      // console.log('hooray you have a stored game...')
-      // console.log('store.game :', store.game)
-      if (localStorage.getItem('playerWords')) {
+      if (store.game.board_string) {
+        store.newBoard = store.game.board_string.split(',')
+        // console.log('hooray you have a stored game...')
+        // console.log('store.game :', store.game)
         try {
           store.timerEndPoint = (localStorage.getItem('timerEndPoint'))
           store.timerCheck = (localStorage.getItem('timerCheck'))
