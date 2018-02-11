@@ -57,7 +57,12 @@ const getAllGamesSuccess = function (data) {
   store.games = data.games
   // console.log('store.games:', store.games)
   page.clearAreaRightOfBoard()
-  const showGamesHtml = gameListTemplate({ cats: store.games })
+  let showGamesHtml
+  if (store.games.length > 0) {
+    showGamesHtml = gameListTemplate({ cats: store.games })
+  } else {
+    showGamesHtml = '<p>You have no old games to view.</p>'
+  }
   $('#main-game-container').append(showGamesHtml)
 
   // console.log(data)
