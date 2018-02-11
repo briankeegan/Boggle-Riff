@@ -84,6 +84,7 @@ function createBoard (diceList) {
   page.addWordDivs()
   page.moveFooter()
   timer.startCountdown()
+  console.log('store.game.game_over: (as of creating board)', store.game.game_over)
   store.game.game_over ? page.deadGame() : page.liveGame()
   document.getElementById('player-word-input').focus()
 }

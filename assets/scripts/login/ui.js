@@ -18,7 +18,7 @@ const toggleSignInButtons = function () {
     $('#changePasswordButton').show()
     $('#sign-out').show()
     $('#main-game-container').show()
-    page.noGame()
+    if (store.game.game_over !== false) { page.noGame() }
   } else {
     $('#sign-in-form').show()
     $('#createAccountButton').show()

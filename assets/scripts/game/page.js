@@ -3,6 +3,7 @@
 const store = require('../store')
 
 const wordListTemplate = require('../templates/vs-mode.handlebars')
+const directionsTemplate = require('../templates/directions.handlebars')
 
 const listToClear = [
   '#player-word-list',
@@ -102,6 +103,13 @@ function addWordDivs () {
   }
 }
 
+function addDirections () {
+  if (!document.getElementById('directions')) {
+    clearAreaRightOfBoard()
+    $('#main-game-container').append(directionsTemplate)
+  }
+}
+
 function noGame () { toggleGameButtons(noGameIds); if (!store.loadedOldGame) { clearLists() } }
 function liveGame () { toggleGameButtons(liveGameIds) }
 function deadGame () { toggleGameButtons(deadGameIds) }
@@ -115,5 +123,6 @@ module.exports = {
   signedOut,
   clearLists,
   clearAreaRightOfBoard,
-  addWordDivs
+  addWordDivs,
+  addDirections
 }
