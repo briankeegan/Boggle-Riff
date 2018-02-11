@@ -31,6 +31,9 @@ const refresh = function () {
         try {
           store.timerEndPoint = (localStorage.getItem('timerEndPoint'))
           store.timerCheck = (localStorage.getItem('timerCheck'))
+          store.CPUplayer = (localStorage.getItem('CPUplayer'))
+          store.CPUplayer === 'undefined' ? store.CPUplayer = false : store.CPUplayer = true
+          // console.log('store.CPUplayer: ', store.CPUplayer)
           // console.log('timerEndPoint', store.timerEndPoint)
           // console.log('timerCheck', store.timerCheck)
           timer.checkEndTime()

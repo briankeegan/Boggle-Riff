@@ -133,26 +133,30 @@ function printWordsToPage () {
 }
 
 function printOpponentsWords () {
-  const listElement = document.createElement('table')
-  // listElement.classList.add('complete-word-list')
-  listElement.setAttribute('style', 'padding:0; margin:0;')
-  // listElement.classList.add('dl-horizontal')
-  listElement.innerHTML = '<tr style="padding:0;"><th style="padding:0;">Word</th><th style="padding:0;">Points</th></tr>'
-  for (let i = 0; i < store.opponentWords.length; i++) {
-    const word = store.opponentWords[i]
-    if (word) {
-      const newItem = '<tr><td class="word-list-item" data-squares="' + store.opponentWordCoordinates[i].toString() + '">' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
-      listElement.innerHTML = listElement.innerHTML + newItem
+  if (store.CPUplayer) {
+    const titleElement = document.createElement('p')
+    titleElement.innerText = "CPU's List"
+    const listElement = document.createElement('table')
+    // listElement.classList.add('complete-word-list')
+    listElement.setAttribute('style', 'padding:0; margin:0;')
+    // listElement.classList.add('dl-horizontal')
+    listElement.innerHTML = '<tr style="padding:0;"><th style="padding:0;">Word</th><th style="padding:0;">Points</th></tr>'
+    for (let i = 0; i < store.opponentWords.length; i++) {
+      const word = store.opponentWords[i]
+      if (word) {
+        const newItem = '<tr><td class="word-list-item" data-squares="' + store.opponentWordCoordinates[i].toString() + '">' + word + '</td><td>' + store.scoreCard[word.length] + '</td></tr>'
+        listElement.innerHTML = listElement.innerHTML + newItem
+      }
     }
+    document.getElementById('opponentList').innerHTML = ''
+    document.getElementById('opponentList').appendChild(titleElement)
+    document.getElementById('opponentList').appendChild(listElement)
+    // if (store.user) {
+    //   api.getAllWords()
+    //     .then(ui.getAllWordsSuccess)
+    //     .catch(ui.getAllWordsFailure)
+    page.moveFooter()
   }
-  document.getElementById('opponentList').innerHTML = ''
-  document.getElementById('opponentList').appendChild(listElement)
-  if (store.user) {
-    api.getAllWords()
-      .then(ui.getAllWordsSuccess)
-      .catch(ui.getAllWordsFailure)
-  }
-  page.moveFooter()
   // tableConsoleWordList()
 }
 
@@ -187,9 +191,9 @@ function pushWordsToAPI () {
     }
   }
   // console.log(data)
-  api.uploadWords(data)
-    .then(ui.wordPushSuccess)
-    .catch(ui.wordPushFailure)
+  // api.uploadWords(data)
+  //   .then(ui.wordPushSuccess)
+  //   .catch(ui.wordPushFailure)
 }
 
 module.exports = {

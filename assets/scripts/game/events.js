@@ -33,6 +33,7 @@ const onBeforeUnload = function () {
     localStorage.setItem('playerWordCoordinates', JSON.stringify(store.playerWordCoordinates))
     localStorage.setItem('timerEndPoint', (store.timerEndPoint))
     localStorage.setItem('timerCheck', (store.timerCheck))
+    localStorage.setItem('CPUplayer', (store.CPUplayer))
     alert('saving stuff')
   } else {
     localStorage.removeItem('playerWords')
@@ -90,9 +91,12 @@ function rebuildGame (event) {
 // On document ready
 function AddHandlers () {
   // createBoard16()
-  $('#newBoardButtonCPU').on('click', gameBuilder.createBoard16)
-  $('#newBoardButtonCPU2').on('click', gameBuilder.createBoard25)
-  $('#newBoardButtonCPU3').on('click', gameBuilder.createBoard36)
+  $('#newBoardButtonCPU').on('click', () => { store.CPUplayer = true; gameBuilder.createBoard16() })
+  $('#newBoardButtonCPU2').on('click', () => { store.CPUplayer = true; gameBuilder.createBoard25() })
+  $('#newBoardButtonCPU3').on('click', () => { store.CPUplayer = true; gameBuilder.createBoard36() })
+  $('#newBoardButton').on('click', () => { store.CPUplayer = false; gameBuilder.createBoard16() })
+  $('#newBoardButton2').on('click', () => { store.CPUplayer = false; gameBuilder.createBoard25() })
+  $('#newBoardButton3').on('click', () => { store.CPUplayer = false; gameBuilder.createBoard36() })
   $('#getWordsButton').on('click', player.printWordsToPage)
   $('#player-word-form').on('submit', player.inputWord)
   $('#quit-early').on('click', player.QuitEarly)

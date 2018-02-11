@@ -129,7 +129,8 @@ const scorePresentation = function () {
         }
         i++
         if (i === store.playerWords.length) {
-          $('#timer-div').html('You Got: ' + scoreGame() + '<br> They Got: ' + scoreOpponent())
+          $('#timer-div').html('<div>You Got: ' + scoreGame() + '</div>' + (store.CPUplayer ? '<div>They Got: ' + scoreOpponent() + '</div>' : ''))
+
           clearInterval(x)
         }
       } else {
