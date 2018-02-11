@@ -37,7 +37,10 @@ function addPlayerWordToList (newWord) {
   const goBeforeMe = listParent.getElementsByTagName('li')[0]
   // console.log('About to add word to player list...')
   listParent.insertBefore(newItem, goBeforeMe)
-  listParent.getElementsByTagName('li')[0].click()
+  // animate the new word (if it appeared like it's supposed to)
+  if (listParent.getElementsByTagName('li')[0]) {
+    listParent.getElementsByTagName('li')[0].click()
+  }
   // console.log('Added word to player list!!')
   // } else {
   // listParent.appendChild(newItem)
