@@ -32,11 +32,11 @@ const signUpSuccess = function (data) {
   // console.log(data)
   $('#timer-div').html('Make a new board to play!')
   const placeholderHTML = document.getElementById('create-account-message-box').innerHTML
-  $('#create-account-message-box').html('<p>Account Created!</p>')
+  $('#create-account-message-box').html('<p>Account Created! Signing in...</p>')
   setTimeout(() => {
     document.getElementById('close-create-account-button').click()
     $('#create-account-message-box').html(placeholderHTML)
-  }, 600)
+  }, 900)
   // console.log(data)
   // $('#message-box').text('Successfully created account!')
   clearFields()
@@ -46,7 +46,9 @@ const signUpSuccess = function (data) {
 
 const signUpFailure = function (error) {
   console.error(error)
-  $('#timer-div').text('FAIL. Check your info.')
+  const placeholderHTML = document.getElementById('create-account-message-box').innerHTML
+  $('#create-account-message-box').html('<p>Account Creation failed.</p>' + placeholderHTML)
+  // $('#timer-div').text('FAIL. Check your info.')
   clearFields()
 }
 
@@ -66,19 +68,22 @@ const signInSuccess = function (data) {
 
 const signInFailure = function (error) {
   console.error(error)
-  $('#timer-div').text('FAIL. Check your info.')
+  $('#timer-div').text('Sign-in failed. Check your info.')
   clearFields()
 }
 
 const changePasswordSuccess = function (data) {
   // console.log(data)
+  $('#change-password-status-message').text('Password updated.')
   clearFields()
   toggleSignInButtons()
 }
 
 const changePasswordFailure = function (error) {
   console.error(error)
+  $('#change-password-status-message').text('Password change failed.')
   clearFields()
+  toggleSignInButtons()
 }
 
 const signOutSuccess = function (data) {
