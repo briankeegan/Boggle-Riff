@@ -46,7 +46,7 @@ const signUpSuccess = function (data) {
 
 const signUpFailure = function (error) {
   console.error(error)
-  $('#message-box').text('FAIL. Check your info.')
+  $('#timer-div').text('FAIL. Check your info.')
   clearFields()
 }
 
@@ -66,7 +66,7 @@ const signInSuccess = function (data) {
 
 const signInFailure = function (error) {
   console.error(error)
-  $('#message-box').text('FAIL. Check your info.')
+  $('#timer-div').text('FAIL. Check your info.')
   clearFields()
 }
 
