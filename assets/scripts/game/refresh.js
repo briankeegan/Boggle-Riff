@@ -53,8 +53,8 @@ const refresh = function () {
             player.addPlayerWordToList(store.playerWords[i])
           }
         } catch (e) {
-          console.log('Made it here - failed to load saved game')
-          console.log(e)
+          // console.log('Made it here - failed to load saved game')
+          // console.log(e)
         }
       }
     } else {
