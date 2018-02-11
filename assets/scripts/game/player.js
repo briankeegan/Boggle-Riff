@@ -124,6 +124,7 @@ function printWordsToPage () {
   page.addWordDivs()
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
+  document.getElementById('wordList').style.outline = '1px solid black'
   if (store.user) {
     // api.getAllWords()
     //   .then(ui.getAllWordsSuccess)

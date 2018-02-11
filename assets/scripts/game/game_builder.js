@@ -18,6 +18,7 @@ const dictionaryObject = dictionaryFile2
 const otherDictionaryObject = dictionaryFile
 
 const wordListTemplate = require('../templates/vs-mode.handlebars')
+const miniDirectionsTemplate = require('../templates/mini-directions.handlebars')
 
 store.gameDifficulty = 6
 
@@ -82,9 +83,9 @@ function createBoard (diceList) {
     // console.log('made the board')
   }
   page.addWordDivs()
+  page.addMiniDirections({sideLength, minWordLength: store.minWordLength, scoreCard: store.scoreCard, timer: store.secondsInTimer})
   page.moveFooter()
   timer.startCountdown()
-  console.log('store.game.game_over: (as of creating board)', store.game.game_over)
   store.game.game_over ? page.deadGame() : page.liveGame()
   document.getElementById('player-word-input').focus()
 }

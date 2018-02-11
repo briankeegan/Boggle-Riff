@@ -18,7 +18,11 @@ const toggleSignInButtons = function () {
     $('#changePasswordButton').show()
     $('#sign-out').show()
     $('#main-game-container').show()
-    if (store.game.game_over !== false) { page.noGame() }
+    if (store.game) {
+      if (store.game.game_over !== false) { page.noGame() }
+    } else {
+      page.noGame()
+    }
   } else {
     $('#sign-in-form').show()
     $('#createAccountButton').show()
@@ -90,6 +94,7 @@ const signOutSuccess = function (data) {
   // console.log(data)
   store.user = ''
   store.game = ''
+  store.newBoard = ''
   $('#timer-div').text(`You signed out!`)
   page.clearLists()
   localStorage.clear()

@@ -4,6 +4,7 @@ const store = require('../store')
 
 const wordListTemplate = require('../templates/vs-mode.handlebars')
 const directionsTemplate = require('../templates/directions.handlebars')
+const miniDirectionsTemplate = require('../templates/mini-directions.handlebars')
 
 const listToClear = [
   '#player-word-list',
@@ -110,7 +111,16 @@ function addDirections () {
   }
 }
 
-function noGame () { toggleGameButtons(noGameIds); if (!store.loadedOldGame) { clearLists() } }
+function addMiniDirections (object) {
+  const specialDirections = miniDirectionsTemplate(object)
+  $('#opponentList').append(specialDirections)
+}
+
+function noGame () {
+  toggleGameButtons(noGameIds)
+  if (!store.loadedOldGame) { clearLists() }
+  if (!store.newBoard) { addDirections() }
+}
 function liveGame () { toggleGameButtons(liveGameIds) }
 function deadGame () { toggleGameButtons(deadGameIds) }
 function signedOut () { toggleGameButtons(signedOutIds); clearLists() }
@@ -124,5 +134,6 @@ module.exports = {
   clearLists,
   clearAreaRightOfBoard,
   addWordDivs,
-  addDirections
+  addDirections,
+  addMiniDirections
 }
