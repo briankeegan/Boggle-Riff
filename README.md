@@ -14,7 +14,7 @@ I wrote a script that iterates through all possible combinations of letters on t
 
 Source: http://www.luke-g.com/boggle/#thedict
 
-The dictionary was the trickiest thing here. It used to slow the whole thing down A LOT. No more!
+The dictionary was the trickiest thing here. It used to slow the entire application constantly. No more!
 
 I removed all the white space from the dictionary file and made it an object full of shorter arrays (instead of one long array, which wasn't playing nice with javascript's indexOf() function). Then I made the game logic check against the appropriate sub-dictionary instead of the entire dictionary and Violå! The dictionary worked!
 
@@ -34,6 +34,7 @@ I considered a more slim dictionary but it was missing certain words (like all p
   - SASS
   - Javascript
   - AJAX
+  - Handlebars
   - Organic Fish Oil
 
   ## Links
