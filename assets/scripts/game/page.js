@@ -29,6 +29,7 @@ const noGameIds = [
   '#primary-game-nav',
   '#secondary-game-nav',
   '#main-game-container',
+  '#in-game-buttons',
   '#oldGames'
 ]
 

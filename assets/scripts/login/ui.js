@@ -18,7 +18,7 @@ const toggleSignInButtons = function () {
     $('#changePasswordButton').show()
     $('#sign-out').show()
     $('#main-game-container').show()
-    // page.noGame()
+    page.noGame()
   } else {
     $('#sign-in-form').show()
     $('#createAccountButton').show()
@@ -96,6 +96,7 @@ const signOutSuccess = function (data) {
   clearFields()
   toggleSignInButtons()
   document.getElementById('sign-in-email').focus()
+  page.moveFooter()
   // gameEvents.resetBoard()
 }
 
