@@ -34,12 +34,12 @@ function addPlayerWordToList (newWord) {
   newItem.innerText = newWord
   const listParent = document.getElementById('player-word-list')
   // if (store.playerWords.length > 1) {
-  // const goBeforeMe = listParent.getElementsByTagName('li')[0]
+  const goBeforeMe = listParent.getElementsByTagName('li')[0]
   // console.log('About to add word to player list...')
-  // listParent.insertBefore(newItem, goBeforeMe)
+  listParent.insertBefore(newItem, goBeforeMe)
   // console.log('Added word to player list!!')
   // } else {
-  listParent.appendChild(newItem)
+  // listParent.appendChild(newItem)
   // }
   page.moveFooter()
 }
