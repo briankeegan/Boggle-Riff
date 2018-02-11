@@ -132,7 +132,7 @@ function checkForWord (coordinateList) {
                 store.wordListDifficulty.push(newDifficulty)
               }
             }
-            if (dictionaryObject[twoLettersSpecial]) {
+            if (otherDictionaryObject[twoLettersSpecial]) {
               if ((otherDictionaryObject[twoLettersSpecial].indexOf(specialWord) !== -1) &&
                   (store.opponentWords.indexOf(specialWord) === -1) &&
                   (newDifficulty <= store.gameDifficulty)) {
