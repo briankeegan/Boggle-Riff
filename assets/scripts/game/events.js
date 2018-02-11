@@ -84,6 +84,7 @@ function rebuildGame (event) {
   store.newBoard = store.game.board_string.split(',')
   store.playerWords = []
   store.playerWordCoordinates = []
+  store.CPUplayer = false
   page.clearAreaRightOfBoard()
   gameBuilder.createBoard(null)
 }

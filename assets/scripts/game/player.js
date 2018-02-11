@@ -133,7 +133,7 @@ function printWordsToPage () {
 }
 
 function printOpponentsWords () {
-  if (store.CPUplayer) {
+  if ((store.CPUplayer) && (!store.reviewMode)) {
     const titleElement = document.createElement('p')
     titleElement.innerText = "CPU's List"
     const listElement = document.createElement('table')
