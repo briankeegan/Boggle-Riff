@@ -80,10 +80,12 @@ function endGame () {
         game_over: true
       }
     }
-    api.updateGame(NewGameData)
-      .then(ui.newGameSuccess)
-      .catch(ui.newGameFailure)
-    $('#offline-message-box').html('')
+    if (!store.reviewMode) {
+      api.updateGame(NewGameData)
+        .then(ui.newGameSuccess)
+        .catch(ui.newGameFailure)
+      $('#offline-message-box').html('')
+    }
   }
   // document.getElementById('in-game-buttons').style.display = 'none'
   if ((store.game) && (store.user)) {
