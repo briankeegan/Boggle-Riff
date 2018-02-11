@@ -78,7 +78,7 @@ function rebuildGame (event) {
   event.preventDefault()
   store.reviewMode = true
   const data = event.target
-  store.game.game_over = data.parentNode.parentNode.dataset.id
+  store.game.id = data.parentNode.parentNode.dataset.id
   store.game.board_string = data.parentNode.parentNode.dataset.board_string
   store.game.game_over = true
   store.newBoard = store.game.board_string.split(',')
