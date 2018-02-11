@@ -51,10 +51,10 @@ function pushWordsToAPI () {
       word: store.playerWords.toString()
     }
   }
-  console.log(data)
-  api.uploadWords(data)
-    .then(ui.wordPushSuccess)
-    .catch(ui.wordPushFailure)
+  // console.log(data)
+  // api.uploadWords(data)
+  //   .then(ui.wordPushSuccess)
+  //   .catch(ui.wordPushFailure)
 }
 
 function onGetAllGames () {
