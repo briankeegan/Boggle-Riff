@@ -39,7 +39,6 @@ function addPlayerWordToList (newWord) {
   // listParent.insertBefore(newItem, goBeforeMe)
   // console.log('Added word to player list!!')
   // } else {
-  debugger
   listParent.appendChild(newItem)
   // }
   page.moveFooter()
