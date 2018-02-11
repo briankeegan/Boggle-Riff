@@ -55,7 +55,7 @@ const removeGameFailure = function (error) {
 
 const getAllGamesSuccess = function (data) {
   store.games = data.games
-  console.log('store.games:', store.games)
+  // console.log('store.games:', store.games)
   page.clearAreaRightOfBoard()
   const showGamesHtml = gameListTemplate({ cats: store.games })
   $('#main-game-container').append(showGamesHtml)
