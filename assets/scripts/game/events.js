@@ -78,6 +78,7 @@ function rebuildGame (event) {
   event.preventDefault()
   store.reviewMode = true
   const data = event.target
+  if (!store.game) { store.game = {} }
   store.game.id = data.parentNode.parentNode.dataset.id
   store.game.board_string = data.parentNode.parentNode.dataset.board_string
   store.game.game_over = true
