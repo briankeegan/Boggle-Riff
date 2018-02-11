@@ -130,6 +130,8 @@ const scorePresentation = function () {
         i++
         if (i === store.playerWords.length) {
           $('#timer-div').html('<div>You Got: ' + scoreGame() + '</div>' + (store.CPUplayer ? '<div>They Got: ' + scoreOpponent() + '</div>' : ''))
+          // console.log('store.CPUplayer (after scoring):', store.CPUplayer)
+          // console.log(typeof store.CPUplayer)
 
           clearInterval(x)
         }
