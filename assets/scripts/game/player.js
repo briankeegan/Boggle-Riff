@@ -123,9 +123,9 @@ function printWordsToPage () {
   document.getElementById('wordList').innerHTML = ''
   document.getElementById('wordList').appendChild(listElement)
   if (store.user) {
-    api.getAllWords()
-      .then(ui.getAllWordsSuccess)
-      .catch(ui.getAllWordsFailure)
+    // api.getAllWords()
+    //   .then(ui.getAllWordsSuccess)
+    //   .catch(ui.getAllWordsFailure)
   }
   page.moveFooter()
   if (!store.game.game_over) {
