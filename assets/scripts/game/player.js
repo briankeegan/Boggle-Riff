@@ -21,10 +21,33 @@ function inputWord (event) {
     (store.playerWords.indexOf(newWord) === -1)) {
       store.playerWords.push(newWord)
       store.playerWordCoordinates.push(store.wordListCoordinates[store.wordList.indexOf(newWord)])
+      const beforeCount = document.getElementById('player-word-list').getElementsByTagName('li').length
       addPlayerWordToList(newWord)
+      const afterCount = document.getElementById('player-word-list').getElementsByTagName('li').length
+      if (beforeCount === afterCount) {
+        playerWordListRebuild()
+      }
     }
     $('#player-word-input').val('')
   }
+}
+
+function playerWordListRebuild () {
+  const parent = $('#player-words')
+  const child = $('#player-word-list')
+  parent.remove(child)
+  const newChild = document.createElement('ul')
+  newChild.setAttribute('id', 'player-word-list')
+  for (let i = 0; i < store.playerWords.length; i++) {
+    const x = (store.playerWords.length - (i + 1))
+    const newWordElement = document.createElement('li')
+    newWordElement.innerText = store.playerWords[x]
+    newWordElement.setAttribute('data-squares', store.wordListCoordinates[store.wordList.indexOf(store.playerWords[x])].toString())
+    newWordElement.classList.add('word-list-item')
+    child.appendChild(newWordElement)
+  }
+  parent.appendChild(newChild)
+  parent.getElementsByTagName('li')[0].click()
 }
 
 function addPlayerWordToList (newWord) {
